@@ -1,0 +1,122 @@
+============================================================
+ HIGH-DETAIL REPORT
+ Query: python web scraping
+ Date:  2026-02-27 17:03
+ Results: 2 | Pages: 2
+ Sub-pages scraped: 2
+============================================================
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  [1] Python Web Scraping Tutorial - GeeksforGeeks
+  URL: https://www.geeksforgeeks.org/python/python-web-scraping-tutorial/
+  Meta: Your All-in-One Learning Portal: GeeksforGeeks is a comprehensive educational platform that empowers learners across domains-spanning computer science and programming, school education, upskilling, commerce, software tools, competitive exams, and more.
+
+  ── Headings ──
+    • Python Web Scraping Tutorial
+      • Requests Module
+      • Parsing HTML with BeautifulSoup
+      • Extracting Content by Tag and Class
+      • Selenium
+      • Parsing HTML with lxml and XPath
+      • Urllib Module
+      • Automating UI Tasks with PyAutoGUI
+      • Scheduling Scraping Jobs with schedule
+      • Why Python 3 for Web Scraping
+        • What is a WebDriver
+
+  ── Content ──
+  Three 90 Ending Soon - Enroll today and alsoget extra 35% OFF!
+Three 90 Ending Soon - Enroll today and alsoget extra 35% OFF!
+Web scraping is the process of extracting data from websites automatically. Python is widely used for web scraping because of its easy syntax and powerful libraries likeBeautifulSoup,ScrapyandSelenium. In this tutorial, you'll learn how to use these Python tools to scrape data from websites and understand why Python 3 is a popular choice for web scraping tasks.
+The requests library is used for making HTTP requests to a specific URL and returns the response. Python requests provide inbuilt functionalities for managing both the request and response.
+If requests is not installed, install it using:
+pip install requests
+Example:In this example, we are sending a GET request to a webpage using therequests.get()method, then printing the response status code and the page content returned by the server.
+Output
+Explanation:
+For more information, refer to ourPython Requests Tutorial.
+Once the raw HTML is fetched, the next step is to parse it into a readable structure. That’s where BeautifulSoup comes in. It helps convert the raw HTML into a searchable tree of elements.
+If requests is not installed, install it using:
+pip install beautifulsoup4
+Example:Here, we first send an HTTP request to the webpage, then use BeautifulSoup to parse the HTML content and format it in a clean, readable structure.
+Output
+Explanation:
+At this point, the HTML is ready to be searched for tags, classes or content.
+Once we have parsed the HTML using BeautifulSoup, the next step is to locate and extract specific content from the page. Websites usually wrap their main article content inside tags with identifiable classes like<div class="article--viewer_content">. We can target such elements and pull out useful data like text, links or images.
+Example:In this example, we'll extract all paragraph (<p>) text from the main content section of theGeeksforGeeks Python Tutorialpage.
+Outpu…
+
+  ── Sub-pages (1) ──
+    ┌ Sub-page 1: GeeksforGeeks | Your All-in-One Learning Portal
+    │ URL: https://www.geeksforgeeks.org/
+    │ Available on Live, Online & Offline Learning Modes
+Complete payment for any course
+Complete 90% of the course within 90 days
+Claim your 90% refund of the course fee
+Three 90 Ends in :
+Accept the Challenge - Limited Time!
+Connect with trusted experts, anytime. Get real answers,real guidance, in real time.
+    └────────────────────────────────────────
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  [2] Beautiful Soup: Build a Web Scraper With Python – Real Python
+  URL: https://realpython.com/beautiful-soup-web-scraper-python/
+  Meta: In this tutorial, you'll walk through the main steps of the web scraping process. You'll learn how to write a script that uses Python's Requests library to scrape data from a website. You'll also use Beautiful Soup to extract the specific pieces of information you're interested in.
+
+  ── Headings ──
+    • Beautiful Soup: Build a Web Scraper With Python
+      • What Is Web Scraping?
+      • Scrape the Fake Python Job Site
+      • Step 1: Inspect Your Data Source
+      • Step 2: Scrape HTML Content From a Page
+      • Step 3: Parse HTML Code With Beautiful Soup
+      • Assemble Your Code in a Script
+      • Keep Practicing
+      • Conclusion
+      • Frequently Asked Questions
+      • Keep reading Real Python by creating a free account or signing in:
+        • Reasons for Automated Web Scraping
+        • Challenges of Web Scraping
+        • An Alternative to Web Scraping: APIs
+        • Explore the Website
+        • Decipher the Information in URLs
+        • Inspect the Site Using Developer Tools
+        • Static Websites
+        • Login-Protected Websites
+        • Dynamic Websites
+        • Find Elements by ID
+        • Find Elements by HTML Class Name
+        • Extract Text From HTML Elements
+        • Find Elements by Class Name and Text Content
+        • Pass a Function to a Beautiful Soup Method
+        • Identify Error Conditions
+        • Access Parent Elements
+        • Extract Attributes From HTML Elements
+
+  ── Content ──
+  Table of Contents
+Recommended Course
+Web Scraping With Beautiful Soup and Python(1h 56m)
+Beautiful Soup is a Python library designed for parsing HTML and XML documents. It creates parse trees that make it straightforward to extract data from HTML documents you’ve scraped from the internet. Beautiful Soup is a useful tool in yourweb scrapingtoolkit, allowing you to conveniently extract specific information from HTML, even from complex static websites.
+In this tutorial, you’ll learn how to build a web scraper using Beautiful Soup along with theRequests libraryto scrape and parse job listings from a static website.
+Static websites provide consistent HTML content, while dynamic sites may require handling JavaScript. For dynamic websites, you’ll need to incorporate additional tools that can execute JavaScript, such asScrapyorSelenium.
+By the end of this tutorial, you’ll understand that:
+Working through this project will give you the knowledge and tools that you need to scrape any static website out there on the World Wide Web.
+If you like learning with hands-on examples and have a basic understanding of Python andHTML, then this tutorial is for you! 
+You can download the project source code by clicking on the link below:
+Get Your Code:Click here to download the free sample codethat you’ll use to learn about web scraping in Python.
+Take the Quiz:Test your knowledge with our interactive “Beautiful Soup: Build a Web Scraper With Python” quiz. You’ll receive a score upon completion to help you track your learning progress:
+Interactive Quiz
+In this quiz, you'll test your understanding of web scraping using Python. By working through this quiz, you'll revisit how to inspect the HTML structure of a target site, decipher data encoded in URLs, and use Requests and Beautiful Soup for scraping and parsing data.
+Web scrapingis the process of gathering information from the internet. Even copying and pasting the lyrics of your favorite song can be considered a form of web scraping! Ho…
+
+  ── Sub-pages (1) ──
+    ┌ Sub-page 1: Beautiful Soup: Build a Web Scraper With Python – Real Python
+    │ URL: https://realpython.com/beautiful-soup-web-scraper-python/#author
+    │ Table of Contents
+Recommended Course
+Web Scraping With Beautiful Soup and Python(1h 56m)
+Beautiful Soup is a Python library designed for parsing HTML and XML documents. It creates parse trees that make it straightforward to extract data from HTML documents you’ve scraped from the internet. Beautiful Soup is a useful tool in yourweb scrapingtoolkit, allowing you to conveniently extract specific information from HTML, even from complex static websites.
+In this tutorial, you’ll learn how to build a web scraper using Beautiful Soup along with theRequests libraryto scrape and parse job listings from a static website.
+Static websites provide consistent HTML content, while dynamic sites may require handling JavaScript. For dynamic websites, you’ll need to incorporate additional tools that can exe…
+    └────────────────────────────────────────

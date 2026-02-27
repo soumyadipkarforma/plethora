@@ -1,0 +1,2396 @@
+{
+  "query": "python web scraping",
+  "level": "high",
+  "search_results": [
+    {
+      "title": "Python Web Scraping Tutorial - GeeksforGeeks",
+      "url": "https://www.geeksforgeeks.org/python/python-web-scraping-tutorial/",
+      "snippet": "Webscrapingis the process of extracting data from websites automatically.Pythonis widely used forwebscrapingbecause of its easy syntax and powerful libraries like BeautifulSoup, Scrapy and Selenium. In this tutorial, you'll learn how to use thesePythontools to scrape data from websites and understand whyPython3 is a popular choice forwebscrapingtasks."
+    },
+    {
+      "title": "Beautiful Soup: Build a Web Scraper With Python",
+      "url": "https://realpython.com/beautiful-soup-web-scraper-python/",
+      "snippet": "Learn how to use Beautiful Soup and Requests to scrape and parse HTML documents from static websites. Follow a step-by-step tutorial with code examples and a quiz to test your knowledge."
+    }
+  ],
+  "pages": [
+    {
+      "url": "https://www.geeksforgeeks.org/python/python-web-scraping-tutorial/",
+      "title": "Python Web Scraping Tutorial - GeeksforGeeks",
+      "meta_description": "Your All-in-One Learning Portal: GeeksforGeeks is a comprehensive educational platform that empowers learners across domains-spanning computer science and programming, school education, upskilling, commerce, software tools, competitive exams, and more.",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Python Web Scraping Tutorial"
+        },
+        {
+          "level": 2,
+          "text": "Requests Module"
+        },
+        {
+          "level": 2,
+          "text": "Parsing HTML with BeautifulSoup"
+        },
+        {
+          "level": 2,
+          "text": "Extracting Content by Tag and Class"
+        },
+        {
+          "level": 2,
+          "text": "Selenium"
+        },
+        {
+          "level": 2,
+          "text": "Parsing HTML with lxml and XPath"
+        },
+        {
+          "level": 2,
+          "text": "Urllib Module"
+        },
+        {
+          "level": 2,
+          "text": "Automating UI Tasks with PyAutoGUI"
+        },
+        {
+          "level": 2,
+          "text": "Scheduling Scraping Jobs with schedule"
+        },
+        {
+          "level": 2,
+          "text": "Why Python 3 for Web Scraping"
+        },
+        {
+          "level": 3,
+          "text": "What is a WebDriver"
+        }
+      ],
+      "text": "Three 90 Ending Soon - Enroll today and alsoget extra 35% OFF!\nThree 90 Ending Soon - Enroll today and alsoget extra 35% OFF!\nWeb scraping is the process of extracting data from websites automatically. Python is widely used for web scraping because of its easy syntax and powerful libraries likeBeautifulSoup,ScrapyandSelenium. In this tutorial, you'll learn how to use these Python tools to scrape data from websites and understand why Python 3 is a popular choice for web scraping tasks.\nThe requests library is used for making HTTP requests to a specific URL and returns the response. Python requests provide inbuilt functionalities for managing both the request and response.\nIf requests is not installed, install it using:\npip install requests\nExample:In this example, we are sending a GET request to a webpage using therequests.get()method, then printing the response status code and the page content returned by the server.\nOutput\nExplanation:\nFor more information, refer to ourPython Requests Tutorial.\nOnce the raw HTML is fetched, the next step is to parse it into a readable structure. That’s where BeautifulSoup comes in. It helps convert the raw HTML into a searchable tree of elements.\nIf requests is not installed, install it using:\npip install beautifulsoup4\nExample:Here, we first send an HTTP request to the webpage, then use BeautifulSoup to parse the HTML content and format it in a clean, readable structure.\nOutput\nExplanation:\nAt this point, the HTML is ready to be searched for tags, classes or content.\nOnce we have parsed the HTML using BeautifulSoup, the next step is to locate and extract specific content from the page. Websites usually wrap their main article content inside tags with identifiable classes like<div class=\"article--viewer_content\">. We can target such elements and pull out useful data like text, links or images.\nExample:In this example, we'll extract all paragraph (<p>) text from the main content section of theGeeksforGeeks Python Tutorialpage.\nOutput\nImage of the actual GeeksforGeeks Python Tutorial page:\nNotice that the text output in the terminal contains the actual content from the web page.\nFor more information, refer to ourPython BeautifulSoup.\nSome websites load their content dynamically using JavaScript. This means the data you're trying to scrape may not be present in the initial HTML source. In such cases, BeautifulSoup alone won’t work, because it only reads static HTML.\nTo handle this, we use Selenium that can automate browsers like Chrome or Firefox, wait for content to load, click buttons, scroll and extract fully rendered web pages just like a real user.\nIf selenium is not installed, install it using:\npip install selenium\nA WebDriver is a software component that Selenium uses to interact with a web browser. It acts as the bridge between your Python script and the actual browser window.\nEach browser (Chrome, Firefox, Edge, etc.) has its own WebDriver:\nSelenium uses this WebDriver to:\nNote:You can either manually download the WebDriver or usewebdriver-managerwhich handles the download and setup automatically.\nExample 1:In this example, we're directing the browser to the Google search page with the query parameter \"geeksforgeeks\". The browser will load this page and we can then proceed to interact with it programmatically using Selenium. This interaction could involve tasks like extracting search results, clicking on links or scraping specific content from the page.\nOutput\nExplanation:\nExample 2:In this example, we automate a real e-commerce test website using Selenium and Chrome. The script opens each page, extracts laptop details such as title, price, description, and ratings, and stores everything in a structured list for further use.\nOutput\nExplanation:\nFor more information, refer to ourPython Selenium.\nThe lxml library is a fast, powerful HTML/XML parser that supports XPath, making it ideal when you need accurate and targeted extraction from webpages. It helps convert raw HTML into a structured tree so you can fetch elements precisely much faster and more flexible than basic HTML parsing.\nIf lxml is not installed, install it using:\npip install lxml\nExample:In this example, we fetch a webpage using requests, parse the HTML using lxml.html, and use XPath to extract all link texts from <a> tags.\nOutput\nLearn more\nBelow is the snapshot of the actual webpage of the URL:'https://example.com/'\nExplanation:\nFor more information, refer to ourlxml\nThe urllib module is a built-in Python library used for working with URLs. It helps you open web pages, read their data, parse URLs, and handle URL-related errors. It groups several useful submodules such as urllib.request, urllib.parse, urllib.error, and urllib.robotparser, making it easy to fetch and process online content.\nIf urllib is missing in your environment, install:\npip install urllib3\nExample:In this example, we open a webpage using urlopen(), read its HTML content, decode it into text and then print it.\nOutput\nExplanation:\nFor more information, refer tourllib module\nPyAutoGUI allows you to automate on-screen mouse and keyboard actions. It is especially useful when Selenium cannot interact with certain elements like native pop-ups, custom menus or non-HTML components.\nIf PyAutoGUI is not installed, install it using:\npip install pyautogui\nExample:In this example, PyAutoGUI moves the mouse to specific screen positions and performs clicks, helping automate simple UI interactions.\nOutput\nExplanation:\nFor more information, refer toPyAutoGUI\nThe schedule module allows you to run functions automatically at fixed time intervals. It is especially useful in web scraping when you want to collect data every few minutes, hourly, daily, or weekly without manually running the script each time.\nIf schedule is not installed, install it using:\npip install schedule\nExample:In this example, we schedule a simple function to run every minute. The loop keeps checking for pending jobs and executes them at the right time.\nOutput\nExplanation:\nPython 3 is the most modern and supported version of Python and it's ideal for web scraping because:",
+      "links": [
+        {
+          "text": "",
+          "url": "https://www.geeksforgeeks.org/"
+        },
+        {
+          "text": "Python Tutorial",
+          "url": "https://www.geeksforgeeks.org/python/python-programming-language-tutorial/"
+        },
+        {
+          "text": "Data Types",
+          "url": "https://www.geeksforgeeks.org/python/python-data-types/"
+        },
+        {
+          "text": "Interview Questions",
+          "url": "https://www.geeksforgeeks.org/python/python-interview-questions/"
+        },
+        {
+          "text": "Examples",
+          "url": "https://www.geeksforgeeks.org/python/python-programming-examples/"
+        },
+        {
+          "text": "Quizzes",
+          "url": "https://www.geeksforgeeks.org/python/python-quizzes/"
+        },
+        {
+          "text": "DSA Python",
+          "url": "https://www.geeksforgeeks.org/dsa/python-data-structures-and-algorithms/"
+        },
+        {
+          "text": "Data Science",
+          "url": "https://www.geeksforgeeks.org/data-science/data-science-with-python-tutorial/"
+        },
+        {
+          "text": "NumPy",
+          "url": "https://www.geeksforgeeks.org/python/numpy-tutorial/"
+        },
+        {
+          "text": "Pandas",
+          "url": "https://www.geeksforgeeks.org/pandas/pandas-tutorial/"
+        },
+        {
+          "text": "Practice",
+          "url": "https://www.geeksforgeeks.org/dsa/geeksforgeeks-practice-best-online-coding-platform/"
+        },
+        {
+          "text": "Django",
+          "url": "https://www.geeksforgeeks.org/python/django-tutorial/"
+        },
+        {
+          "text": "Flask",
+          "url": "https://www.geeksforgeeks.org/python/flask-tutorial/"
+        },
+        {
+          "text": "Share Your Experiences",
+          "url": "https://write.geeksforgeeks.org/#experiences"
+        },
+        {
+          "text": "Python Introduction",
+          "url": "https://www.geeksforgeeks.org/python/introduction-to-python/"
+        },
+        {
+          "text": "Input and Output in Python",
+          "url": "https://www.geeksforgeeks.org/python/input-and-output-in-python/"
+        },
+        {
+          "text": "Python Variables",
+          "url": "https://www.geeksforgeeks.org/python/python-variables/"
+        },
+        {
+          "text": "Python Operators",
+          "url": "https://www.geeksforgeeks.org/python/python-operators/"
+        },
+        {
+          "text": "Python Keywords",
+          "url": "https://www.geeksforgeeks.org/python/python-keywords/"
+        },
+        {
+          "text": "Python Data Types",
+          "url": "https://www.geeksforgeeks.org/python/python-data-types/"
+        },
+        {
+          "text": "Conditional Statements in Python",
+          "url": "https://www.geeksforgeeks.org/python/conditional-statements-in-python/"
+        },
+        {
+          "text": "Loops in Python",
+          "url": "https://www.geeksforgeeks.org/python/loops-in-python/"
+        },
+        {
+          "text": "Python Functions",
+          "url": "https://www.geeksforgeeks.org/python/python-functions/"
+        },
+        {
+          "text": "Python String",
+          "url": "https://www.geeksforgeeks.org/python/python-string/"
+        },
+        {
+          "text": "Python Lists",
+          "url": "https://www.geeksforgeeks.org/python/python-lists/"
+        },
+        {
+          "text": "Python Tuples",
+          "url": "https://www.geeksforgeeks.org/python/python-tuples/"
+        },
+        {
+          "text": "Python Dictionary",
+          "url": "https://www.geeksforgeeks.org/python/python-dictionary/"
+        },
+        {
+          "text": "Python Sets",
+          "url": "https://www.geeksforgeeks.org/python/python-sets/"
+        },
+        {
+          "text": "Python Arrays",
+          "url": "https://www.geeksforgeeks.org/python/python-arrays/"
+        },
+        {
+          "text": "Python OOP Concepts",
+          "url": "https://www.geeksforgeeks.org/python/python-oops-concepts/"
+        },
+        {
+          "text": "Python Exception Handling",
+          "url": "https://www.geeksforgeeks.org/python/python-exception-handling/"
+        },
+        {
+          "text": "File Handling in Python",
+          "url": "https://www.geeksforgeeks.org/python/file-handling-python/"
+        },
+        {
+          "text": "Python Database Tutorial",
+          "url": "https://www.geeksforgeeks.org/python/python-database-tutorial/"
+        },
+        {
+          "text": "Python MongoDB Tutorial",
+          "url": "https://www.geeksforgeeks.org/python/python-mongodb-tutorial/"
+        },
+        {
+          "text": "Python MySQL",
+          "url": "https://www.geeksforgeeks.org/python/python-mysql/"
+        },
+        {
+          "text": "Python Packages",
+          "url": "https://www.geeksforgeeks.org/python/python-packages/"
+        },
+        {
+          "text": "Python Modules",
+          "url": "https://www.geeksforgeeks.org/python/python-modules/"
+        },
+        {
+          "text": "Python DSA Libraries",
+          "url": "https://www.geeksforgeeks.org/python/python-dsa-libraries/"
+        },
+        {
+          "text": "List of Python GUI Library and Packages",
+          "url": "https://www.geeksforgeeks.org/python/python3-gui-application-overview/"
+        },
+        {
+          "text": "NumPy Tutorial",
+          "url": "https://www.geeksforgeeks.org/python/numpy-tutorial/"
+        },
+        {
+          "text": "Pandas Tutorial",
+          "url": "https://www.geeksforgeeks.org/pandas/pandas-tutorial/"
+        },
+        {
+          "text": "Matplotlib Tutorial",
+          "url": "https://www.geeksforgeeks.org/python/matplotlib-tutorial/"
+        },
+        {
+          "text": "Python Seaborn Tutorial",
+          "url": "https://www.geeksforgeeks.org/python/python-seaborn-tutorial/"
+        },
+        {
+          "text": "StatsModel Library - Tutorial",
+          "url": "https://www.geeksforgeeks.org/data-science/statsmodel-library-tutorial/"
+        },
+        {
+          "text": "Learning Model Building in Scikit-learn",
+          "url": "https://www.geeksforgeeks.org/machine-learning/learning-model-building-scikit-learn-python-machine-learning-library/"
+        },
+        {
+          "text": "TensorFlow Tutorial",
+          "url": "https://www.geeksforgeeks.org/deep-learning/tensorflow/"
+        },
+        {
+          "text": "PyTorch Tutorial",
+          "url": "https://www.geeksforgeeks.org/deep-learning/pytorch-learn-with-examples/"
+        },
+        {
+          "text": "Flask Tutorial",
+          "url": "https://www.geeksforgeeks.org/python/flask-tutorial/"
+        },
+        {
+          "text": "Django Tutorial | Learn Django Framework",
+          "url": "https://www.geeksforgeeks.org/python/django-tutorial/"
+        },
+        {
+          "text": "Django ORM - Inserting, Updating & Deleting Data",
+          "url": "https://www.geeksforgeeks.org/python/django-orm-inserting-updating-deleting-data/"
+        },
+        {
+          "text": "Templating With Jinja2 in Flask",
+          "url": "https://www.geeksforgeeks.org/python/templating-with-jinja2-in-flask/"
+        },
+        {
+          "text": "Django Templates",
+          "url": "https://www.geeksforgeeks.org/python/django-templates/"
+        },
+        {
+          "text": "Build a REST API using Flask - Python",
+          "url": "https://www.geeksforgeeks.org/python/python-build-a-rest-api-using-flask/"
+        },
+        {
+          "text": "Building a Simple API with Django REST Framework",
+          "url": "https://www.geeksforgeeks.org/python/how-to-create-a-basic-api-using-django-rest-framework/"
+        },
+        {
+          "text": "Python Quiz",
+          "url": "https://www.geeksforgeeks.org/python/python-quizzes/"
+        },
+        {
+          "text": "Python Coding Practice",
+          "url": "https://www.geeksforgeeks.org/python/python-coding-practice-problems/"
+        },
+        {
+          "text": "Python Interview Questions and Answers",
+          "url": "https://www.geeksforgeeks.org/python/python-interview-questions/"
+        },
+        {
+          "text": "Data Science Course90% Refund",
+          "url": "https://www.geeksforgeeks.org/courses/data-science-live"
+        },
+        {
+          "text": "Explore Now",
+          "url": "https://www.geeksforgeeks.org/courses"
+        },
+        {
+          "text": "Explore Now",
+          "url": "https://www.geeksforgeeks.org/courses"
+        },
+        {
+          "text": "requests.get()",
+          "url": "https://www.geeksforgeeks.org/python/get-method-python-requests/"
+        },
+        {
+          "text": "Python Requests Tutorial",
+          "url": "https://www.geeksforgeeks.org/python/python-requests-tutorial/"
+        },
+        {
+          "text": "GeeksforGeeks Python Tutorial",
+          "url": "https://www.geeksforgeeks.org/python/python-programming-language-tutorial/"
+        },
+        {
+          "text": "Python BeautifulSoup",
+          "url": "https://www.geeksforgeeks.org/python/how-to-scrape-websites-with-beautifulsoup-and-python/"
+        },
+        {
+          "text": "Python Selenium",
+          "url": "https://www.geeksforgeeks.org/python/selenium-python-tutorial/"
+        },
+        {
+          "text": "lxml",
+          "url": "https://www.geeksforgeeks.org/python/how-to-use-lxml-with-beautifulsoup-in-python/"
+        },
+        {
+          "text": "urllib module",
+          "url": "https://www.geeksforgeeks.org/python/python-urllib-module/"
+        },
+        {
+          "text": "PyAutoGUI",
+          "url": "https://www.geeksforgeeks.org/python/message-boxes-using-pyautogui/"
+        },
+        {
+          "text": "Python",
+          "url": "https://www.geeksforgeeks.org/category/programming-language/python/"
+        },
+        {
+          "text": "AI-ML-DS",
+          "url": "https://www.geeksforgeeks.org/category/ai-ml-ds/"
+        },
+        {
+          "text": "Web-scraping",
+          "url": "https://www.geeksforgeeks.org/tag/web-scraping/"
+        }
+      ]
+    },
+    {
+      "url": "https://realpython.com/beautiful-soup-web-scraper-python/",
+      "title": "Beautiful Soup: Build a Web Scraper With Python – Real Python",
+      "meta_description": "In this tutorial, you'll walk through the main steps of the web scraping process. You'll learn how to write a script that uses Python's Requests library to scrape data from a website. You'll also use Beautiful Soup to extract the specific pieces of information you're interested in.",
+      "headings": [
+        {
+          "level": 1,
+          "text": "Beautiful Soup: Build a Web Scraper With Python"
+        },
+        {
+          "level": 2,
+          "text": "What Is Web Scraping?"
+        },
+        {
+          "level": 2,
+          "text": "Scrape the Fake Python Job Site"
+        },
+        {
+          "level": 2,
+          "text": "Step 1: Inspect Your Data Source"
+        },
+        {
+          "level": 2,
+          "text": "Step 2: Scrape HTML Content From a Page"
+        },
+        {
+          "level": 2,
+          "text": "Step 3: Parse HTML Code With Beautiful Soup"
+        },
+        {
+          "level": 2,
+          "text": "Assemble Your Code in a Script"
+        },
+        {
+          "level": 2,
+          "text": "Keep Practicing"
+        },
+        {
+          "level": 2,
+          "text": "Conclusion"
+        },
+        {
+          "level": 2,
+          "text": "Frequently Asked Questions"
+        },
+        {
+          "level": 2,
+          "text": "Keep reading Real Python by creating a free account or signing in:"
+        },
+        {
+          "level": 3,
+          "text": "Reasons for Automated Web Scraping"
+        },
+        {
+          "level": 3,
+          "text": "Challenges of Web Scraping"
+        },
+        {
+          "level": 3,
+          "text": "An Alternative to Web Scraping: APIs"
+        },
+        {
+          "level": 3,
+          "text": "Explore the Website"
+        },
+        {
+          "level": 3,
+          "text": "Decipher the Information in URLs"
+        },
+        {
+          "level": 3,
+          "text": "Inspect the Site Using Developer Tools"
+        },
+        {
+          "level": 3,
+          "text": "Static Websites"
+        },
+        {
+          "level": 3,
+          "text": "Login-Protected Websites"
+        },
+        {
+          "level": 3,
+          "text": "Dynamic Websites"
+        },
+        {
+          "level": 3,
+          "text": "Find Elements by ID"
+        },
+        {
+          "level": 3,
+          "text": "Find Elements by HTML Class Name"
+        },
+        {
+          "level": 3,
+          "text": "Extract Text From HTML Elements"
+        },
+        {
+          "level": 3,
+          "text": "Find Elements by Class Name and Text Content"
+        },
+        {
+          "level": 3,
+          "text": "Pass a Function to a Beautiful Soup Method"
+        },
+        {
+          "level": 3,
+          "text": "Identify Error Conditions"
+        },
+        {
+          "level": 3,
+          "text": "Access Parent Elements"
+        },
+        {
+          "level": 3,
+          "text": "Extract Attributes From HTML Elements"
+        }
+      ],
+      "text": "Table of Contents\nRecommended Course\nWeb Scraping With Beautiful Soup and Python(1h 56m)\nBeautiful Soup is a Python library designed for parsing HTML and XML documents. It creates parse trees that make it straightforward to extract data from HTML documents you’ve scraped from the internet. Beautiful Soup is a useful tool in yourweb scrapingtoolkit, allowing you to conveniently extract specific information from HTML, even from complex static websites.\nIn this tutorial, you’ll learn how to build a web scraper using Beautiful Soup along with theRequests libraryto scrape and parse job listings from a static website.\nStatic websites provide consistent HTML content, while dynamic sites may require handling JavaScript. For dynamic websites, you’ll need to incorporate additional tools that can execute JavaScript, such asScrapyorSelenium.\nBy the end of this tutorial, you’ll understand that:\nWorking through this project will give you the knowledge and tools that you need to scrape any static website out there on the World Wide Web.\nIf you like learning with hands-on examples and have a basic understanding of Python andHTML, then this tutorial is for you! \nYou can download the project source code by clicking on the link below:\nGet Your Code:Click here to download the free sample codethat you’ll use to learn about web scraping in Python.\nTake the Quiz:Test your knowledge with our interactive “Beautiful Soup: Build a Web Scraper With Python” quiz. You’ll receive a score upon completion to help you track your learning progress:\nInteractive Quiz\nIn this quiz, you'll test your understanding of web scraping using Python. By working through this quiz, you'll revisit how to inspect the HTML structure of a target site, decipher data encoded in URLs, and use Requests and Beautiful Soup for scraping and parsing data.\nWeb scrapingis the process of gathering information from the internet. Even copying and pasting the lyrics of your favorite song can be considered a form of web scraping! However, the term “web scraping” usually refers to a process that involves automation. While some websites don’t like it when automatic scrapers gather their data, which can lead tolegal issues, others don’t mind it.\nIf you’re scraping a page respectfully for educational purposes, then you’re unlikely to have any problems. Still, it’s a good idea to do some research on your own to make sure you’re not violating any Terms of Service before you start a large-scale web scraping project.\nSay that you like to surf—both in the ocean and online—and you’re looking for employment. It’s clear that you’re not interested in justanyjob. With a surfer’s mindset, you’re waiting for the perfect opportunity to roll your way!\nYou know about a job site that offers precisely the kinds of jobs you want. Unfortunately, a new position only pops up once in a blue moon, and the site doesn’t provide an email notification service. You consider checking up on it every day, but that doesn’t sound like the most fun and productive way to spend your time. You’d rather be outside surfing real-life waves!\nThankfully, Python offers a way to apply your surfer’s mindset. Instead of having to check the job site every day, you can use Python to help automate the repetitive parts of your job search. Withautomated web scraping, you can write the code once, and it’ll get the information that you need many times and from many pages.\nNote:In contrast, when you try to get information manually, you might spend a lot of time clicking, scrolling, and searching, especially if you need large amounts of data from websites that are regularly updated with new content. Manual web scraping can take a lot of time and be highly repetitive and error-prone.\nThere’s so much information on the internet, with new information constantly being added. You’ll probably be interested in some of that data, and much of it is out there for the taking. Whether you’re actually on the job hunt or just want to automatically download all the lyrics of your favorite artist, automated web scraping can help you accomplish your goals.\nThe internet has grown organically out of many sources. It combines many different technologies, styles, and personalities, and it continues to grow every day. In other words, the internet is a hot mess! Because of this, you’ll run into some challenges when scraping the web:\nVariety:Every website is different. While you’ll encounter general structures that repeat themselves, each website is unique and will need personal treatment if you want to extract the relevant information.\nDurability:Websites constantly change. Say you’ve built a shiny new web scraper that automatically cherry-picks what you want from your resource of interest. The first time yourun your script, it works flawlessly. But when you run the same script a while later, you run into a discouraging and lengthy stack oftracebacks!\nUnstable scripts are a realistic scenario because many websites are in active development. If a site’s structure changes, then your scraper might not be able to navigate the sitemap correctly or find the relevant information. The good news is that changes to websites are often small and incremental, so you’ll likely be able to update your scraper with minimal adjustments.\nStill, keep in mind that the internet is dynamic and keeps on changing. Therefore, the scrapers you build will probably require maintenance. You can set upcontinuous integrationto run scraping tests periodically to ensure that your main script doesn’t break without your knowledge.\nSome website providers offerapplication programming interfaces (APIs)that allow you to access their data in a predefined manner. With APIs, you can avoid parsingHTML. Instead, you can access the data directly using formats likeJSONandXML. HTML is primarily a way to visually present content to users.\nWhen you use an API, the data collection process is generally more stable than it is through web scraping. That’s because developers create APIs to be consumed by programs rather than by human eyes.\nThe front-end presentation of a site might change often, but a change in the website’s design doesn’t affect its API structure. The structure of an API is usually more permanent, which means it’s a more reliable source of the site’s data.\nHowever, APIscanchange as well. The challenges of both variety and durability apply to APIs just as they do to websites. Additionally, it’s much harder to inspect the structure of an API by yourself if the provided documentation lacks quality.\nThe approach and tools you need to gather information using APIs is outside the scope of this tutorial. To learn more about it, check outAPI Integration in Python.\nIn this tutorial, you’ll build a web scraper that fetches Python software developer job listings from afake Python job site. It’s an example site with fake job postings that you can freely scrape to train your skills. Your web scraper will parse the HTML on the site to pick out the relevant information and filter that content for specific words.\nYou can scrape any site on the internet that you can look at, but the difficulty of doing so depends on the site. This tutorial offers you an introduction to web scraping to help you understand the overall process. Then, you can apply this same process for every website that you want to scrape.\nNote:Real-life job boards may quickly change in structure and availability. To offer you a smooth learning experience, this tutorial focuses on a self-hosted static site that’s guaranteed to stay the same. This gives you a reliable playground to practice the skills that you need for web scraping.\nThroughout the tutorial, you’ll also encounter a fewexercise blocks. You can click to expand them and challenge yourself by completing the tasks described within.\nBefore you write any Python code, you need to get to know the website that you want to scrape. Getting to know the website should be your first step for any web scraping project that you want to tackle. You’ll need to understand the site structure to extract the information relevant for you. Start by openingthe site that you want to scrapewith your favorite browser.\nClick through the site and interact with it just like any typical job searcher would. For example, you can scroll through the main page of the website:\nOn that page, you can see many job postings in a card format. Each of them has two buttons. If you click onLearn, then you’ll visitReal Python’s home page. If you click onApply, then you’ll see a new page that contains more detailed descriptions of the job on that card. You might also notice that the URL in your browser’s address bar changes when you navigate to one of those pages.\nYou can encode a lot ofinformation in a URL. Becoming familiar with how URLs work and what they’re made of will help you on your web scraping journey. For example, you might find yourself on a details page that has the following URL:\nYou can deconstruct the above URL into two main parts:\nAny job posted on this website will share the same base URL. However, the location of the unique resources will be different depending on the job posting that you view. Usually, similar resources on a website will share a similar location, such as the folder structurefake-jobs/jobs/. However, the final part of the path points to a specific resource and will be different for each job posting. In this case, it’s a static HTML file namedsenior-python-developer-0.html.\nURLs can hold more information than just the location of a file. Some websites usequery parametersto encode values that you submit when performing a search. You can think of them as query strings that you send to the database to retrieve specific records.\nYou’ll find query parameters at the end of a URL. For example, if you go toIndeedand search for “software developer” in “Australia” through the site’s search bar, you’ll see that the URL changes to include these values as query parameters:\nThe query parameters in this URL are?q=software+developer&l=Australia. Query parameters consist of three parts:\nEquipped with this information, you can separate the URL’s query parameters into two key-value pairs:\nTry to change the search parameters and observe how that affects your URL. Go ahead and enter new values in the search bar of the Indeed job board:\nNext, try to change the values directly in your URL. See what happens when you paste the following URL into your browser’s address bar:\nIf you change and submit the values in the website’s search box, then it’ll be directly reflected in the URL’s query parameters and vice versa. If you change either of them, then you’ll see different results on the website.\nAs you can see, exploring the URLs of a site can give you insight into how to retrieve data from the website’s server.\nHead back toFake Pythonjobs and continue to explore it. This site is a static website containing hardcoded information. It doesn’t operate on top of a database, which is why you won’t have to work with query parameters in this scraping tutorial.\nNext, you’ll want to learn more about how the data is structured for display. You’ll need to understand the page structure to pick what you want from the HTML response that you’ll collect inone of the upcoming steps.\nDeveloper toolscan help you understand the structure of a website. All modern browsers come with developer tools installed. In this section, you’ll learn how to work with the developer tools in Chrome. The process will be very similar on other modern browsers.\nIn Chrome on macOS, you can open up the developer tools through the menu by selectingView→Developer→Developer Tools. On Windows and Linux, you can access them by clicking the top-right menu button (⋮) and selectingMore Tools→Developer Tools. You can also access your developer tools by right-clicking on the page and selecting theInspectoption or using akeyboard shortcut:\nDeveloper tools allow you to interactively explore the site’sdocument object model (DOM)to better understand your source. To dig into your page’s DOM, select theElementstab in developer tools. You’ll see a structure with clickable HTML elements. You can expand, collapse, and even edit elements right in your browser:\nYou can think of the text displayed in your browser as the HTML structure of the page. If you’re interested, then you can read more about thedifference between the DOM and HTML.\nWhen you right-click elements on the page, you can selectInspectto zoom to their location in the DOM. You can also hover over the HTML text on your right and see the corresponding elements light up on the page.\nClick to expand the exercise block for a specific task to practice using your developer tools:\nExercise: Explore the HTMLShow/Hide\nFind a single job posting. What HTML element is it wrapped in, and what other HTML elements does it contain?\nPlay around and explore! The more you get to know the page you’re working with, the easier it’ll be to scrape. But don’t get too overwhelmed with all that HTML text. You’ll use the power of programming to step through this maze and cherry-pick the information that’s relevant to you.\nNow that you have an idea of what you’re working with, it’s time to start using Python. First, you’ll want to get the site’s HTML code into your Python script so that you can interact with it. For this task, you’ll use Python’sRequestslibrary.\nBefore you install any external package, you’ll need to create avirtual environmentfor your project. Activate your new virtual environment, then type the following command in your terminal to install the Requests library:\nThen open up a new file in your favoritetext editorand call itscraper.py. You only need a few lines of code to retrieve the HTML:\nWhen you run this code, it issues anHTTPGETrequestto the given URL. It retrieves the HTML data that the server sends back and stores that data in a Python object you calledpage.\nIf youprintthe.textattribute ofpage, then you’ll notice that it looks just like the HTML you inspected earlier with your browser’s developer tools. You’ve successfully fetched the static site content from the internet! You now have access to the site’s HTML from within your Python script.\nThe website that you’re scraping in this tutorial servesstatic HTML content. In this scenario, the server that hosts the site sends back HTML documents that already contain all the data a user gets to see.\nWhen you inspected the page with developer tools earlier on, you discovered that a single job posting consists of the following long and messy-looking HTML:\nIt can be challenging to wrap your head around a long block of HTML code. To make it easier to read, you can use anHTML formatterto clean up the HTML automatically. Good readability can help you better understand the structure of any block of code. While improved HTML formatting may or may not help, it’s always worth a try.\nNote:Keep in mind that every website looks different. That’s why it’s necessary to inspect and understand the structure of the site you’re working with before moving forward.\nThe HTML you’ll encounter will sometimes be confusing. Luckily, the HTML of this job board has descriptiveclass nameson the elements that you’re interested in:\nIf you ever get lost in a large pile of HTML, remember that you can always go back to your browser and use thedeveloper toolsto further explore the HTML structure interactively.\nBy now, you’ve successfully harnessed the power and user-friendly design of Python’s Requests library. With only a few lines of code, you managed to scrape static HTML content from the web and make it available for further processing.\nWhile this was a breeze, you may encounter more challenging situations when working on your own web scraping projects. Before you learn how to select the relevant information from the HTML that you just scraped, you’ll take a quick look at two more challenging situations.\nSome pages contain information that’s hidden behind a login. This means you’ll need an account to be able to scrape anything from the page. Just like you need to log in on your browser when you want to access content on such a page, you’ll also need to log in from your Python script.\nThe Requests library comes with the built-in capacity tohandle authentication. With these techniques, you can log in to websites when making the HTTP request from your Python script and then scrape information that’s hidden behind a login. You won’t need to log in to access the job board information, so this tutorial won’t cover authentication.\nMany modern websites don’t send back static HTML content like this practice site does. If you’re dealing with adynamic website, then you could receiveJavaScriptcode as a response. This code will look completely different from what you see when you inspect the same page with your browser’s developer tools.\nNote:In this tutorial, the termdynamic websiterefers to a website that doesn’t return the same HTML that you see when viewing the page in your browser.\nDynamic websites are designed to provide their functionality in collaboration with the clients’ browsers. Instead of sending HTML pages, these apps sendJavaScriptcode that instructs your browser tocreatethe desired HTML. Web apps deliver dynamic content this way to offload work from the server to the clients’ machines, as well as to avoid page reloads and improve the overall user experience.\nYour browser will diligently execute the JavaScript code it receives from a server and create the DOM and HTML for you locally. However, if you request a dynamic website in your Python script, then you won’t get the HTML page content.\nWhen you use Requests, you receive only what the server sends back. In the case of a dynamic website, you’ll end up with JavaScript code without the relevant data. The only way to go from that code to the content that you’re interested in is toexecutethe code, just like your browser does. The Requests library can’t do that for you, but there are other solutions that can:\nRequests-HTMLis a project created by the author of the Requests library that allows you to render JavaScript using syntax that’s similar to the syntax in Requests. It also includes capabilities for parsing the data by using Beautiful Soup under the hood.\nSeleniumis another popular choice for scraping dynamic content. Selenium automates a full browser and can execute JavaScript, allowing you to interact with and retrieve the fully rendered HTML response for your script.\nYou won’t go deeper into scraping dynamically-generated content in this tutorial. If you need to scrape a dynamic website, then you can look into one of the options mentioned above.\nYou’ve successfully scraped some HTML from the internet, but when you look at it, it looks like a mess. There are tons of HTML elements here and there, thousands of attributes scattered around—and maybe there’s some JavaScript mixed in as well? It’s time to parse this lengthy code response with the help of Python to make it more accessible so you can pick out the data that you want.\nBeautiful Soupis a Python library for parsing structured data. It allows you to interact with HTML in a similar way to how you interact with a web page using developer tools. The library exposes intuitive methods that you can use to explore the HTML you received.\nNote:The nameBeautiful Souporiginates from theLewis CarrollsongBeautiful SoupinAlice’s Adventures in Wonderland, where a character sings about beautiful soup. This name reflects the library’s ability to parse poorly formed HTML that’s also known astag soup.\nTo get started, use your terminal to install Beautiful Soup into your virtual environment:\nThen,importthe library in your Python script and create aBeautifulSoupobject:\nWhen you add the two highlighted lines of code, then you create aBeautifulSoupobject that takespage.contentas input, which is the HTML content that you scraped earlier.\nNote:You’ll want to pass.contentinstead of.textto avoid problems with character encoding. The.contentattribute holds raw bytes, whichPython’s built-in HTML parsercan decode better than the text representation you printed earlier using the.textattribute.\nThe second argument that you pass to theclass constructor,\"html.parser\", makes sure that you usean appropriate parserfor HTML content.\nAt this point, you’re set up with aBeautifulSoupobject that you namedsoup. You can now run your script using Python’s interactive mode:\nWhen you use thecommand-option-ito run a script, then Python executes the code and drops you into aREPL environment. This can be a good way to continue exploring the scraped HTML through the user-friendly lens of Beautiful Soup.\nIn an HTML web page, every element can have anidattribute assigned. As the name already suggests, thatidattribute makes the element uniquely identifiable on the page. You can begin to parse your page by selecting a specific element by its ID.\nSwitch back to developer tools and identify the HTML object that contains all the job postings. Explore by hovering over parts of the page and using right-click toInspect.\nNote:It helps to periodically switch back to your browser and explore the page interactively using developer tools. You’ll get a better idea of where and how to find the exact elements that you’re looking for.\nIn this case, the element that you’re looking for is a<div>with anidattribute that has the value\"ResultsContainer\". It has some other attributes as well, but below is the gist of what you’re looking for:\nBeautiful Soup allows you to find that specific HTML element by its ID:\nFor easier viewing, you can prettify anyBeautifulSoupobject when you print it out. If you call.prettify()on theresultsvariable that you assigned above, then you’ll see all the HTML contained within the<div>neatly structured:\nWhen you find an element by its ID, you can pick out one specific element from among the rest of the HTML, no matter how large the source code of the website is. Now you can focus on working with only this part of the page’s HTML. It looks like your soup just got a little thinner! Nevertheless, it’s still quite dense.\nYou’ve seen that every job posting is wrapped in a<div>element with the classcard-content. Now you can work with your new object calledresultsand select only the job postings in it. These are, after all, the parts of the HTML that you’re interested in! You can pick out all job cards in a single line of code:\nHere, you call.find_all()onresults, which is aBeautifulSoupobject. It returns aniterablecontaining all the HTML for all the job listings displayed on that page.\nTake a look at all of them:\nThat’s pretty neat already, but there’s still a lot of HTML! You saw earlier that your page has descriptive class names on some elements. You can pick out those child elements from each job posting with.find():\nEachjob_cardis anotherBeautifulSoup()object. Therefore, you can use the same methods on it as you did on its parent element,results.\nWith this code snippet, you’re getting closer and closer to the data that you’re actually interested in. Still, there’s a lot going on with all those HTML tags and attributes floating around:\nNext, you’ll learn how to narrow down this output to access only the text content that you’re interested in.\nYou only want to see the title, company, and location of each job posting. And behold! Beautiful Soup has got you covered. You can add.textto aBeautifulSoupobject to return only thetext contentof the HTML elements that the object contains:\nRun the above code snippet, and you’ll see the text of each element displayed. However, you’ll also get some extrawhitespace. But no worries, because you’re working withPython stringsso you can.strip()the superfluous whitespace. You can also apply any other familiar Python string methods to further clean up your text:\nThe results finally look much better! You’ve now got a readable list of jobs, associated company names, and each job’s location. However, you’re specifically looking for a position as asoftware developer, and these results contain job postings in many other fields as well.\nNot all of the job listings are developer jobs. Instead of printing outallthe jobs listed on the website, you’ll firstfilterthem using keywords.\nYou know that job titles in the page are kept within<h2>elements. To filter for only specific jobs, you can use thestringargument:\nThis code finds all<h2>elements where the contained string matches\"Python\"exactly. Note that you’re directly calling the method on your firstresultsvariable. If you go ahead andprint()the output of the above code snippet to your console, then you might be disappointed because it’ll be empty:\nTherewasa Python job in the search results, so why isn’t it showing up?\nWhen you usestringas you did above, your program looks for that stringexactly. Any variations in the spelling, capitalization, or whitespace will prevent the element from matching. In the next section, you’ll find a way to make your search string more general.\nIn addition to strings, you can sometimes pass functions as arguments to Beautiful Soup methods. You can change the previous line of code to use a function instead:\nNow you’re passing ananonymous functionto thestringargument. Thelambda functionlooks at the text of each<h2>element, converts it to lowercase, and checks whether thesubstring\"python\"is found anywhere. You can check whether you managed to identify all the Python jobs with this approach:\nYour program has found ten matching job posts that include the word\"python\"in their job title!\nFinding elements based on their text content is a powerful way to filter your HTML response for specific information. Beautiful Soup allows you to use exact strings or functions as arguments for filtering text inBeautifulSoupobjects.\nHowever, when you try to print the information of the filtered Python jobs like you’ve done before, you run into an error:\nThistraceback messageis a common error that you’ll run into a lot when you’re scraping information from the internet. Inspect the HTML of an element in yourpython_jobslist. What does it look like? Where do you think the error is coming from?\nWhen you look at a single element inpython_jobs, you’ll see that it consists of only the<h2>element that contains the job title:\nWhen you revisit the code you used to select the items, you’ll notice that’s what you targeted. You filtered for only the<h2>title elements of the job postings that contain the word\"python\". As you can see, these elements don’t include the rest of the information about the job.\nThe error message you received earlier was related to this:\nYou tried to find the job title, the company name, and the job’s location in each element inpython_jobs, but each element contains only the job title text.\nYour diligent parsing library still looks for the other ones, too, and returnsNonebecause it can’t find them. Then,print()fails with the shown error message when you try to extract the.textattribute from one of theseNoneobjects.\nThe text you’re looking for is nested in sibling elements of the<h2>elements that your filter returns. Beautiful Soup can help you select sibling, child, and parent elements of eachBeautifulSoupobject.\nOne way to get access to all the information for a job is to step up in the hierarchy of the DOM starting from the<h2>elements that you identified. Take another look at the HTML of a single job posting, for example,using your developer tools. Then, find the<h2>element that contains the job title and its closest parent element that contains the information you’re interested in:\nThe<div>element with thecard-contentclass contains all the information you want. It’s a third-level parent of the<h2>title element that you found using your filter.\nWith this information in mind, you can now use the elements inpython_jobsand fetch their great-grandparent elements to get access to all the information you want:\nYou added alist comprehensionthat operates on each of the<h2>title elements inpython_jobsthat you got by filtering with the lambda expression. You’re selecting the parent element of the parent element of the parent element of each<h2>title element. That’s three generations up!\nWhen you were looking at the HTML of a single job posting, you identified that this specific parent element with the class namecard-contentcontains all the information you need.\nNow you can adapt the code in yourforloopto iterate over the parent elements instead:\nWhen you run your script another time, you’ll see that your code once again has access to all the relevant information. That’s because you’re now looping over the<div class=\"card-content\">elements instead of just the<h2>title elements.\nUsing the.parentattribute that eachBeautifulSoupobject comes with gives you an intuitive way to step through your DOM structure and address the elements you need. You can also access child elements and sibling elements in a similar manner. Read up onnavigating the treefor more information.\nAt this point, you’ve already written code that scrapes the site and filters its HTML for relevant job postings. Well done! However, what’s still missing is fetching the link to apply for a job.\nWhile inspecting the page, you found two links at the bottom of each card. If you use.texton the link elements in the same way you did for the other elements, then you won’t get the URLs that you’re interested in:\nIf you execute the code shown above, then you’ll get the link text forLearnandApplyinstead of the associated URLs.\nThat’s because the.textattribute leaves only the visible content of an HTML element. It strips away all HTML tags, including the HTML attributes containing the URL, and leaves you with just the link text. To get the URL instead, you need to extract the value of one of the HTML attributes instead of discarding it.\nThe URL of a link element is associated with thehrefHTML attribute. The specific URL that you’re looking for is the value of thehrefattribute of the second<a>tag at the bottom of the HTML for a single job posting:\nStart by fetching all the<a>elements in a job card. Then, extract the value of theirhrefattributes using square-bracket notation:\nIn this code snippet, you first fetch all the links from each of the filtered job postings. Then, you extract thehrefattribute, which contains the URL, using[\"href\"]and print it to your console.\nEach job card has two links associated with it. However, you’re only looking for thesecondlink, so you’ll apply a small edit to the code:\nIn the updated code snippet, you useindexingto pick the second link element from the results of.find_all()using its index ([1]). Then, you directly extract the URL using the square-bracket notation with the\"href\"key, thereby fetching the value of thehrefattribute.\nYou can use the same square-bracket notation toextract other HTML attributesas well.\nYou’re now happy with the results and are ready to put it all together into yourscraper.pyscript. When you assemble the useful lines of code that you wrote during your exploration, you’ll end up with a Python web scraping script that extracts the job title, company, location, and application link from the scraped website:\nYou could continue to work on your script andrefactorit, but at this point, it does the job you wanted and presents you with the information you need when you want to apply for a Python developer job:\nAll you need to do now to check for new Python jobs on the job board is run your Python script. This leaves you with plenty of time to get out there and catch some waves!\nIf you’ve written the code alongside this tutorial, then you can run your script as is to see the fake job information pop up in your terminal. Your next step is to tackle areal-life job board! To keep practicing your new skills, you can revisit the web scraping process described in this tutorial by using any or all of the following sites:\nThe linked websites return their search results as static HTML responses, similar to the Fake Python job board. Therefore, you can scrape them using only Requests and Beautiful Soup.\nStart going through this tutorial again from the beginning using one of these other sites. You’ll see that each website’s structure is different and that you’ll need to rebuild the code in a slightly different way to fetch the data you want. Tackling this challenge is a great way to practice the concepts that you just learned. While it might make you sweat every so often, your coding skills will be stronger in the end!\nDuring your second attempt, you can also explore additional features of Beautiful Soup. Use thedocumentationas your guidebook and inspiration. Extra practice will help you become more proficient at web scraping with Python, Requests, and Beautiful Soup.\nTo wrap up your journey, you could then give your code a final makeover and create acommand-line interface (CLI)app that scrapes one of the job boards and filters the results by a keyword that you can input on each execution. Your CLI tool could allow you to search for specific types of jobs, or jobs in particular locations.\nIf you’re interested in learning how to adapt your script as a command-line interface, then check out theBuild Command-Line Interfaces With Python’s argparsetutorial.\nThe Requests library provides a user-friendly way to scrape static HTML from the internet with Python. You can then parse the HTML with another package called Beautiful Soup. You’ll find that Beautiful Soup will cater to most of your parsing needs, includingnavigationandadvanced searching. Both packages will be trusted and helpful companions on your web scraping adventures.\nIn this tutorial, you’ve learned how to:\nWith this broad pipeline in mind and two powerful libraries in your toolkit, you can go out and see what other websites you can scrape. Have fun, and always remember to be respectful and use your programming skills responsibly. Happy scraping!\nGet Your Code:Click here to download the free sample codethat you’ll use to learn about web scraping in Python.\nNow that you have some experience with Beautiful Soup and web scraping in Python, you can use the questions and answers below to check your understanding and recap what you’ve learned.\nThese FAQs are related to the most important concepts you’ve covered in this tutorial. Click theShow/Hidetoggle beside each question to reveal the answer:\nWhat is web scraping and why is it useful?Show/Hide\nWeb scraping is the automated process of extracting data from websites. It’s useful because it allows you to gather large amounts of data efficiently and systematically, which can be beneficial for research, data analysis, or keeping track of updates on specific sites, such as job postings.\nHow do you inspect the HTML structure of a website before scraping?Show/Hide\nYou can use your browser’s developer tools to inspect the HTML structure of a website. To do this, right-click on any element of the page and selectInspect. This will allow you to view the underlying HTML code, helping you understand how the data you want is structured.\nWhat role does the Requests library play in web scraping with Python?Show/Hide\nThe Requests library is used to send HTTP requests to a website and retrieve the HTML content of the web page. You’ll need to get the raw HTML before you can parse and process it with Beautiful Soup.\nHow does Beautiful Soup help in web scraping?Show/Hide\nBeautiful Soup is a Python library used for parsing HTML and XML documents. It provides Pythonic idioms for iterating, searching, and modifying the parse tree, making it easier to extract the necessary data from the HTML content you scraped from the internet.\nWhat are some challenges you might face when scraping websites?Show/Hide\nSome challenges include handling dynamic content generated by JavaScript, accessing login-protected pages, dealing with changes in website structure that could break your scraper, and navigating legal issues related to the terms of service of the websites you’re scraping. It’s important to approach this work responsibly and ethically.\nTake the Quiz:Test your knowledge with our interactive “Beautiful Soup: Build a Web Scraper With Python” quiz. You’ll receive a score upon completion to help you track your learning progress:\nInteractive Quiz\nIn this quiz, you'll test your understanding of web scraping using Python. By working through this quiz, you'll revisit how to inspect the HTML structure of a target site, decipher data encoded in URLs, and use Requests and Beautiful Soup for scraping and parsing data.\nRecommended Course\nWeb Scraping With Beautiful Soup and Python(1h 56m)\n🐍 Python Tricks 💌\nGet a short & sweetPython Trickdelivered to your inbox every couple of days. No spam ever. Unsubscribe any time. Curated by the Real Python team.\nAboutMartin Breuss\nMartin is Real Python's Head of Content Strategy. With a background in education, he's worked as a coding mentor, code reviewer, curriculum developer, bootcamp instructor, and instructional designer.\nEach tutorial at Real Python is created by a team of developers so that it meets our high quality standards. The team members who worked on this tutorial are:\nAldren\nBrenda\nBartosz\nGeir Arne\nJaya\nJoanna\nJacob\nMike\nMasterReal-World Python SkillsWith Unlimited Access to Real Python\nJoin us and get access to thousands of tutorials, hands-on video courses, and a community of expert Pythonistas:\nLevel Up Your Python Skills »\nMasterReal-World Python SkillsWith Unlimited Access to Real Python\nJoin us and get access to thousands of tutorials, hands-on video courses, and a community of expert Pythonistas:\nLevel Up Your Python Skills »\nWhat Do You Think?\nWhat’s your #1 takeaway or favorite thing you learned? How are you going to put your newfound skills to use? Leave a comment below and let us know.\nCommenting Tips:The most useful comments are those written with the goal of learning from or helping out other students.Get tips for asking good questionsandget answers to common questions in our support portal.Looking for a real-time conversation? Visit theReal Python Community Chator join the next“Office Hours” Live Q&A Session. Happy Pythoning!\nKeep Learning\nRelated Topics:intermediatedata-sciencetoolsweb-scraping\nRelated Learning Paths:\nRelated Courses:\nRelated Tutorials:\nContinue »\nAlready have an account?Sign-In\nAlmost there! Complete this form and click the button below to gain instant access:\nBeautiful Soup: Build a Web Scraper With Python (Sample Code)\n🔒 No spam. We take your privacy seriously.",
+      "links": [
+        {
+          "text": "Martin Breuss",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#author"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#reader-comments"
+        },
+        {
+          "text": "intermediate",
+          "url": "https://realpython.com/tutorials/intermediate/"
+        },
+        {
+          "text": "data-science",
+          "url": "https://realpython.com/tutorials/data-science/"
+        },
+        {
+          "text": "tools",
+          "url": "https://realpython.com/tutorials/tools/"
+        },
+        {
+          "text": "web-scraping",
+          "url": "https://realpython.com/tutorials/web-scraping/"
+        },
+        {
+          "text": "What Is Web Scraping?",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#what-is-web-scraping"
+        },
+        {
+          "text": "Reasons for Automated Web Scraping",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#reasons-for-automated-web-scraping"
+        },
+        {
+          "text": "Challenges of Web Scraping",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#challenges-of-web-scraping"
+        },
+        {
+          "text": "An Alternative to Web Scraping: APIs",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#an-alternative-to-web-scraping-apis"
+        },
+        {
+          "text": "Scrape the Fake Python Job Site",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#scrape-the-fake-python-job-site"
+        },
+        {
+          "text": "Step 1: Inspect Your Data Source",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#step-1-inspect-your-data-source"
+        },
+        {
+          "text": "Explore the Website",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#explore-the-website"
+        },
+        {
+          "text": "Decipher the Information in URLs",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#decipher-the-information-in-urls"
+        },
+        {
+          "text": "Inspect the Site Using Developer Tools",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#inspect-the-site-using-developer-tools"
+        },
+        {
+          "text": "Step 2: Scrape HTML Content From a Page",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#step-2-scrape-html-content-from-a-page"
+        },
+        {
+          "text": "Static Websites",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#static-websites"
+        },
+        {
+          "text": "Login-Protected Websites",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#login-protected-websites"
+        },
+        {
+          "text": "Dynamic Websites",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#dynamic-websites"
+        },
+        {
+          "text": "Step 3: Parse HTML Code With Beautiful Soup",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#step-3-parse-html-code-with-beautiful-soup"
+        },
+        {
+          "text": "Find Elements by ID",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#find-elements-by-id"
+        },
+        {
+          "text": "Find Elements by HTML Class Name",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#find-elements-by-html-class-name"
+        },
+        {
+          "text": "Extract Text From HTML Elements",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#extract-text-from-html-elements"
+        },
+        {
+          "text": "Find Elements by Class Name and Text Content",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#find-elements-by-class-name-and-text-content"
+        },
+        {
+          "text": "Pass a Function to a Beautiful Soup Method",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#pass-a-function-to-a-beautiful-soup-method"
+        },
+        {
+          "text": "Identify Error Conditions",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#identify-error-conditions"
+        },
+        {
+          "text": "Access Parent Elements",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#access-parent-elements"
+        },
+        {
+          "text": "Extract Attributes From HTML Elements",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#extract-attributes-from-html-elements"
+        },
+        {
+          "text": "Assemble Your Code in a Script",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#assemble-your-code-in-a-script"
+        },
+        {
+          "text": "Keep Practicing",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#keep-practicing"
+        },
+        {
+          "text": "Conclusion",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#conclusion"
+        },
+        {
+          "text": "Frequently Asked Questions",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#frequently-asked-questions"
+        },
+        {
+          "text": "Remove ads",
+          "url": "https://realpython.com/account/join/"
+        },
+        {
+          "text": "Web Scraping With Beautiful Soup and Python",
+          "url": "https://realpython.com/courses/web-scraping-beautiful-soup/"
+        },
+        {
+          "text": "web scraping",
+          "url": "https://realpython.com/python-web-scraping-practical-introduction/"
+        },
+        {
+          "text": "Requests library",
+          "url": "https://realpython.com/python-requests/"
+        },
+        {
+          "text": "Scrapy",
+          "url": "https://realpython.com/web-scraping-with-scrapy-and-mongodb/"
+        },
+        {
+          "text": "Selenium",
+          "url": "https://realpython.com/modern-web-automation-with-python-and-selenium/"
+        },
+        {
+          "text": "HTML",
+          "url": "https://realpython.com/html-css-python/"
+        },
+        {
+          "text": "Click here to download the free sample code",
+          "url": "https://realpython.com/bonus/beautiful-soup-web-scraper-python-code/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/quizzes/beautiful-soup-web-scraper-python/"
+        },
+        {
+          "text": "Beautiful Soup: Build a Web Scraper With Python",
+          "url": "https://realpython.com/quizzes/beautiful-soup-web-scraper-python/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#what-is-web-scraping"
+        },
+        {
+          "text": "legal issues",
+          "url": "https://realpython.com/podcasts/rpp/12/"
+        },
+        {
+          "text": "Remove ads",
+          "url": "https://realpython.com/account/join/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#reasons-for-automated-web-scraping"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#challenges-of-web-scraping"
+        },
+        {
+          "text": "run your script",
+          "url": "https://realpython.com/run-python-scripts/"
+        },
+        {
+          "text": "tracebacks",
+          "url": "https://realpython.com/python-traceback/"
+        },
+        {
+          "text": "continuous integration",
+          "url": "https://realpython.com/python-continuous-integration/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#an-alternative-to-web-scraping-apis"
+        },
+        {
+          "text": "application programming interfaces (APIs)",
+          "url": "https://realpython.com/python-api/"
+        },
+        {
+          "text": "HTML",
+          "url": "https://realpython.com/html-css-python/"
+        },
+        {
+          "text": "JSON",
+          "url": "https://realpython.com/python-json/"
+        },
+        {
+          "text": "XML",
+          "url": "https://realpython.com/python-xml-parser/"
+        },
+        {
+          "text": "API Integration in Python",
+          "url": "https://realpython.com/api-integration-in-python/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#scrape-the-fake-python-job-site"
+        },
+        {
+          "text": "fake Python job site",
+          "url": "https://realpython.github.io/fake-jobs/"
+        },
+        {
+          "text": "Remove ads",
+          "url": "https://realpython.com/account/join/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#step-1-inspect-your-data-source"
+        },
+        {
+          "text": "the site that you want to scrape",
+          "url": "https://realpython.github.io/fake-jobs/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#explore-the-website"
+        },
+        {
+          "text": "",
+          "url": "https://files.realpython.com/media/bs4-fake-python-index.b76716592442.png"
+        },
+        {
+          "text": "Real Python’s home page",
+          "url": "https://realpython.com/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#decipher-the-information-in-urls"
+        },
+        {
+          "text": "information in a URL",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL"
+        },
+        {
+          "text": "Indeed",
+          "url": "https://au.indeed.com/"
+        },
+        {
+          "text": "Fake Python",
+          "url": "https://realpython.github.io/fake-jobs/"
+        },
+        {
+          "text": "Remove ads",
+          "url": "https://realpython.com/account/join/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#inspect-the-site-using-developer-tools"
+        },
+        {
+          "text": "one of the upcoming steps",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#step-2-scrape-html-content-from-a-page"
+        },
+        {
+          "text": "keyboard shortcut",
+          "url": "https://developer.chrome.com/docs/devtools/shortcuts/"
+        },
+        {
+          "text": "document object model (DOM)",
+          "url": "https://en.wikipedia.org/wiki/Document_Object_Model"
+        },
+        {
+          "text": "",
+          "url": "https://files.realpython.com/media/bs4-devtools.f0a236ca5fa3.png"
+        },
+        {
+          "text": "difference between the DOM and HTML",
+          "url": "https://css-tricks.com/dom/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#step-2-scrape-html-content-from-a-page"
+        },
+        {
+          "text": "Requests",
+          "url": "https://realpython.com/python-requests/"
+        },
+        {
+          "text": "virtual environment",
+          "url": "https://realpython.com/python-virtual-environments-a-primer/"
+        },
+        {
+          "text": "text editor",
+          "url": "https://realpython.com/python-ides-code-editors-guide/"
+        },
+        {
+          "text": "HTTPGETrequest",
+          "url": "https://realpython.com/python-requests/#the-get-request"
+        },
+        {
+          "text": "print",
+          "url": "https://realpython.com/python-print/"
+        },
+        {
+          "text": "Remove ads",
+          "url": "https://realpython.com/account/join/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#static-websites"
+        },
+        {
+          "text": "HTML formatter",
+          "url": "https://htmlformatter.com/"
+        },
+        {
+          "text": "developer tools",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#inspect-the-site-using-developer-tools"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#login-protected-websites"
+        },
+        {
+          "text": "handle authentication",
+          "url": "https://docs.python-requests.org/en/master/user/authentication/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#dynamic-websites"
+        },
+        {
+          "text": "JavaScript",
+          "url": "https://realpython.com/python-vs-javascript/"
+        },
+        {
+          "text": "Requests-HTML",
+          "url": "https://github.com/psf/requests-html"
+        },
+        {
+          "text": "Selenium",
+          "url": "https://realpython.com/modern-web-automation-with-python-and-selenium/"
+        },
+        {
+          "text": "Remove ads",
+          "url": "https://realpython.com/account/join/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#step-3-parse-html-code-with-beautiful-soup"
+        },
+        {
+          "text": "Beautiful Soup",
+          "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/"
+        },
+        {
+          "text": "Lewis Carroll",
+          "url": "https://en.wikipedia.org/wiki/Lewis_Carroll"
+        },
+        {
+          "text": "Alice’s Adventures in Wonderland",
+          "url": "https://en.wikipedia.org/wiki/Alice%27s_Adventures_in_Wonderland"
+        },
+        {
+          "text": "tag soup",
+          "url": "https://en.wikipedia.org/wiki/Tag_soup"
+        },
+        {
+          "text": "import",
+          "url": "https://realpython.com/python-import/"
+        },
+        {
+          "text": "Python’s built-in HTML parser",
+          "url": "https://docs.python.org/3/library/html.parser.html"
+        },
+        {
+          "text": "class constructor",
+          "url": "https://realpython.com/python-class-constructor/"
+        },
+        {
+          "text": "an appropriate parser",
+          "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/#differences-between-parsers"
+        },
+        {
+          "text": "command-option-i",
+          "url": "https://docs.python.org/3/using/cmdline.html#cmdoption-i"
+        },
+        {
+          "text": "REPL environment",
+          "url": "https://realpython.com/python-repl/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#find-elements-by-id"
+        },
+        {
+          "text": "Remove ads",
+          "url": "https://realpython.com/account/join/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#find-elements-by-html-class-name"
+        },
+        {
+          "text": "iterable",
+          "url": "https://docs.python.org/3/glossary.html#term-iterable"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#extract-text-from-html-elements"
+        },
+        {
+          "text": "Python strings",
+          "url": "https://realpython.com/python-strings/"
+        },
+        {
+          "text": ".strip()",
+          "url": "https://realpython.com/python-strip/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#find-elements-by-class-name-and-text-content"
+        },
+        {
+          "text": "stringargument",
+          "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/#the-string-argument"
+        },
+        {
+          "text": "Remove ads",
+          "url": "https://realpython.com/account/join/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#pass-a-function-to-a-beautiful-soup-method"
+        },
+        {
+          "text": "lambda function",
+          "url": "https://realpython.com/python-lambda/"
+        },
+        {
+          "text": "substring",
+          "url": "https://realpython.com/python-string-contains-substring/"
+        },
+        {
+          "text": "traceback message",
+          "url": "https://realpython.com/python-traceback/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#identify-error-conditions"
+        },
+        {
+          "text": "None",
+          "url": "https://realpython.com/null-in-python/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#access-parent-elements"
+        },
+        {
+          "text": "using your developer tools",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#inspect-the-site-using-developer-tools"
+        },
+        {
+          "text": "list comprehension",
+          "url": "https://realpython.com/list-comprehension-python/"
+        },
+        {
+          "text": "forloop",
+          "url": "https://realpython.com/python-for-loop/"
+        },
+        {
+          "text": "navigating the tree",
+          "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/#navigating-the-tree"
+        },
+        {
+          "text": "Remove ads",
+          "url": "https://realpython.com/account/join/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#extract-attributes-from-html-elements"
+        },
+        {
+          "text": "indexing",
+          "url": "https://realpython.com/python-list/#accessing-items-in-a-list-indexing"
+        },
+        {
+          "text": "extract other HTML attributes",
+          "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/#bs4.Tag.attrs"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#assemble-your-code-in-a-script"
+        },
+        {
+          "text": "refactor",
+          "url": "https://realpython.com/python-refactoring/"
+        },
+        {
+          "text": "Remove ads",
+          "url": "https://realpython.com/account/join/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#keep-practicing"
+        },
+        {
+          "text": "Python.org Job Board",
+          "url": "https://www.python.org/jobs/"
+        },
+        {
+          "text": "PythonJobs",
+          "url": "https://pythonjobs.github.io/"
+        },
+        {
+          "text": "Remote",
+          "url": "https://remote.co/remote-jobs/developer/"
+        },
+        {
+          "text": "documentation",
+          "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/"
+        },
+        {
+          "text": "Build Command-Line Interfaces With Python’s argparse",
+          "url": "https://realpython.com/command-line-interfaces-python-argparse/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#conclusion"
+        },
+        {
+          "text": "navigation",
+          "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/#navigating-the-tree"
+        },
+        {
+          "text": "advanced searching",
+          "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/#searching-the-tree"
+        },
+        {
+          "text": "Click here to download the free sample code",
+          "url": "https://realpython.com/bonus/beautiful-soup-web-scraper-python-code/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/beautiful-soup-web-scraper-python/#frequently-asked-questions"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/quizzes/beautiful-soup-web-scraper-python/"
+        },
+        {
+          "text": "Beautiful Soup: Build a Web Scraper With Python",
+          "url": "https://realpython.com/quizzes/beautiful-soup-web-scraper-python/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/feedback/survey/article/beautiful-soup-web-scraper-python/liked/?from=article-footer"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/feedback/survey/article/beautiful-soup-web-scraper-python/disliked/?from=article-footer"
+        },
+        {
+          "text": "Web Scraping With Beautiful Soup and Python",
+          "url": "https://realpython.com/courses/web-scraping-beautiful-soup/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/team/mbreuss/"
+        },
+        {
+          "text": "» More about Martin",
+          "url": "https://realpython.com/team/mbreuss/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/team/asantos/"
+        },
+        {
+          "text": "Aldren",
+          "url": "https://realpython.com/team/asantos/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/team/bweleschuk/"
+        },
+        {
+          "text": "Brenda",
+          "url": "https://realpython.com/team/bweleschuk/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/team/bzaczynski/"
+        },
+        {
+          "text": "Bartosz",
+          "url": "https://realpython.com/team/bzaczynski/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/team/gahjelle/"
+        },
+        {
+          "text": "Geir Arne",
+          "url": "https://realpython.com/team/gahjelle/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/team/jayazhane/"
+        },
+        {
+          "text": "Jaya",
+          "url": "https://realpython.com/team/jayazhane/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/team/jjablonski/"
+        },
+        {
+          "text": "Joanna",
+          "url": "https://realpython.com/team/jjablonski/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/team/jschmitt/"
+        },
+        {
+          "text": "Jacob",
+          "url": "https://realpython.com/team/jschmitt/"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/team/mdriscoll/"
+        },
+        {
+          "text": "Mike",
+          "url": "https://realpython.com/team/mdriscoll/"
+        },
+        {
+          "text": "Level Up Your Python Skills »",
+          "url": "https://realpython.com/account/join/?utm_source=rp_article_footer&utm_content=beautiful-soup-web-scraper-python"
+        },
+        {
+          "text": "Level Up Your Python Skills »",
+          "url": "https://realpython.com/account/join/?utm_source=rp_article_footer&utm_content=beautiful-soup-web-scraper-python"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/feedback/survey/article/beautiful-soup-web-scraper-python/liked/?from=article-comments"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/feedback/survey/article/beautiful-soup-web-scraper-python/disliked/?from=article-comments"
+        },
+        {
+          "text": "LinkedIn",
+          "url": "https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Frealpython.com%2Fbeautiful-soup-web-scraper-python%2F"
+        },
+        {
+          "text": "Twitter",
+          "url": "https://twitter.com/intent/tweet/?text=Interesting%20Python%20article%20on%20%40realpython%3A%20Beautiful%20Soup%3A%20Build%20a%20Web%20Scraper%20With%20Python&url=https%3A%2F%2Frealpython.com%2Fbeautiful-soup-web-scraper-python%2F"
+        },
+        {
+          "text": "Bluesky",
+          "url": "https://bsky.app/intent/compose?text=Interesting%20Python%20article%20on%20%40realpython.com%3A%20Beautiful%20Soup%3A%20Build%20a%20Web%20Scraper%20With%20Python%20https%3A%2F%2Frealpython.com%2Fbeautiful-soup-web-scraper-python%2F"
+        },
+        {
+          "text": "Facebook",
+          "url": "https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Frealpython.com%2Fbeautiful-soup-web-scraper-python%2F"
+        },
+        {
+          "text": "Get tips for asking good questions",
+          "url": "https://realpython.com/python-beginner-tips/#tip-9-ask-good-questions"
+        },
+        {
+          "text": "get answers to common questions in our support portal",
+          "url": "https://support.realpython.com"
+        },
+        {
+          "text": "Real Python Community Chat",
+          "url": "https://realpython.com/community/"
+        },
+        {
+          "text": "“Office Hours” Live Q&A Session",
+          "url": "https://realpython.com/office-hours/"
+        },
+        {
+          "text": "intermediate",
+          "url": "https://realpython.com/tutorials/intermediate/"
+        },
+        {
+          "text": "data-science",
+          "url": "https://realpython.com/tutorials/data-science/"
+        },
+        {
+          "text": "tools",
+          "url": "https://realpython.com/tutorials/tools/"
+        },
+        {
+          "text": "web-scraping",
+          "url": "https://realpython.com/tutorials/web-scraping/"
+        },
+        {
+          "text": "Python Web Scraping",
+          "url": "https://realpython.com/learning-paths/python-web-scraping/?utm_source=realpython&utm_medium=web&utm_campaign=related-learning-path&utm_content=beautiful-soup-web-scraper-python"
+        },
+        {
+          "text": "Web Scraping With Beautiful Soup and Python",
+          "url": "https://realpython.com/courses/web-scraping-beautiful-soup/?utm_source=realpython&utm_medium=web&utm_campaign=related-course&utm_content=beautiful-soup-web-scraper-python"
+        },
+        {
+          "text": "A Practical Introduction to Web Scraping in Python",
+          "url": "https://realpython.com/python-web-scraping-practical-introduction/?utm_source=realpython&utm_medium=web&utm_campaign=related-post&utm_content=beautiful-soup-web-scraper-python"
+        },
+        {
+          "text": "Modern Web Automation With Python and Selenium",
+          "url": "https://realpython.com/modern-web-automation-with-python-and-selenium/?utm_source=realpython&utm_medium=web&utm_campaign=related-post&utm_content=beautiful-soup-web-scraper-python"
+        },
+        {
+          "text": "Python's Requests Library (Guide)",
+          "url": "https://realpython.com/python-requests/?utm_source=realpython&utm_medium=web&utm_campaign=related-post&utm_content=beautiful-soup-web-scraper-python"
+        },
+        {
+          "text": "Working With JSON Data in Python",
+          "url": "https://realpython.com/python-json/?utm_source=realpython&utm_medium=web&utm_campaign=related-post&utm_content=beautiful-soup-web-scraper-python"
+        },
+        {
+          "text": "Object-Oriented Programming (OOP) in Python",
+          "url": "https://realpython.com/python3-object-oriented-programming/?utm_source=realpython&utm_medium=web&utm_campaign=related-post&utm_content=beautiful-soup-web-scraper-python"
+        },
+        {
+          "text": "",
+          "url": "https://realpython.com/account/signup/?intent=continue_reading&utm_source=rp&utm_medium=web&utm_campaign=rwn&utm_content=v1&next=%2Fbeautiful-soup-web-scraper-python%2F"
+        },
+        {
+          "text": "Continue »",
+          "url": "https://realpython.com/account/signup/?intent=continue_reading&utm_source=rp&utm_medium=web&utm_campaign=rwn&utm_content=v1&next=%2Fbeautiful-soup-web-scraper-python%2F"
+        },
+        {
+          "text": "Sign-In",
+          "url": "https://realpython.com/account/login/?next=/beautiful-soup-web-scraper-python/"
+        }
+      ]
+    }
+  ],
+  "subpages": {
+    "https://www.geeksforgeeks.org/python/python-web-scraping-tutorial/": [
+      {
+        "url": "https://www.geeksforgeeks.org/",
+        "title": "GeeksforGeeks | Your All-in-One Learning Portal",
+        "meta_description": "Your All-in-One Learning Portal. It contains well written, well thought and well explained computer science and programming articles, quizzes and practice/competitive programming/company interview Questions.",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Need help withCareer Guidance?"
+          },
+          {
+            "level": 2,
+            "text": "Courses"
+          },
+          {
+            "level": 2,
+            "text": "Must Explore"
+          },
+          {
+            "level": 2,
+            "text": "Explore"
+          },
+          {
+            "level": 2,
+            "text": "Must Explore"
+          },
+          {
+            "level": 2,
+            "text": "DSA"
+          },
+          {
+            "level": 3,
+            "text": "Finish Your Course - Get Your Money Back!"
+          }
+        ],
+        "text": "Available on Live, Online & Offline Learning Modes\nComplete payment for any course\nComplete 90% of the course within 90 days\nClaim your 90% refund of the course fee\nThree 90 Ends in :\nAccept the Challenge - Limited Time!\nConnect with trusted experts, anytime. Get real answers,real guidance, in real time.",
+        "links": [
+          {
+            "text": "",
+            "url": "https://www.geeksforgeeks.org/"
+          },
+          {
+            "text": "DSA",
+            "url": "https://www.geeksforgeeks.org/dsa/dsa-tutorial-learn-data-structures-and-algorithms/"
+          },
+          {
+            "text": "Practice Problems",
+            "url": "https://www.geeksforgeeks.org/explore"
+          },
+          {
+            "text": "C",
+            "url": "https://www.geeksforgeeks.org/c/c-programming-language/"
+          },
+          {
+            "text": "C++",
+            "url": "https://www.geeksforgeeks.org/cpp/c-plus-plus/"
+          },
+          {
+            "text": "Java",
+            "url": "https://www.geeksforgeeks.org/java/java/"
+          },
+          {
+            "text": "Python",
+            "url": "https://www.geeksforgeeks.org/python/python-programming-language-tutorial/"
+          },
+          {
+            "text": "JavaScript",
+            "url": "https://www.geeksforgeeks.org/javascript/javascript-tutorial/"
+          },
+          {
+            "text": "Data Science",
+            "url": "https://www.geeksforgeeks.org/data-science/data-science-for-beginners/"
+          },
+          {
+            "text": "Machine Learning",
+            "url": "https://www.geeksforgeeks.org/machine-learning/machine-learning/"
+          },
+          {
+            "text": "Courses",
+            "url": "https://www.geeksforgeeks.org/courses"
+          },
+          {
+            "text": "Linux",
+            "url": "https://www.geeksforgeeks.org/linux-unix/linux-tutorial/"
+          },
+          {
+            "text": "DevOps",
+            "url": "https://www.geeksforgeeks.org/devops/devops-tutorial/"
+          },
+          {
+            "text": "Ending: 90% Fee Refund",
+            "url": "https://www.geeksforgeeks.org/courses"
+          },
+          {
+            "text": "DSA Online",
+            "url": "https://www.geeksforgeeks.org/courses/dsa-self-paced"
+          },
+          {
+            "text": "Master DS & ML",
+            "url": "https://www.geeksforgeeks.org/courses/data-science-live"
+          },
+          {
+            "text": "Accept the Challenge - Limited Time!",
+            "url": "https://www.geeksforgeeks.org/courses"
+          },
+          {
+            "text": "Explore Now",
+            "url": "https://www.geeksforgeeks.org/connect/home"
+          },
+          {
+            "text": "View All",
+            "url": "https://www.geeksforgeeks.org/courses"
+          },
+          {
+            "text": "4.9Tech Interview 101 - DSA and System DesignBeginner to Advanced402k+interested GeeksGet 90% Refund",
+            "url": "https://www.geeksforgeeks.org/courses/interviewe-101-data-structures-algorithm-system-design/"
+          },
+          {
+            "text": "4.6Java Backend Development with AI - LiveIntermediate and Advanced399k+interested GeeksGet 90% Refu",
+            "url": "https://www.geeksforgeeks.org/courses/Java-backend-live/"
+          },
+          {
+            "text": "5.0Generative AI Training Program - LiveBeginner to Advanced44k+interested GeeksGet 90% Refund",
+            "url": "https://www.geeksforgeeks.org/courses/generative-ai-training-program/"
+          },
+          {
+            "text": "4.7DevOps Engineering with AI : Planning to ProductionBeginner to Advanced158k+interested GeeksGet 9",
+            "url": "https://www.geeksforgeeks.org/courses/devops-live/"
+          },
+          {
+            "text": "4.7C++ Programming - Self PacedBeginner to Advanced316k+interested GeeksGet 90% Refund",
+            "url": "https://www.geeksforgeeks.org/courses/cpp-programming-basic-to-advanced/"
+          },
+          {
+            "text": "4.6Java Programming - Self PacedBeginner to Advanced424k+interested GeeksGet 90% Refund",
+            "url": "https://www.geeksforgeeks.org/courses/java-online-course-complete-beginner-to-advanced/"
+          },
+          {
+            "text": "Jobs for you",
+            "url": "https://www.geeksforgeeks.org/jobs"
+          },
+          {
+            "text": "Hire with us",
+            "url": "https://www.geeksforgeeks.org/gfg-hiring-solutions-for-recruiters/"
+          },
+          {
+            "text": "Advertise with Us",
+            "url": "https://www.geeksforgeeks.org/advertise-with-us/"
+          },
+          {
+            "text": "Placement Training Program",
+            "url": "https://www.geeksforgeeks.org/campus-training-program/"
+          },
+          {
+            "text": "Data Structure and AlgorithmsView more",
+            "url": "https://www.geeksforgeeks.org/learn-data-structures-and-algorithms-dsa-tutorial/"
+          },
+          {
+            "text": "Web DevelopmentView more",
+            "url": "https://www.geeksforgeeks.org/web-development/"
+          },
+          {
+            "text": "AI ML & Data ScienceView more",
+            "url": "https://www.geeksforgeeks.org/ai-ml-ds/"
+          },
+          {
+            "text": "Machine LearningView more",
+            "url": "https://www.geeksforgeeks.org/machine-learning/"
+          },
+          {
+            "text": "PythonView more",
+            "url": "https://www.geeksforgeeks.org/python-programming-language/"
+          },
+          {
+            "text": "JavaView more",
+            "url": "https://www.geeksforgeeks.org/java/java/"
+          },
+          {
+            "text": "System DesignView more",
+            "url": "https://www.geeksforgeeks.org/system-design-tutorial/"
+          },
+          {
+            "text": "DevOpsView more",
+            "url": "https://www.geeksforgeeks.org/devops-tutorial/"
+          },
+          {
+            "text": "Programming LanguagesView more",
+            "url": "https://www.geeksforgeeks.org/computer-science-fundamentals/programming-language-tutorials/"
+          },
+          {
+            "text": "CS SubjectsView more",
+            "url": "https://www.geeksforgeeks.org/software-engineering/articles-on-computer-science-subjects-gq/"
+          },
+          {
+            "text": "Practice DSAView more",
+            "url": "https://www.geeksforgeeks.org/blogs/geeksforgeeks-practice-best-online-coding-platform/"
+          },
+          {
+            "text": "Interview PreparationView more",
+            "url": "https://www.geeksforgeeks.org/interview-prep/interview-corner/"
+          },
+          {
+            "text": "DatabasesView more",
+            "url": "https://www.geeksforgeeks.org/sql/guide-to-databases/"
+          },
+          {
+            "text": "Software & ToolsView more",
+            "url": "https://www.geeksforgeeks.org/websites-apps/software-and-tools-a-to-z-list/"
+          },
+          {
+            "text": "Jobs for you",
+            "url": "https://www.geeksforgeeks.org/jobs"
+          },
+          {
+            "text": "Hire with us",
+            "url": "https://www.geeksforgeeks.org/gfg-hiring-solutions-for-recruiters/"
+          },
+          {
+            "text": "Advertise with Us",
+            "url": "https://www.geeksforgeeks.org/advertise-with-us/"
+          },
+          {
+            "text": "Placement Training Program",
+            "url": "https://www.geeksforgeeks.org/campus-training-program/"
+          },
+          {
+            "text": "View All",
+            "url": "https://www.geeksforgeeks.org/learn-data-structures-and-algorithms-dsa-tutorial/"
+          },
+          {
+            "text": "Analysis of Algorithms",
+            "url": "https://www.geeksforgeeks.org/design-and-analysis-of-algorithms/"
+          },
+          {
+            "text": "Array",
+            "url": "https://www.geeksforgeeks.org/array-data-structure/"
+          },
+          {
+            "text": "Linked List",
+            "url": "https://www.geeksforgeeks.org/data-structures/linked-list/"
+          },
+          {
+            "text": "Searching Algorithms",
+            "url": "https://www.geeksforgeeks.org/searching-algorithms/"
+          },
+          {
+            "text": "Stack",
+            "url": "https://www.geeksforgeeks.org/stack-data-structure/"
+          },
+          {
+            "text": "Sorting Algorithms",
+            "url": "https://www.geeksforgeeks.org/sorting-algorithms/"
+          },
+          {
+            "text": "Hashing",
+            "url": "https://www.geeksforgeeks.org/hashing-data-structure/"
+          },
+          {
+            "text": "Graph",
+            "url": "https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/"
+          }
+        ]
+      }
+    ],
+    "https://realpython.com/beautiful-soup-web-scraper-python/": [
+      {
+        "url": "https://realpython.com/beautiful-soup-web-scraper-python/#author",
+        "title": "Beautiful Soup: Build a Web Scraper With Python – Real Python",
+        "meta_description": "In this tutorial, you'll walk through the main steps of the web scraping process. You'll learn how to write a script that uses Python's Requests library to scrape data from a website. You'll also use Beautiful Soup to extract the specific pieces of information you're interested in.",
+        "headings": [
+          {
+            "level": 1,
+            "text": "Beautiful Soup: Build a Web Scraper With Python"
+          },
+          {
+            "level": 2,
+            "text": "What Is Web Scraping?"
+          },
+          {
+            "level": 2,
+            "text": "Scrape the Fake Python Job Site"
+          },
+          {
+            "level": 2,
+            "text": "Step 1: Inspect Your Data Source"
+          },
+          {
+            "level": 2,
+            "text": "Step 2: Scrape HTML Content From a Page"
+          },
+          {
+            "level": 2,
+            "text": "Step 3: Parse HTML Code With Beautiful Soup"
+          },
+          {
+            "level": 2,
+            "text": "Assemble Your Code in a Script"
+          },
+          {
+            "level": 2,
+            "text": "Keep Practicing"
+          },
+          {
+            "level": 2,
+            "text": "Conclusion"
+          },
+          {
+            "level": 2,
+            "text": "Frequently Asked Questions"
+          },
+          {
+            "level": 2,
+            "text": "Keep reading Real Python by creating a free account or signing in:"
+          },
+          {
+            "level": 3,
+            "text": "Reasons for Automated Web Scraping"
+          },
+          {
+            "level": 3,
+            "text": "Challenges of Web Scraping"
+          },
+          {
+            "level": 3,
+            "text": "An Alternative to Web Scraping: APIs"
+          },
+          {
+            "level": 3,
+            "text": "Explore the Website"
+          },
+          {
+            "level": 3,
+            "text": "Decipher the Information in URLs"
+          },
+          {
+            "level": 3,
+            "text": "Inspect the Site Using Developer Tools"
+          },
+          {
+            "level": 3,
+            "text": "Static Websites"
+          },
+          {
+            "level": 3,
+            "text": "Login-Protected Websites"
+          },
+          {
+            "level": 3,
+            "text": "Dynamic Websites"
+          },
+          {
+            "level": 3,
+            "text": "Find Elements by ID"
+          },
+          {
+            "level": 3,
+            "text": "Find Elements by HTML Class Name"
+          },
+          {
+            "level": 3,
+            "text": "Extract Text From HTML Elements"
+          },
+          {
+            "level": 3,
+            "text": "Find Elements by Class Name and Text Content"
+          },
+          {
+            "level": 3,
+            "text": "Pass a Function to a Beautiful Soup Method"
+          },
+          {
+            "level": 3,
+            "text": "Identify Error Conditions"
+          },
+          {
+            "level": 3,
+            "text": "Access Parent Elements"
+          },
+          {
+            "level": 3,
+            "text": "Extract Attributes From HTML Elements"
+          }
+        ],
+        "text": "Table of Contents\nRecommended Course\nWeb Scraping With Beautiful Soup and Python(1h 56m)\nBeautiful Soup is a Python library designed for parsing HTML and XML documents. It creates parse trees that make it straightforward to extract data from HTML documents you’ve scraped from the internet. Beautiful Soup is a useful tool in yourweb scrapingtoolkit, allowing you to conveniently extract specific information from HTML, even from complex static websites.\nIn this tutorial, you’ll learn how to build a web scraper using Beautiful Soup along with theRequests libraryto scrape and parse job listings from a static website.\nStatic websites provide consistent HTML content, while dynamic sites may require handling JavaScript. For dynamic websites, you’ll need to incorporate additional tools that can execute JavaScript, such asScrapyorSelenium.\nBy the end of this tutorial, you’ll understand that:\nWorking through this project will give you the knowledge and tools that you need to scrape any static website out there on the World Wide Web.\nIf you like learning with hands-on examples and have a basic understanding of Python andHTML, then this tutorial is for you! \nYou can download the project source code by clicking on the link below:\nGet Your Code:Click here to download the free sample codethat you’ll use to learn about web scraping in Python.\nTake the Quiz:Test your knowledge with our interactive “Beautiful Soup: Build a Web Scraper With Python” quiz. You’ll receive a score upon completion to help you track your learning progress:\nInteractive Quiz\nIn this quiz, you'll test your understanding of web scraping using Python. By working through this quiz, you'll revisit how to inspect the HTML structure of a target site, decipher data encoded in URLs, and use Requests and Beautiful Soup for scraping and parsing data.\nWeb scrapingis the process of gathering information from the internet. Even copying and pasting the lyrics of your favorite song can be considered a form of web scraping! However, the term “web scraping” usually refers to a process that involves automation. While some websites don’t like it when automatic scrapers gather their data, which can lead tolegal issues, others don’t mind it.\nIf you’re scraping a page respectfully for educational purposes, then you’re unlikely to have any problems. Still, it’s a good idea to do some research on your own to make sure you’re not violating any Terms of Service before you start a large-scale web scraping project.\nSay that you like to surf—both in the ocean and online—and you’re looking for employment. It’s clear that you’re not interested in justanyjob. With a surfer’s mindset, you’re waiting for the perfect opportunity to roll your way!\nYou know about a job site that offers precisely the kinds of jobs you want. Unfortunately, a new position only pops up once in a blue moon, and the site doesn’t provide an email notification service. You consider checking up on it every day, but that doesn’t sound like the most fun and productive way to spend your time. You’d rather be outside surfing real-life waves!\nThankfully, Python offers a way to apply your surfer’s mindset. Instead of having to check the job site every day, you can use Python to help automate the repetitive parts of your job search. Withautomated web scraping, you can write the code once, and it’ll get the information that you need many times and from many pages.\nNote:In contrast, when you try to get information manually, you might spend a lot of time clicking, scrolling, and searching, especially if you need large amounts of data from websites that are regularly updated with new content. Manual web scraping can take a lot of time and be highly repetitive and error-prone.\nThere’s so much information on the internet, with new information constantly being added. You’ll probably be interested in some of that data, and much of it is out there for the taking. Whether you’re actually on the job hunt or just want to automatically download all the lyrics of your favorite artist, automated web scraping can help you accomplish your goals.\nThe internet has grown organically out of many sources. It combines many different technologies, styles, and personalities, and it continues to grow every day. In other words, the internet is a hot mess! Because of this, you’ll run into some challenges when scraping the web:\nVariety:Every website is different. While you’ll encounter general structures that repeat themselves, each website is unique and will need personal treatment if you want to extract the relevant information.\nDurability:Websites constantly change. Say you’ve built a shiny new web scraper that automatically cherry-picks what you want from your resource of interest. The first time yourun your script, it works flawlessly. But when you run the same script a while later, you run into a discouraging and lengthy stack oftracebacks!\nUnstable scripts are a realistic scenario because many websites are in active development. If a site’s structure changes, then your scraper might not be able to navigate the sitemap correctly or find the relevant information. The good news is that changes to websites are often small and incremental, so you’ll likely be able to update your scraper with minimal adjustments.\nStill, keep in mind that the internet is dynamic and keeps on changing. Therefore, the scrapers you build will probably require maintenance. You can set upcontinuous integrationto run scraping tests periodically to ensure that your main script doesn’t break without your knowledge.\nSome website providers offerapplication programming interfaces (APIs)that allow you to access their data in a predefined manner. With APIs, you can avoid parsingHTML. Instead, you can access the data directly using formats likeJSONandXML. HTML is primarily a way to visually present content to users.\nWhen you use an API, the data collection process is generally more stable than it is through web scraping. That’s because developers create APIs to be consumed by programs rather than by human eyes.\nThe front-end presentation of a site might change often, but a change in the website’s design doesn’t affect its API structure. The structure of an API is usually more permanent, which means it’s a more reliable source of the site’s data.\nHowever, APIscanchange as well. The challenges of both variety and durability apply to APIs just as they do to websites. Additionally, it’s much harder to inspect the structure of an API by yourself if the provided documentation lacks quality.\nThe approach and tools you need to gather information using APIs is outside the scope of this tutorial. To learn more about it, check outAPI Integration in Python.\nIn this tutorial, you’ll build a web scraper that fetches Python software developer job listings from afake Python job site. It’s an example site with fake job postings that you can freely scrape to train your skills. Your web scraper will parse the HTML on the site to pick out the relevant information and filter that content for specific words.\nYou can scrape any site on the internet that you can look at, but the difficulty of doing so depends on the site. This tutorial offers you an introduction to web scraping to help you understand the overall process. Then, you can apply this same process for every website that you want to scrape.\nNote:Real-life job boards may quickly change in structure and availability. To offer you a smooth learning experience, this tutorial focuses on a self-hosted static site that’s guaranteed to stay the same. This gives you a reliable playground to practice the skills that you need for web scraping.\nThroughout the tutorial, you’ll also encounter a fewexercise blocks. You can click to expand them and challenge yourself by completing the tasks described within.\nBefore you write any Python code, you need to get to know the website that you want to scrape. Getting to know the website should be your first step for any web scraping project that you want to tackle. You’ll need to understand the site structure to extract the information relevant for you. Start by openingthe site that you want to scrapewith your favorite browser.\nClick through the site and interact with it just like any typical job searcher would. For example, you can scroll through the main page of the website:\nOn that page, you can see many job postings in a card format. Each of them has two buttons. If you click onLearn, then you’ll visitReal Python’s home page. If you click onApply, then you’ll see a new page that contains more detailed descriptions of the job on that card. You might also notice that the URL in your browser’s address bar changes when you navigate to one of those pages.\nYou can encode a lot ofinformation in a URL. Becoming familiar with how URLs work and what they’re made of will help you on your web scraping journey. For example, you might find yourself on a details page that has the following URL:\nYou can deconstruct the above URL into two main parts:\nAny job posted on this website will share the same base URL. However, the location of the unique resources will be different depending on the job posting that you view. Usually, similar resources on a website will share a similar location, such as the folder structurefake-jobs/jobs/. However, the final part of the path points to a specific resource and will be different for each job posting. In this case, it’s a static HTML file namedsenior-python-developer-0.html.\nURLs can hold more information than just the location of a file. Some websites usequery parametersto encode values that you submit when performing a search. You can think of them as query strings that you send to the database to retrieve specific records.\nYou’ll find query parameters at the end of a URL. For example, if you go toIndeedand search for “software developer” in “Australia” through the site’s search bar, you’ll see that the URL changes to include these values as query parameters:\nThe query parameters in this URL are?q=software+developer&l=Australia. Query parameters consist of three parts:\nEquipped with this information, you can separate the URL’s query parameters into two key-value pairs:\nTry to change the search parameters and observe how that affects your URL. Go ahead and enter new values in the search bar of the Indeed job board:\nNext, try to change the values directly in your URL. See what happens when you paste the following URL into your browser’s address bar:\nIf you change and submit the values in the website’s search box, then it’ll be directly reflected in the URL’s query parameters and vice versa. If you change either of them, then you’ll see different results on the website.\nAs you can see, exploring the URLs of a site can give you insight into how to retrieve data from the website’s server.\nHead back toFake Pythonjobs and continue to explore it. This site is a static website containing hardcoded information. It doesn’t operate on top of a database, which is why you won’t have to work with query parameters in this scraping tutorial.\nNext, you’ll want to learn more about how the data is structured for display. You’ll need to understand the page structure to pick what you want from the HTML response that you’ll collect inone of the upcoming steps.\nDeveloper toolscan help you understand the structure of a website. All modern browsers come with developer tools installed. In this section, you’ll learn how to work with the developer tools in Chrome. The process will be very similar on other modern browsers.\nIn Chrome on macOS, you can open up the developer tools through the menu by selectingView→Developer→Developer Tools. On Windows and Linux, you can access them by clicking the top-right menu button (⋮) and selectingMore Tools→Developer Tools. You can also access your developer tools by right-clicking on the page and selecting theInspectoption or using akeyboard shortcut:\nDeveloper tools allow you to interactively explore the site’sdocument object model (DOM)to better understand your source. To dig into your page’s DOM, select theElementstab in developer tools. You’ll see a structure with clickable HTML elements. You can expand, collapse, and even edit elements right in your browser:\nYou can think of the text displayed in your browser as the HTML structure of the page. If you’re interested, then you can read more about thedifference between the DOM and HTML.\nWhen you right-click elements on the page, you can selectInspectto zoom to their location in the DOM. You can also hover over the HTML text on your right and see the corresponding elements light up on the page.\nClick to expand the exercise block for a specific task to practice using your developer tools:\nExercise: Explore the HTMLShow/Hide\nFind a single job posting. What HTML element is it wrapped in, and what other HTML elements does it contain?\nPlay around and explore! The more you get to know the page you’re working with, the easier it’ll be to scrape. But don’t get too overwhelmed with all that HTML text. You’ll use the power of programming to step through this maze and cherry-pick the information that’s relevant to you.\nNow that you have an idea of what you’re working with, it’s time to start using Python. First, you’ll want to get the site’s HTML code into your Python script so that you can interact with it. For this task, you’ll use Python’sRequestslibrary.\nBefore you install any external package, you’ll need to create avirtual environmentfor your project. Activate your new virtual environment, then type the following command in your terminal to install the Requests library:\nThen open up a new file in your favoritetext editorand call itscraper.py. You only need a few lines of code to retrieve the HTML:\nWhen you run this code, it issues anHTTPGETrequestto the given URL. It retrieves the HTML data that the server sends back and stores that data in a Python object you calledpage.\nIf youprintthe.textattribute ofpage, then you’ll notice that it looks just like the HTML you inspected earlier with your browser’s developer tools. You’ve successfully fetched the static site content from the internet! You now have access to the site’s HTML from within your Python script.\nThe website that you’re scraping in this tutorial servesstatic HTML content. In this scenario, the server that hosts the site sends back HTML documents that already contain all the data a user gets to see.\nWhen you inspected the page with developer tools earlier on, you discovered that a single job posting consists of the following long and messy-looking HTML:\nIt can be challenging to wrap your head around a long block of HTML code. To make it easier to read, you can use anHTML formatterto clean up the HTML automatically. Good readability can help you better understand the structure of any block of code. While improved HTML formatting may or may not help, it’s always worth a try.\nNote:Keep in mind that every website looks different. That’s why it’s necessary to inspect and understand the structure of the site you’re working with before moving forward.\nThe HTML you’ll encounter will sometimes be confusing. Luckily, the HTML of this job board has descriptiveclass nameson the elements that you’re interested in:\nIf you ever get lost in a large pile of HTML, remember that you can always go back to your browser and use thedeveloper toolsto further explore the HTML structure interactively.\nBy now, you’ve successfully harnessed the power and user-friendly design of Python’s Requests library. With only a few lines of code, you managed to scrape static HTML content from the web and make it available for further processing.\nWhile this was a breeze, you may encounter more challenging situations when working on your own web scraping projects. Before you learn how to select the relevant information from the HTML that you just scraped, you’ll take a quick look at two more challenging situations.\nSome pages contain information that’s hidden behind a login. This means you’ll need an account to be able to scrape anything from the page. Just like you need to log in on your browser when you want to access content on such a page, you’ll also need to log in from your Python script.\nThe Requests library comes with the built-in capacity tohandle authentication. With these techniques, you can log in to websites when making the HTTP request from your Python script and then scrape information that’s hidden behind a login. You won’t need to log in to access the job board information, so this tutorial won’t cover authentication.\nMany modern websites don’t send back static HTML content like this practice site does. If you’re dealing with adynamic website, then you could receiveJavaScriptcode as a response. This code will look completely different from what you see when you inspect the same page with your browser’s developer tools.\nNote:In this tutorial, the termdynamic websiterefers to a website that doesn’t return the same HTML that you see when viewing the page in your browser.\nDynamic websites are designed to provide their functionality in collaboration with the clients’ browsers. Instead of sending HTML pages, these apps sendJavaScriptcode that instructs your browser tocreatethe desired HTML. Web apps deliver dynamic content this way to offload work from the server to the clients’ machines, as well as to avoid page reloads and improve the overall user experience.\nYour browser will diligently execute the JavaScript code it receives from a server and create the DOM and HTML for you locally. However, if you request a dynamic website in your Python script, then you won’t get the HTML page content.\nWhen you use Requests, you receive only what the server sends back. In the case of a dynamic website, you’ll end up with JavaScript code without the relevant data. The only way to go from that code to the content that you’re interested in is toexecutethe code, just like your browser does. The Requests library can’t do that for you, but there are other solutions that can:\nRequests-HTMLis a project created by the author of the Requests library that allows you to render JavaScript using syntax that’s similar to the syntax in Requests. It also includes capabilities for parsing the data by using Beautiful Soup under the hood.\nSeleniumis another popular choice for scraping dynamic content. Selenium automates a full browser and can execute JavaScript, allowing you to interact with and retrieve the fully rendered HTML response for your script.\nYou won’t go deeper into scraping dynamically-generated content in this tutorial. If you need to scrape a dynamic website, then you can look into one of the options mentioned above.\nYou’ve successfully scraped some HTML from the internet, but when you look at it, it looks like a mess. There are tons of HTML elements here and there, thousands of attributes scattered around—and maybe there’s some JavaScript mixed in as well? It’s time to parse this lengthy code response with the help of Python to make it more accessible so you can pick out the data that you want.\nBeautiful Soupis a Python library for parsing structured data. It allows you to interact with HTML in a similar way to how you interact with a web page using developer tools. The library exposes intuitive methods that you can use to explore the HTML you received.\nNote:The nameBeautiful Souporiginates from theLewis CarrollsongBeautiful SoupinAlice’s Adventures in Wonderland, where a character sings about beautiful soup. This name reflects the library’s ability to parse poorly formed HTML that’s also known astag soup.\nTo get started, use your terminal to install Beautiful Soup into your virtual environment:\nThen,importthe library in your Python script and create aBeautifulSoupobject:\nWhen you add the two highlighted lines of code, then you create aBeautifulSoupobject that takespage.contentas input, which is the HTML content that you scraped earlier.\nNote:You’ll want to pass.contentinstead of.textto avoid problems with character encoding. The.contentattribute holds raw bytes, whichPython’s built-in HTML parsercan decode better than the text representation you printed earlier using the.textattribute.\nThe second argument that you pass to theclass constructor,\"html.parser\", makes sure that you usean appropriate parserfor HTML content.\nAt this point, you’re set up with aBeautifulSoupobject that you namedsoup. You can now run your script using Python’s interactive mode:\nWhen you use thecommand-option-ito run a script, then Python executes the code and drops you into aREPL environment. This can be a good way to continue exploring the scraped HTML through the user-friendly lens of Beautiful Soup.\nIn an HTML web page, every element can have anidattribute assigned. As the name already suggests, thatidattribute makes the element uniquely identifiable on the page. You can begin to parse your page by selecting a specific element by its ID.\nSwitch back to developer tools and identify the HTML object that contains all the job postings. Explore by hovering over parts of the page and using right-click toInspect.\nNote:It helps to periodically switch back to your browser and explore the page interactively using developer tools. You’ll get a better idea of where and how to find the exact elements that you’re looking for.\nIn this case, the element that you’re looking for is a<div>with anidattribute that has the value\"ResultsContainer\". It has some other attributes as well, but below is the gist of what you’re looking for:\nBeautiful Soup allows you to find that specific HTML element by its ID:\nFor easier viewing, you can prettify anyBeautifulSoupobject when you print it out. If you call.prettify()on theresultsvariable that you assigned above, then you’ll see all the HTML contained within the<div>neatly structured:\nWhen you find an element by its ID, you can pick out one specific element from among the rest of the HTML, no matter how large the source code of the website is. Now you can focus on working with only this part of the page’s HTML. It looks like your soup just got a little thinner! Nevertheless, it’s still quite dense.\nYou’ve seen that every job posting is wrapped in a<div>element with the classcard-content. Now you can work with your new object calledresultsand select only the job postings in it. These are, after all, the parts of the HTML that you’re interested in! You can pick out all job cards in a single line of code:\nHere, you call.find_all()onresults, which is aBeautifulSoupobject. It returns aniterablecontaining all the HTML for all the job listings displayed on that page.\nTake a look at all of them:\nThat’s pretty neat already, but there’s still a lot of HTML! You saw earlier that your page has descriptive class names on some elements. You can pick out those child elements from each job posting with.find():\nEachjob_cardis anotherBeautifulSoup()object. Therefore, you can use the same methods on it as you did on its parent element,results.\nWith this code snippet, you’re getting closer and closer to the data that you’re actually interested in. Still, there’s a lot going on with all those HTML tags and attributes floating around:\nNext, you’ll learn how to narrow down this output to access only the text content that you’re interested in.\nYou only want to see the title, company, and location of each job posting. And behold! Beautiful Soup has got you covered. You can add.textto aBeautifulSoupobject to return only thetext contentof the HTML elements that the object contains:\nRun the above code snippet, and you’ll see the text of each element displayed. However, you’ll also get some extrawhitespace. But no worries, because you’re working withPython stringsso you can.strip()the superfluous whitespace. You can also apply any other familiar Python string methods to further clean up your text:\nThe results finally look much better! You’ve now got a readable list of jobs, associated company names, and each job’s location. However, you’re specifically looking for a position as asoftware developer, and these results contain job postings in many other fields as well.\nNot all of the job listings are developer jobs. Instead of printing outallthe jobs listed on the website, you’ll firstfilterthem using keywords.\nYou know that job titles in the page are kept within<h2>elements. To filter for only specific jobs, you can use thestringargument:\nThis code finds all<h2>elements where the contained string matches\"Python\"exactly. Note that you’re directly calling the method on your firstresultsvariable. If you go ahead andprint()the output of the above code snippet to your console, then you might be disappointed because it’ll be empty:\nTherewasa Python job in the search results, so why isn’t it showing up?\nWhen you usestringas you did above, your program looks for that stringexactly. Any variations in the spelling, capitalization, or whitespace will prevent the element from matching. In the next section, you’ll find a way to make your search string more general.\nIn addition to strings, you can sometimes pass functions as arguments to Beautiful Soup methods. You can change the previous line of code to use a function instead:\nNow you’re passing ananonymous functionto thestringargument. Thelambda functionlooks at the text of each<h2>element, converts it to lowercase, and checks whether thesubstring\"python\"is found anywhere. You can check whether you managed to identify all the Python jobs with this approach:\nYour program has found ten matching job posts that include the word\"python\"in their job title!\nFinding elements based on their text content is a powerful way to filter your HTML response for specific information. Beautiful Soup allows you to use exact strings or functions as arguments for filtering text inBeautifulSoupobjects.\nHowever, when you try to print the information of the filtered Python jobs like you’ve done before, you run into an error:\nThistraceback messageis a common error that you’ll run into a lot when you’re scraping information from the internet. Inspect the HTML of an element in yourpython_jobslist. What does it look like? Where do you think the error is coming from?\nWhen you look at a single element inpython_jobs, you’ll see that it consists of only the<h2>element that contains the job title:\nWhen you revisit the code you used to select the items, you’ll notice that’s what you targeted. You filtered for only the<h2>title elements of the job postings that contain the word\"python\". As you can see, these elements don’t include the rest of the information about the job.\nThe error message you received earlier was related to this:\nYou tried to find the job title, the company name, and the job’s location in each element inpython_jobs, but each element contains only the job title text.\nYour diligent parsing library still looks for the other ones, too, and returnsNonebecause it can’t find them. Then,print()fails with the shown error message when you try to extract the.textattribute from one of theseNoneobjects.\nThe text you’re looking for is nested in sibling elements of the<h2>elements that your filter returns. Beautiful Soup can help you select sibling, child, and parent elements of eachBeautifulSoupobject.\nOne way to get access to all the information for a job is to step up in the hierarchy of the DOM starting from the<h2>elements that you identified. Take another look at the HTML of a single job posting, for example,using your developer tools. Then, find the<h2>element that contains the job title and its closest parent element that contains the information you’re interested in:\nThe<div>element with thecard-contentclass contains all the information you want. It’s a third-level parent of the<h2>title element that you found using your filter.\nWith this information in mind, you can now use the elements inpython_jobsand fetch their great-grandparent elements to get access to all the information you want:\nYou added alist comprehensionthat operates on each of the<h2>title elements inpython_jobsthat you got by filtering with the lambda expression. You’re selecting the parent element of the parent element of the parent element of each<h2>title element. That’s three generations up!\nWhen you were looking at the HTML of a single job posting, you identified that this specific parent element with the class namecard-contentcontains all the information you need.\nNow you can adapt the code in yourforloopto iterate over the parent elements instead:\nWhen you run your script another time, you’ll see that your code once again has access to all the relevant information. That’s because you’re now looping over the<div class=\"card-content\">elements instead of just the<h2>title elements.\nUsing the.parentattribute that eachBeautifulSoupobject comes with gives you an intuitive way to step through your DOM structure and address the elements you need. You can also access child elements and sibling elements in a similar manner. Read up onnavigating the treefor more information.\nAt this point, you’ve already written code that scrapes the site and filters its HTML for relevant job postings. Well done! However, what’s still missing is fetching the link to apply for a job.\nWhile inspecting the page, you found two links at the bottom of each card. If you use.texton the link elements in the same way you did for the other elements, then you won’t get the URLs that you’re interested in:\nIf you execute the code shown above, then you’ll get the link text forLearnandApplyinstead of the associated URLs.\nThat’s because the.textattribute leaves only the visible content of an HTML element. It strips away all HTML tags, including the HTML attributes containing the URL, and leaves you with just the link text. To get the URL instead, you need to extract the value of one of the HTML attributes instead of discarding it.\nThe URL of a link element is associated with thehrefHTML attribute. The specific URL that you’re looking for is the value of thehrefattribute of the second<a>tag at the bottom of the HTML for a single job posting:\nStart by fetching all the<a>elements in a job card. Then, extract the value of theirhrefattributes using square-bracket notation:\nIn this code snippet, you first fetch all the links from each of the filtered job postings. Then, you extract thehrefattribute, which contains the URL, using[\"href\"]and print it to your console.\nEach job card has two links associated with it. However, you’re only looking for thesecondlink, so you’ll apply a small edit to the code:\nIn the updated code snippet, you useindexingto pick the second link element from the results of.find_all()using its index ([1]). Then, you directly extract the URL using the square-bracket notation with the\"href\"key, thereby fetching the value of thehrefattribute.\nYou can use the same square-bracket notation toextract other HTML attributesas well.\nYou’re now happy with the results and are ready to put it all together into yourscraper.pyscript. When you assemble the useful lines of code that you wrote during your exploration, you’ll end up with a Python web scraping script that extracts the job title, company, location, and application link from the scraped website:\nYou could continue to work on your script andrefactorit, but at this point, it does the job you wanted and presents you with the information you need when you want to apply for a Python developer job:\nAll you need to do now to check for new Python jobs on the job board is run your Python script. This leaves you with plenty of time to get out there and catch some waves!\nIf you’ve written the code alongside this tutorial, then you can run your script as is to see the fake job information pop up in your terminal. Your next step is to tackle areal-life job board! To keep practicing your new skills, you can revisit the web scraping process described in this tutorial by using any or all of the following sites:\nThe linked websites return their search results as static HTML responses, similar to the Fake Python job board. Therefore, you can scrape them using only Requests and Beautiful Soup.\nStart going through this tutorial again from the beginning using one of these other sites. You’ll see that each website’s structure is different and that you’ll need to rebuild the code in a slightly different way to fetch the data you want. Tackling this challenge is a great way to practice the concepts that you just learned. While it might make you sweat every so often, your coding skills will be stronger in the end!\nDuring your second attempt, you can also explore additional features of Beautiful Soup. Use thedocumentationas your guidebook and inspiration. Extra practice will help you become more proficient at web scraping with Python, Requests, and Beautiful Soup.\nTo wrap up your journey, you could then give your code a final makeover and create acommand-line interface (CLI)app that scrapes one of the job boards and filters the results by a keyword that you can input on each execution. Your CLI tool could allow you to search for specific types of jobs, or jobs in particular locations.\nIf you’re interested in learning how to adapt your script as a command-line interface, then check out theBuild Command-Line Interfaces With Python’s argparsetutorial.\nThe Requests library provides a user-friendly way to scrape static HTML from the internet with Python. You can then parse the HTML with another package called Beautiful Soup. You’ll find that Beautiful Soup will cater to most of your parsing needs, includingnavigationandadvanced searching. Both packages will be trusted and helpful companions on your web scraping adventures.\nIn this tutorial, you’ve learned how to:\nWith this broad pipeline in mind and two powerful libraries in your toolkit, you can go out and see what other websites you can scrape. Have fun, and always remember to be respectful and use your programming skills responsibly. Happy scraping!\nGet Your Code:Click here to download the free sample codethat you’ll use to learn about web scraping in Python.\nNow that you have some experience with Beautiful Soup and web scraping in Python, you can use the questions and answers below to check your understanding and recap what you’ve learned.\nThese FAQs are related to the most important concepts you’ve covered in this tutorial. Click theShow/Hidetoggle beside each question to reveal the answer:\nWhat is web scraping and why is it useful?Show/Hide\nWeb scraping is the automated process of extracting data from websites. It’s useful because it allows you to gather large amounts of data efficiently and systematically, which can be beneficial for research, data analysis, or keeping track of updates on specific sites, such as job postings.\nHow do you inspect the HTML structure of a website before scraping?Show/Hide\nYou can use your browser’s developer tools to inspect the HTML structure of a website. To do this, right-click on any element of the page and selectInspect. This will allow you to view the underlying HTML code, helping you understand how the data you want is structured.\nWhat role does the Requests library play in web scraping with Python?Show/Hide\nThe Requests library is used to send HTTP requests to a website and retrieve the HTML content of the web page. You’ll need to get the raw HTML before you can parse and process it with Beautiful Soup.\nHow does Beautiful Soup help in web scraping?Show/Hide\nBeautiful Soup is a Python library used for parsing HTML and XML documents. It provides Pythonic idioms for iterating, searching, and modifying the parse tree, making it easier to extract the necessary data from the HTML content you scraped from the internet.\nWhat are some challenges you might face when scraping websites?Show/Hide\nSome challenges include handling dynamic content generated by JavaScript, accessing login-protected pages, dealing with changes in website structure that could break your scraper, and navigating legal issues related to the terms of service of the websites you’re scraping. It’s important to approach this work responsibly and ethically.\nTake the Quiz:Test your knowledge with our interactive “Beautiful Soup: Build a Web Scraper With Python” quiz. You’ll receive a score upon completion to help you track your learning progress:\nInteractive Quiz\nIn this quiz, you'll test your understanding of web scraping using Python. By working through this quiz, you'll revisit how to inspect the HTML structure of a target site, decipher data encoded in URLs, and use Requests and Beautiful Soup for scraping and parsing data.\nRecommended Course\nWeb Scraping With Beautiful Soup and Python(1h 56m)\n🐍 Python Tricks 💌\nGet a short & sweetPython Trickdelivered to your inbox every couple of days. No spam ever. Unsubscribe any time. Curated by the Real Python team.\nAboutMartin Breuss\nMartin is Real Python's Head of Content Strategy. With a background in education, he's worked as a coding mentor, code reviewer, curriculum developer, bootcamp instructor, and instructional designer.\nEach tutorial at Real Python is created by a team of developers so that it meets our high quality standards. The team members who worked on this tutorial are:\nAldren\nBrenda\nBartosz\nGeir Arne\nJaya\nJoanna\nJacob\nMike\nMasterReal-World Python SkillsWith Unlimited Access to Real Python\nJoin us and get access to thousands of tutorials, hands-on video courses, and a community of expert Pythonistas:\nLevel Up Your Python Skills »\nMasterReal-World Python SkillsWith Unlimited Access to Real Python\nJoin us and get access to thousands of tutorials, hands-on video courses, and a community of expert Pythonistas:\nLevel Up Your Python Skills »\nWhat Do You Think?\nWhat’s your #1 takeaway or favorite thing you learned? How are you going to put your newfound skills to use? Leave a comment below and let us know.\nCommenting Tips:The most useful comments are those written with the goal of learning from or helping out other students.Get tips for asking good questionsandget answers to common questions in our support portal.Looking for a real-time conversation? Visit theReal Python Community Chator join the next“Office Hours” Live Q&A Session. Happy Pythoning!\nKeep Learning\nRelated Topics:intermediatedata-sciencetoolsweb-scraping\nRelated Learning Paths:\nRelated Courses:\nRelated Tutorials:\nContinue »\nAlready have an account?Sign-In\nAlmost there! Complete this form and click the button below to gain instant access:\nBeautiful Soup: Build a Web Scraper With Python (Sample Code)\n🔒 No spam. We take your privacy seriously.",
+        "links": [
+          {
+            "text": "Martin Breuss",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#author"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#reader-comments"
+          },
+          {
+            "text": "intermediate",
+            "url": "https://realpython.com/tutorials/intermediate/"
+          },
+          {
+            "text": "data-science",
+            "url": "https://realpython.com/tutorials/data-science/"
+          },
+          {
+            "text": "tools",
+            "url": "https://realpython.com/tutorials/tools/"
+          },
+          {
+            "text": "web-scraping",
+            "url": "https://realpython.com/tutorials/web-scraping/"
+          },
+          {
+            "text": "What Is Web Scraping?",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#what-is-web-scraping"
+          },
+          {
+            "text": "Reasons for Automated Web Scraping",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#reasons-for-automated-web-scraping"
+          },
+          {
+            "text": "Challenges of Web Scraping",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#challenges-of-web-scraping"
+          },
+          {
+            "text": "An Alternative to Web Scraping: APIs",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#an-alternative-to-web-scraping-apis"
+          },
+          {
+            "text": "Scrape the Fake Python Job Site",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#scrape-the-fake-python-job-site"
+          },
+          {
+            "text": "Step 1: Inspect Your Data Source",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#step-1-inspect-your-data-source"
+          },
+          {
+            "text": "Explore the Website",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#explore-the-website"
+          },
+          {
+            "text": "Decipher the Information in URLs",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#decipher-the-information-in-urls"
+          },
+          {
+            "text": "Inspect the Site Using Developer Tools",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#inspect-the-site-using-developer-tools"
+          },
+          {
+            "text": "Step 2: Scrape HTML Content From a Page",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#step-2-scrape-html-content-from-a-page"
+          },
+          {
+            "text": "Static Websites",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#static-websites"
+          },
+          {
+            "text": "Login-Protected Websites",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#login-protected-websites"
+          },
+          {
+            "text": "Dynamic Websites",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#dynamic-websites"
+          },
+          {
+            "text": "Step 3: Parse HTML Code With Beautiful Soup",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#step-3-parse-html-code-with-beautiful-soup"
+          },
+          {
+            "text": "Find Elements by ID",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#find-elements-by-id"
+          },
+          {
+            "text": "Find Elements by HTML Class Name",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#find-elements-by-html-class-name"
+          },
+          {
+            "text": "Extract Text From HTML Elements",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#extract-text-from-html-elements"
+          },
+          {
+            "text": "Find Elements by Class Name and Text Content",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#find-elements-by-class-name-and-text-content"
+          },
+          {
+            "text": "Pass a Function to a Beautiful Soup Method",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#pass-a-function-to-a-beautiful-soup-method"
+          },
+          {
+            "text": "Identify Error Conditions",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#identify-error-conditions"
+          },
+          {
+            "text": "Access Parent Elements",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#access-parent-elements"
+          },
+          {
+            "text": "Extract Attributes From HTML Elements",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#extract-attributes-from-html-elements"
+          },
+          {
+            "text": "Assemble Your Code in a Script",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#assemble-your-code-in-a-script"
+          },
+          {
+            "text": "Keep Practicing",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#keep-practicing"
+          },
+          {
+            "text": "Conclusion",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#conclusion"
+          },
+          {
+            "text": "Frequently Asked Questions",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#frequently-asked-questions"
+          },
+          {
+            "text": "Remove ads",
+            "url": "https://realpython.com/account/join/"
+          },
+          {
+            "text": "Web Scraping With Beautiful Soup and Python",
+            "url": "https://realpython.com/courses/web-scraping-beautiful-soup/"
+          },
+          {
+            "text": "web scraping",
+            "url": "https://realpython.com/python-web-scraping-practical-introduction/"
+          },
+          {
+            "text": "Requests library",
+            "url": "https://realpython.com/python-requests/"
+          },
+          {
+            "text": "Scrapy",
+            "url": "https://realpython.com/web-scraping-with-scrapy-and-mongodb/"
+          },
+          {
+            "text": "Selenium",
+            "url": "https://realpython.com/modern-web-automation-with-python-and-selenium/"
+          },
+          {
+            "text": "HTML",
+            "url": "https://realpython.com/html-css-python/"
+          },
+          {
+            "text": "Click here to download the free sample code",
+            "url": "https://realpython.com/bonus/beautiful-soup-web-scraper-python-code/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/quizzes/beautiful-soup-web-scraper-python/"
+          },
+          {
+            "text": "Beautiful Soup: Build a Web Scraper With Python",
+            "url": "https://realpython.com/quizzes/beautiful-soup-web-scraper-python/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#what-is-web-scraping"
+          },
+          {
+            "text": "legal issues",
+            "url": "https://realpython.com/podcasts/rpp/12/"
+          },
+          {
+            "text": "Remove ads",
+            "url": "https://realpython.com/account/join/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#reasons-for-automated-web-scraping"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#challenges-of-web-scraping"
+          },
+          {
+            "text": "run your script",
+            "url": "https://realpython.com/run-python-scripts/"
+          },
+          {
+            "text": "tracebacks",
+            "url": "https://realpython.com/python-traceback/"
+          },
+          {
+            "text": "continuous integration",
+            "url": "https://realpython.com/python-continuous-integration/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#an-alternative-to-web-scraping-apis"
+          },
+          {
+            "text": "application programming interfaces (APIs)",
+            "url": "https://realpython.com/python-api/"
+          },
+          {
+            "text": "HTML",
+            "url": "https://realpython.com/html-css-python/"
+          },
+          {
+            "text": "JSON",
+            "url": "https://realpython.com/python-json/"
+          },
+          {
+            "text": "XML",
+            "url": "https://realpython.com/python-xml-parser/"
+          },
+          {
+            "text": "API Integration in Python",
+            "url": "https://realpython.com/api-integration-in-python/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#scrape-the-fake-python-job-site"
+          },
+          {
+            "text": "fake Python job site",
+            "url": "https://realpython.github.io/fake-jobs/"
+          },
+          {
+            "text": "Remove ads",
+            "url": "https://realpython.com/account/join/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#step-1-inspect-your-data-source"
+          },
+          {
+            "text": "the site that you want to scrape",
+            "url": "https://realpython.github.io/fake-jobs/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#explore-the-website"
+          },
+          {
+            "text": "",
+            "url": "https://files.realpython.com/media/bs4-fake-python-index.b76716592442.png"
+          },
+          {
+            "text": "Real Python’s home page",
+            "url": "https://realpython.com/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#decipher-the-information-in-urls"
+          },
+          {
+            "text": "information in a URL",
+            "url": "https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL"
+          },
+          {
+            "text": "Indeed",
+            "url": "https://au.indeed.com/"
+          },
+          {
+            "text": "Fake Python",
+            "url": "https://realpython.github.io/fake-jobs/"
+          },
+          {
+            "text": "Remove ads",
+            "url": "https://realpython.com/account/join/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#inspect-the-site-using-developer-tools"
+          },
+          {
+            "text": "one of the upcoming steps",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#step-2-scrape-html-content-from-a-page"
+          },
+          {
+            "text": "keyboard shortcut",
+            "url": "https://developer.chrome.com/docs/devtools/shortcuts/"
+          },
+          {
+            "text": "document object model (DOM)",
+            "url": "https://en.wikipedia.org/wiki/Document_Object_Model"
+          },
+          {
+            "text": "",
+            "url": "https://files.realpython.com/media/bs4-devtools.f0a236ca5fa3.png"
+          },
+          {
+            "text": "difference between the DOM and HTML",
+            "url": "https://css-tricks.com/dom/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#step-2-scrape-html-content-from-a-page"
+          },
+          {
+            "text": "Requests",
+            "url": "https://realpython.com/python-requests/"
+          },
+          {
+            "text": "virtual environment",
+            "url": "https://realpython.com/python-virtual-environments-a-primer/"
+          },
+          {
+            "text": "text editor",
+            "url": "https://realpython.com/python-ides-code-editors-guide/"
+          },
+          {
+            "text": "HTTPGETrequest",
+            "url": "https://realpython.com/python-requests/#the-get-request"
+          },
+          {
+            "text": "print",
+            "url": "https://realpython.com/python-print/"
+          },
+          {
+            "text": "Remove ads",
+            "url": "https://realpython.com/account/join/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#static-websites"
+          },
+          {
+            "text": "HTML formatter",
+            "url": "https://htmlformatter.com/"
+          },
+          {
+            "text": "developer tools",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#inspect-the-site-using-developer-tools"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#login-protected-websites"
+          },
+          {
+            "text": "handle authentication",
+            "url": "https://docs.python-requests.org/en/master/user/authentication/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#dynamic-websites"
+          },
+          {
+            "text": "JavaScript",
+            "url": "https://realpython.com/python-vs-javascript/"
+          },
+          {
+            "text": "Requests-HTML",
+            "url": "https://github.com/psf/requests-html"
+          },
+          {
+            "text": "Selenium",
+            "url": "https://realpython.com/modern-web-automation-with-python-and-selenium/"
+          },
+          {
+            "text": "Remove ads",
+            "url": "https://realpython.com/account/join/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#step-3-parse-html-code-with-beautiful-soup"
+          },
+          {
+            "text": "Beautiful Soup",
+            "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/"
+          },
+          {
+            "text": "Lewis Carroll",
+            "url": "https://en.wikipedia.org/wiki/Lewis_Carroll"
+          },
+          {
+            "text": "Alice’s Adventures in Wonderland",
+            "url": "https://en.wikipedia.org/wiki/Alice%27s_Adventures_in_Wonderland"
+          },
+          {
+            "text": "tag soup",
+            "url": "https://en.wikipedia.org/wiki/Tag_soup"
+          },
+          {
+            "text": "import",
+            "url": "https://realpython.com/python-import/"
+          },
+          {
+            "text": "Python’s built-in HTML parser",
+            "url": "https://docs.python.org/3/library/html.parser.html"
+          },
+          {
+            "text": "class constructor",
+            "url": "https://realpython.com/python-class-constructor/"
+          },
+          {
+            "text": "an appropriate parser",
+            "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/#differences-between-parsers"
+          },
+          {
+            "text": "command-option-i",
+            "url": "https://docs.python.org/3/using/cmdline.html#cmdoption-i"
+          },
+          {
+            "text": "REPL environment",
+            "url": "https://realpython.com/python-repl/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#find-elements-by-id"
+          },
+          {
+            "text": "Remove ads",
+            "url": "https://realpython.com/account/join/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#find-elements-by-html-class-name"
+          },
+          {
+            "text": "iterable",
+            "url": "https://docs.python.org/3/glossary.html#term-iterable"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#extract-text-from-html-elements"
+          },
+          {
+            "text": "Python strings",
+            "url": "https://realpython.com/python-strings/"
+          },
+          {
+            "text": ".strip()",
+            "url": "https://realpython.com/python-strip/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#find-elements-by-class-name-and-text-content"
+          },
+          {
+            "text": "stringargument",
+            "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/#the-string-argument"
+          },
+          {
+            "text": "Remove ads",
+            "url": "https://realpython.com/account/join/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#pass-a-function-to-a-beautiful-soup-method"
+          },
+          {
+            "text": "lambda function",
+            "url": "https://realpython.com/python-lambda/"
+          },
+          {
+            "text": "substring",
+            "url": "https://realpython.com/python-string-contains-substring/"
+          },
+          {
+            "text": "traceback message",
+            "url": "https://realpython.com/python-traceback/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#identify-error-conditions"
+          },
+          {
+            "text": "None",
+            "url": "https://realpython.com/null-in-python/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#access-parent-elements"
+          },
+          {
+            "text": "using your developer tools",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#inspect-the-site-using-developer-tools"
+          },
+          {
+            "text": "list comprehension",
+            "url": "https://realpython.com/list-comprehension-python/"
+          },
+          {
+            "text": "forloop",
+            "url": "https://realpython.com/python-for-loop/"
+          },
+          {
+            "text": "navigating the tree",
+            "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/#navigating-the-tree"
+          },
+          {
+            "text": "Remove ads",
+            "url": "https://realpython.com/account/join/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#extract-attributes-from-html-elements"
+          },
+          {
+            "text": "indexing",
+            "url": "https://realpython.com/python-list/#accessing-items-in-a-list-indexing"
+          },
+          {
+            "text": "extract other HTML attributes",
+            "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/#bs4.Tag.attrs"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#assemble-your-code-in-a-script"
+          },
+          {
+            "text": "refactor",
+            "url": "https://realpython.com/python-refactoring/"
+          },
+          {
+            "text": "Remove ads",
+            "url": "https://realpython.com/account/join/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#keep-practicing"
+          },
+          {
+            "text": "Python.org Job Board",
+            "url": "https://www.python.org/jobs/"
+          },
+          {
+            "text": "PythonJobs",
+            "url": "https://pythonjobs.github.io/"
+          },
+          {
+            "text": "Remote",
+            "url": "https://remote.co/remote-jobs/developer/"
+          },
+          {
+            "text": "documentation",
+            "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/"
+          },
+          {
+            "text": "Build Command-Line Interfaces With Python’s argparse",
+            "url": "https://realpython.com/command-line-interfaces-python-argparse/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#conclusion"
+          },
+          {
+            "text": "navigation",
+            "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/#navigating-the-tree"
+          },
+          {
+            "text": "advanced searching",
+            "url": "https://www.crummy.com/software/BeautifulSoup/bs4/doc/#searching-the-tree"
+          },
+          {
+            "text": "Click here to download the free sample code",
+            "url": "https://realpython.com/bonus/beautiful-soup-web-scraper-python-code/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/beautiful-soup-web-scraper-python/#frequently-asked-questions"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/quizzes/beautiful-soup-web-scraper-python/"
+          },
+          {
+            "text": "Beautiful Soup: Build a Web Scraper With Python",
+            "url": "https://realpython.com/quizzes/beautiful-soup-web-scraper-python/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/feedback/survey/article/beautiful-soup-web-scraper-python/liked/?from=article-footer"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/feedback/survey/article/beautiful-soup-web-scraper-python/disliked/?from=article-footer"
+          },
+          {
+            "text": "Web Scraping With Beautiful Soup and Python",
+            "url": "https://realpython.com/courses/web-scraping-beautiful-soup/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/team/mbreuss/"
+          },
+          {
+            "text": "» More about Martin",
+            "url": "https://realpython.com/team/mbreuss/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/team/asantos/"
+          },
+          {
+            "text": "Aldren",
+            "url": "https://realpython.com/team/asantos/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/team/bweleschuk/"
+          },
+          {
+            "text": "Brenda",
+            "url": "https://realpython.com/team/bweleschuk/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/team/bzaczynski/"
+          },
+          {
+            "text": "Bartosz",
+            "url": "https://realpython.com/team/bzaczynski/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/team/gahjelle/"
+          },
+          {
+            "text": "Geir Arne",
+            "url": "https://realpython.com/team/gahjelle/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/team/jayazhane/"
+          },
+          {
+            "text": "Jaya",
+            "url": "https://realpython.com/team/jayazhane/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/team/jjablonski/"
+          },
+          {
+            "text": "Joanna",
+            "url": "https://realpython.com/team/jjablonski/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/team/jschmitt/"
+          },
+          {
+            "text": "Jacob",
+            "url": "https://realpython.com/team/jschmitt/"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/team/mdriscoll/"
+          },
+          {
+            "text": "Mike",
+            "url": "https://realpython.com/team/mdriscoll/"
+          },
+          {
+            "text": "Level Up Your Python Skills »",
+            "url": "https://realpython.com/account/join/?utm_source=rp_article_footer&utm_content=beautiful-soup-web-scraper-python"
+          },
+          {
+            "text": "Level Up Your Python Skills »",
+            "url": "https://realpython.com/account/join/?utm_source=rp_article_footer&utm_content=beautiful-soup-web-scraper-python"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/feedback/survey/article/beautiful-soup-web-scraper-python/liked/?from=article-comments"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/feedback/survey/article/beautiful-soup-web-scraper-python/disliked/?from=article-comments"
+          },
+          {
+            "text": "LinkedIn",
+            "url": "https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Frealpython.com%2Fbeautiful-soup-web-scraper-python%2F"
+          },
+          {
+            "text": "Twitter",
+            "url": "https://twitter.com/intent/tweet/?text=Interesting%20Python%20article%20on%20%40realpython%3A%20Beautiful%20Soup%3A%20Build%20a%20Web%20Scraper%20With%20Python&url=https%3A%2F%2Frealpython.com%2Fbeautiful-soup-web-scraper-python%2F"
+          },
+          {
+            "text": "Bluesky",
+            "url": "https://bsky.app/intent/compose?text=Interesting%20Python%20article%20on%20%40realpython.com%3A%20Beautiful%20Soup%3A%20Build%20a%20Web%20Scraper%20With%20Python%20https%3A%2F%2Frealpython.com%2Fbeautiful-soup-web-scraper-python%2F"
+          },
+          {
+            "text": "Facebook",
+            "url": "https://facebook.com/sharer/sharer.php?u=https%3A%2F%2Frealpython.com%2Fbeautiful-soup-web-scraper-python%2F"
+          },
+          {
+            "text": "Get tips for asking good questions",
+            "url": "https://realpython.com/python-beginner-tips/#tip-9-ask-good-questions"
+          },
+          {
+            "text": "get answers to common questions in our support portal",
+            "url": "https://support.realpython.com"
+          },
+          {
+            "text": "Real Python Community Chat",
+            "url": "https://realpython.com/community/"
+          },
+          {
+            "text": "“Office Hours” Live Q&A Session",
+            "url": "https://realpython.com/office-hours/"
+          },
+          {
+            "text": "intermediate",
+            "url": "https://realpython.com/tutorials/intermediate/"
+          },
+          {
+            "text": "data-science",
+            "url": "https://realpython.com/tutorials/data-science/"
+          },
+          {
+            "text": "tools",
+            "url": "https://realpython.com/tutorials/tools/"
+          },
+          {
+            "text": "web-scraping",
+            "url": "https://realpython.com/tutorials/web-scraping/"
+          },
+          {
+            "text": "Python Web Scraping",
+            "url": "https://realpython.com/learning-paths/python-web-scraping/?utm_source=realpython&utm_medium=web&utm_campaign=related-learning-path&utm_content=beautiful-soup-web-scraper-python"
+          },
+          {
+            "text": "Web Scraping With Beautiful Soup and Python",
+            "url": "https://realpython.com/courses/web-scraping-beautiful-soup/?utm_source=realpython&utm_medium=web&utm_campaign=related-course&utm_content=beautiful-soup-web-scraper-python"
+          },
+          {
+            "text": "A Practical Introduction to Web Scraping in Python",
+            "url": "https://realpython.com/python-web-scraping-practical-introduction/?utm_source=realpython&utm_medium=web&utm_campaign=related-post&utm_content=beautiful-soup-web-scraper-python"
+          },
+          {
+            "text": "Modern Web Automation With Python and Selenium",
+            "url": "https://realpython.com/modern-web-automation-with-python-and-selenium/?utm_source=realpython&utm_medium=web&utm_campaign=related-post&utm_content=beautiful-soup-web-scraper-python"
+          },
+          {
+            "text": "Python's Requests Library (Guide)",
+            "url": "https://realpython.com/python-requests/?utm_source=realpython&utm_medium=web&utm_campaign=related-post&utm_content=beautiful-soup-web-scraper-python"
+          },
+          {
+            "text": "Working With JSON Data in Python",
+            "url": "https://realpython.com/python-json/?utm_source=realpython&utm_medium=web&utm_campaign=related-post&utm_content=beautiful-soup-web-scraper-python"
+          },
+          {
+            "text": "Object-Oriented Programming (OOP) in Python",
+            "url": "https://realpython.com/python3-object-oriented-programming/?utm_source=realpython&utm_medium=web&utm_campaign=related-post&utm_content=beautiful-soup-web-scraper-python"
+          },
+          {
+            "text": "",
+            "url": "https://realpython.com/account/signup/?intent=continue_reading&utm_source=rp&utm_medium=web&utm_campaign=rwn&utm_content=v1&next=%2Fbeautiful-soup-web-scraper-python%2F"
+          },
+          {
+            "text": "Continue »",
+            "url": "https://realpython.com/account/signup/?intent=continue_reading&utm_source=rp&utm_medium=web&utm_campaign=rwn&utm_content=v1&next=%2Fbeautiful-soup-web-scraper-python%2F"
+          },
+          {
+            "text": "Sign-In",
+            "url": "https://realpython.com/account/login/?next=/beautiful-soup-web-scraper-python/"
+          }
+        ]
+      }
+    ]
+  }
+}

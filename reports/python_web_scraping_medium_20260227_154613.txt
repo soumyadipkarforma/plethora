@@ -1,0 +1,50 @@
+============================================================
+ MEDIUM-DETAIL REPORT
+ Query: python web scraping
+ Date:  2026-02-27 15:46
+ Results: 3 | Pages scraped: 3
+============================================================
+
+────────────────────────────────────────────────────────────
+  [1] Python Web Scraping Tutorial - GeeksforGeeks
+  URL: https://www.geeksforgeeks.org/python/python-web-scraping-tutorial/
+  Meta: Your All-in-One Learning Portal: GeeksforGeeks is a comprehensive educational platform that empowers learners across domains-spanning computer science and programming, school education, upskilling, co…
+    • Python Web Scraping Tutorial
+      • Requests Module
+      • Parsing HTML with BeautifulSoup
+      • Extracting Content by Tag and Class
+      • Selenium
+      • Parsing HTML with lxml and XPath
+      • Urllib Module
+      • Automating UI Tasks with PyAutoGUI
+
+  Content Preview:
+  Three 90 Ending Soon - Enroll today and alsoget extra 35% OFF!
+Three 90 Ending Soon - Enroll today and alsoget extra 35% OFF!
+Web scraping is the process of extracting data from websites automatically. Python is widely used for web scraping because of its easy syntax and powerful libraries likeBeautifulSoup,ScrapyandSelenium. In this tutorial, you'll learn how to use these Python tools to scrape data from websites and understand why Python 3 is a popular choice for web scraping tasks.
+The reques…
+
+────────────────────────────────────────────────────────────
+  [2] Beautiful Soup: Build a Web Scraper With Python – Real Python
+  URL: https://realpython.com/beautiful-soup-web-scraper-python/
+  Meta: In this tutorial, you'll walk through the main steps of the web scraping process. You'll learn how to write a script that uses Python's Requests library to scrape data from a website. You'll also use …
+    • Beautiful Soup: Build a Web Scraper With Python
+      • What Is Web Scraping?
+      • Scrape the Fake Python Job Site
+      • Step 1: Inspect Your Data Source
+      • Step 2: Scrape HTML Content From a Page
+      • Step 3: Parse HTML Code With Beautiful Soup
+      • Assemble Your Code in a Script
+      • Keep Practicing
+
+  Content Preview:
+  Table of Contents
+Recommended Course
+Web Scraping With Beautiful Soup and Python(1h 56m)
+Beautiful Soup is a Python library designed for parsing HTML and XML documents. It creates parse trees that make it straightforward to extract data from HTML documents you’ve scraped from the internet. Beautiful Soup is a useful tool in yourweb scrapingtoolkit, allowing you to conveniently extract specific information from HTML, even from complex static websites.
+In this tutorial, you’ll learn how to build a…
+
+────────────────────────────────────────────────────────────
+  [3] N/A
+  URL: https://www.scrapingbee.com/blog/web-scraping-101-with-python/
+  ⚠ Error: HTTPSConnectionPool(host='www.scrapingbee.com', port=443): Max retries exceeded with url: /blog/web-scraping-101-with-python/ (Caused by NameResolutionError("HTTPSConnection(host='www.scrapingbee.com', port=443): Failed to resolve 'www.scrapingbee.com' ([Errno 7] No address associated with hostname)"))

@@ -1,0 +1,26 @@
+============================================================
+ LOW-DETAIL REPORT
+ Query: what is python
+ Date:  2026-02-27 18:45
+ Results found: 5
+============================================================
+
+  1. Python (programming language) - Wikipedia
+     https://en.wikipedia.org/wiki/Python_(programming_language)
+     Pythonisa multi-paradigm programming language. Object-oriented programming and structured programming are fully supported, and many of their features …
+
+  2. Welcome to Python.org
+     https://www.python.org/
+     Pythonisa versatile and easy-to-learn language that lets you work quickly and integrate systems more effectively. Learn more aboutPython, download the…
+
+  3. Introduction to Python - W3Schools
+     https://www.w3schools.com/python/python_intro.asp
+     Pythonisa popular programming language for web development, software development, mathematics, and system scripting. It has a simple syntax, runs on d…
+
+  4. What Is Python Used For? A Beginner's Guide - Coursera
+     https://www.coursera.org/articles/what-is-python-used-for-a-beginners-guide-to-using-python
+     Pythonisa versatile and beginner-friendly language that can be used for data science, web development, automation, and more. Learn whatPythonis, how i…
+
+  5. What is Python
+     https://www.pythontutorial.net/getting-started/what-is-python/
+     Learn whatPythonis, why you should learn it, and how it differs from other programming languages.Pythonisa high-level, general-purpose, interpreted la…
