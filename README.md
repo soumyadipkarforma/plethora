@@ -1,12 +1,12 @@
 <div align="center">
 
-# 🔍 Google Scrape
+# 🔍 Plethora
 
 ### Search the web. Scrape the sites. Generate reports. All from your terminal.
 
 I built this because I got tired of manually Googling stuff and copy-pasting content.
 Now I just run a one-liner and get a clean report — low, medium, or high detail — in
-plain text, Markdown, HTML, or JSON. No browser needed. No fluff.
+plain text, Markdown, HTML, JSON, or PDF. No browser needed. No fluff.
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-3776AB?logo=python&logoColor=white)](#requirements)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](#license)
@@ -79,14 +79,32 @@ or `n` and go grab it from the `reports/` folder later.
 
 ## 🚀 Setup
 
-### Requirements
+### One-Command Setup
+
+I've included setup scripts for every major platform. Just run the one for your system
+and everything gets installed — Python, pip, dependencies, permissions. Zero hassle.
+
+| Platform | Command |
+|----------|---------|
+| **Termux (Android)** | `bash termux-setup` |
+| **Linux (Debian/Fedora/Arch/openSUSE)** | `bash linux-setup` |
+| **macOS** | `bash mac-setup` |
+| **Windows** | Double-click `windows-setup.bat` or run it from CMD |
+
+Each script handles the full chain: system packages → Python → pip dependencies → script permissions.
+After running it, you're ready to go.
+
+### Manual Setup
+
+If you'd rather do it yourself:
 
 - **Python 3.10+**
 - `requests` + `beautifulsoup4` (required)
 - `rich` (optional — gives you nice progress bars)
+- `fpdf2` (required for PDF output)
 
 ```bash
-pip install requests beautifulsoup4 rich
+pip install requests beautifulsoup4 rich fpdf2
 ```
 
 Make the scripts executable:
@@ -107,7 +125,7 @@ If you need more control, use `scrape.py` directly with flags:
 # Basic usage
 python scrape.py "your search query" --level medium
 
-# Generate all formats at once (txt + md + html + json)
+# Generate all formats at once (txt + md + html + json + pdf)
 python scrape.py "AI research" --level high --format all
 
 # Parallel scrape with 8 threads, skip cache
@@ -126,7 +144,7 @@ python scrape.py <query> [options]
   -n, --results N        Number of search results               (default: 5)
   -s, --subpages N       Max sub-pages per site (high only)     (default: 2)
   -o, --output DIR       Output directory                       (default: reports/)
-  -f, --format FMT       txt | md | html | json | all          (default: txt)
+  -f, --format FMT       txt | md | html | json | pdf | all   (default: txt)
   -w, --workers N        Concurrent scraping threads            (default: 4)
   -q, --quiet            Suppress progress output
   --no-cache             Bypass URL cache
@@ -143,8 +161,9 @@ python scrape.py <query> [options]
 | **md** | `.md` | Markdown — perfect for pasting into notes or docs |
 | **html** | `.html` | Self-contained HTML with dark theme — open in any browser |
 | **json** | `.json` | Raw structured data — feed it into your own scripts |
+| **pdf** | `.pdf` | Portable PDF with watermark — share or print anywhere |
 
-All formats work with every report level. Use `--format all` to get everything.
+All formats include the **Plethora** watermark. Use `--format all` to get everything.
 
 ---
 
@@ -163,16 +182,20 @@ All formats work with every report level. Use `--format all` to get everything.
 ## 📂 Project Structure
 
 ```
-google-scrape/
-├── scrape-low       # ⭐ Shell shortcut → low detail report
-├── scrape-med       # ⭐ Shell shortcut → medium detail report
-├── scrape-high      # ⭐ Shell shortcut → high detail report
-├── scrape.py        # Full CLI with all options
-├── scraper.py       # Core engine — search, scrape, concurrency, caching
-├── formatter.py     # Report generators — txt, md, html, json
-├── common           # Shared shell helper (argument parsing)
-├── .cache/          # URL cache (auto-created)
-└── reports/         # All generated reports go here
+plethora/
+├── scrape-low          # ⭐ Shell shortcut → low detail report
+├── scrape-med          # ⭐ Shell shortcut → medium detail report
+├── scrape-high         # ⭐ Shell shortcut → high detail report
+├── scrape.py           # Full CLI with all options
+├── scraper.py          # Core engine — search, scrape, concurrency, caching
+├── formatter.py        # Report generators — txt, md, html, json, pdf
+├── common              # Shared shell helper (argument parsing)
+├── termux-setup        # 📱 One-command Termux setup
+├── linux-setup         # 🐧 One-command Linux setup
+├── mac-setup           # 🍎 One-command macOS setup
+├── windows-setup.bat   # 🪟 One-command Windows setup
+├── .cache/             # URL cache (auto-created)
+└── reports/            # All generated reports go here
 ```
 
 ---

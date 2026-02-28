@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+# ── Linux Setup ──────────────────────────────────────────────────────────────
+# Run this on a fresh Linux install (Debian/Ubuntu/Fedora/Arch) to get
+# everything ready for google-scrape.
+# Usage: bash linux-setup.sh
+# ─────────────────────────────────────────────────────────────────────────────
+
+set -e
+
+echo "🔧 Google Scrape — Linux Setup"
+echo "==============================="
+echo ""
+
+# Detect package manager
+if command -v apt-get &>/dev/null; then
+    PM="apt"
+elif command -v dnf &>/dev/null; then
+    PM="dnf"
+elif command -v pacman &>/dev/null; then
+    PM="pacman"
+elif command -v zypper &>/dev/null; then
+    PM="zypper"
+else
+    echo "⚠ Could not detect package manager. Install Python 3.10+ and pip manually."
+    PM="none"
+fi
+
+# Install Python + pip + git
+echo "[1/4] Installing Python, pip & Git..."
+case "$PM" in
+    apt)
+        sudo apt-get update -y
+        sudo apt-get install -y python3 python3-pip python3-venv git
+        ;;
+    dnf)
+        sudo dnf install -y python3 python3-pip git
+        ;;
+    pacman)
+        sudo pacman -Sy --noconfirm python python-pip git
+        ;;
+    zypper)
+        sudo zypper install -y python3 python3-pip git
+        ;;
+    none)
+        echo "   Skipping system packages — install Python 3.10+ manually."
+        ;;
+esac
+
+# Verify Python
+echo "[2/4] Checking Python version..."
+PYTHON=""
+for cmd in python3 python; do
+    if command -v "$cmd" &>/dev/null; then
+        version=$("$cmd" --version 2>&1 | grep -oP '\d+\.\d+')
+        major=$(echo "$version" | cut -d. -f1)
+        minor=$(echo "$version" | cut -d. -f2)
+        if [ "$major" -ge 3 ] && [ "$minor" -ge 10 ]; then
+            PYTHON="$cmd"
+            echo "   ✓ Found $cmd ($version)"
+            break
+        fi
+    fi
+done
+
+if [ -z "$PYTHON" ]; then
+    echo "   ✗ Python 3.10+ not found. Please install it manually."
+    exit 1
+fi
+
+# Install pip dependencies
+echo "[3/4] Installing Python packages..."
+"$PYTHON" -m pip install --user --upgrade pip 2>/dev/null || true
+"$PYTHON" -m pip install --user requests beautifulsoup4 rich
+
+# Make scripts executable
+echo "[4/4] Making scripts executable..."
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+chmod +x "$SCRIPT_DIR/scrape-low" "$SCRIPT_DIR/scrape-med" "$SCRIPT_DIR/scrape-high" "$SCRIPT_DIR/scrape.py"
+
+echo ""
+echo "✅ All set! You can now run:"
+echo "   ./scrape-low  \"your query\""
+echo "   ./scrape-med  \"your query\""
+echo "   ./scrape-high \"your query\""
+echo ""
+echo "Or use the full CLI:"
+echo "   $PYTHON scrape.py \"your query\" --level medium"

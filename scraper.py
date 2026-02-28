@@ -1,5 +1,6 @@
 """
-Google Search Scraper — scrapes Google results and site content at configurable depth.
+Plethora — web scraper engine by Soumyadip Karforma.
+Scrapes search results and site content at configurable depth.
 Generates LOW / MEDIUM / HIGH detail reports.
 """
 
@@ -287,7 +288,7 @@ def run(query: str, level: str = "medium", num_results: int = 5,
     """
     Run the full scrape pipeline.
       level: low | medium | high
-      out_format: txt | md | html | json | all
+      out_format: txt | md | html | json | pdf | all
       Returns: list of paths to saved report files
     """
     from formatter import format_report
@@ -383,7 +384,7 @@ def run(query: str, level: str = "medium", num_results: int = 5,
         "subpages": all_subpages,
     }
 
-    formats = ["txt", "md", "html", "json"] if out_format == "all" else [out_format]
+    formats = ["txt", "md", "html", "json", "pdf"] if out_format == "all" else [out_format]
     os.makedirs(output_dir, exist_ok=True)
     safe_query = re.sub(r"[^\w\s-]", "", query)[:40].strip().replace(" ", "_")
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -394,8 +395,12 @@ def run(query: str, level: str = "medium", num_results: int = 5,
         filename = f"{safe_query}_{level}_{timestamp}.{ext}"
         filepath = os.path.join(output_dir, filename)
         content = format_report(report_data, fmt)
-        with open(filepath, "w", encoding="utf-8") as f:
-            f.write(content)
+        if isinstance(content, (bytes, bytearray)):
+            with open(filepath, "wb") as f:
+                f.write(content)
+        else:
+            with open(filepath, "w", encoding="utf-8") as f:
+                f.write(content)
         log(f"[+] Report saved: {filepath}")
         saved_paths.append(filepath)
 

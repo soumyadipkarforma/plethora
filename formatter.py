@@ -1,10 +1,12 @@
 """
-Report formatter — generates txt, markdown, HTML, and JSON reports.
+Report formatter — generates txt, markdown, HTML, JSON, and PDF reports.
 """
 
 import json
 from datetime import datetime
 from html import escape as html_escape
+
+WATERMARK = "Plethora — made by Soumyadip Karforma"
 
 
 def _truncate(text: str, max_len: int) -> str:
@@ -20,9 +22,9 @@ _HEADING_CAP = {"low": 0, "medium": 8, "high": 999}
 
 # ── Dispatch ─────────────────────────────────────────────────────────────────
 
-def format_report(data: dict, fmt: str) -> str:
-    """Format report data into the specified format."""
-    formatters = {"txt": _fmt_txt, "md": _fmt_md, "html": _fmt_html, "json": _fmt_json}
+def format_report(data: dict, fmt: str) -> str | bytes:
+    """Format report data into the specified format. Returns str for text formats, bytes for pdf."""
+    formatters = {"txt": _fmt_txt, "md": _fmt_md, "html": _fmt_html, "json": _fmt_json, "pdf": _fmt_pdf}
     fn = formatters.get(fmt)
     if not fn:
         raise ValueError(f"Unknown format: {fmt}. Use: {', '.join(formatters)}")
@@ -52,6 +54,7 @@ def _fmt_txt(data: dict) -> str:
         lines.append(f" Pages scraped: {len(pages)}")
     if subpages:
         lines.append(f" Sub-pages scraped: {sum(len(v) for v in subpages.values())}")
+    lines.append(f" {WATERMARK}")
     lines.append(f"{'='*60}\n")
 
     if level == "low":
@@ -137,6 +140,7 @@ def _fmt_md(data: dict) -> str:
         lines.append(f"- **Pages scraped:** {len(pages)}")
     if subpages:
         lines.append(f"- **Sub-pages:** {sum(len(v) for v in subpages.values())}")
+    lines.append(f"\n*{WATERMARK}*")
     lines.append("\n---\n")
 
     if level == "low":
@@ -237,6 +241,8 @@ _HTML_CSS = """
   .img-list { font-size: .85rem; color: #8b949e; margin-top: .3rem; }
   .badge { display: inline-block; background: var(--border); color: var(--fg); padding: 2px 8px;
            border-radius: 12px; font-size: .75rem; margin-right: .5rem; }
+  .watermark { text-align: center; color: #484f58; font-size: .8rem; margin-top: 2rem;
+               padding-top: 1rem; border-top: 1px solid var(--border); }
 </style>
 """
 
@@ -320,6 +326,7 @@ def _fmt_html(data: dict) -> str:
 
             parts.append("</div>")
 
+    parts.append(f"<div class='watermark'>{html_escape(WATERMARK)}</div>")
     parts.append("</body></html>")
     return "\n".join(parts)
 
@@ -330,6 +337,7 @@ def _fmt_html(data: dict) -> str:
 
 def _fmt_json(data: dict) -> str:
     out = {
+        "watermark": WATERMARK,
         "query": data["query"],
         "level": data["level"],
         "date": datetime.now().isoformat(),
@@ -340,3 +348,138 @@ def _fmt_json(data: dict) -> str:
     if data.get("subpages"):
         out["subpages"] = data["subpages"]
     return json.dumps(out, indent=2, ensure_ascii=False, default=str)
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
+#  PDF FORMAT
+# ═══════════════════════════════════════════════════════════════════════════════
+
+def _safe(text: str) -> str:
+    """Strip characters that fpdf2 can't encode."""
+    return text.encode("latin-1", errors="replace").decode("latin-1")
+
+
+def _fmt_pdf(data: dict) -> bytes:
+    from fpdf import FPDF
+
+    query = data["query"]
+    level = data["level"]
+    results = data["search_results"]
+    pages = data.get("pages", [])
+    subpages = data.get("subpages", {})
+    now = datetime.now().strftime("%Y-%m-%d %H:%M")
+
+    # ── Watermark on every page via header/footer override ──
+    class WatermarkedPDF(FPDF):
+        def header(self):
+            self.set_font("Helvetica", "I", 8)
+            self.set_text_color(160, 160, 160)
+            self.cell(0, 5, _safe(WATERMARK), align="R", new_x="LMARGIN", new_y="NEXT")
+            self.set_text_color(0, 0, 0)
+            self.ln(2)
+
+        def footer(self):
+            self.set_y(-15)
+            self.set_font("Helvetica", "I", 8)
+            self.set_text_color(160, 160, 160)
+            self.cell(0, 10, f"{_safe(WATERMARK)}  |  Page {self.page_no()}/{{nb}}",
+                      align="C")
+
+    pdf = WatermarkedPDF()
+    pdf.alias_nb_pages()
+    pdf.set_auto_page_break(auto=True, margin=20)
+    pdf.add_page()
+
+    # ── Title ──
+    pdf.set_font("Helvetica", "B", 18)
+    pdf.cell(0, 12, _safe(f"{level.upper()}-Detail Report"), new_x="LMARGIN", new_y="NEXT")
+    pdf.ln(2)
+
+    pdf.set_font("Helvetica", "", 10)
+    pdf.cell(0, 6, _safe(f"Query: {query}"), new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(0, 6, _safe(f"Date: {now}"), new_x="LMARGIN", new_y="NEXT")
+    pdf.cell(0, 6, _safe(f"Results: {len(results)}"), new_x="LMARGIN", new_y="NEXT")
+    if pages:
+        pdf.cell(0, 6, _safe(f"Pages scraped: {len(pages)}"), new_x="LMARGIN", new_y="NEXT")
+    if subpages:
+        total_sub = sum(len(v) for v in subpages.values())
+        pdf.cell(0, 6, _safe(f"Sub-pages: {total_sub}"), new_x="LMARGIN", new_y="NEXT")
+    pdf.ln(4)
+
+    # ── Low: just search results ──
+    if level == "low":
+        for i, r in enumerate(results, 1):
+            pdf.set_font("Helvetica", "B", 11)
+            pdf.cell(0, 7, _safe(f"{i}. {r['title'][:80]}"), new_x="LMARGIN", new_y="NEXT")
+            pdf.set_font("Helvetica", "", 9)
+            pdf.set_text_color(50, 50, 200)
+            pdf.cell(0, 5, _safe(r["url"][:100]), new_x="LMARGIN", new_y="NEXT")
+            pdf.set_text_color(0, 0, 0)
+            if r.get("snippet"):
+                pdf.set_font("Helvetica", "", 9)
+                pdf.multi_cell(0, 5, _safe(_truncate(r["snippet"], 200)))
+            pdf.ln(3)
+        return pdf.output()
+
+    # ── Medium / High ──
+    for i, page in enumerate(pages, 1):
+        pdf.set_draw_color(180, 180, 180)
+        pdf.line(10, pdf.get_y(), 200, pdf.get_y())
+        pdf.ln(3)
+
+        pdf.set_font("Helvetica", "B", 12)
+        pdf.multi_cell(0, 7, _safe(f"[{i}] {page.get('title', 'N/A')[:90]}"))
+        pdf.set_font("Helvetica", "", 9)
+        pdf.set_text_color(50, 50, 200)
+        pdf.cell(0, 5, _safe(page["url"][:100]), new_x="LMARGIN", new_y="NEXT")
+        pdf.set_text_color(0, 0, 0)
+
+        if page.get("error"):
+            pdf.set_text_color(200, 50, 50)
+            pdf.cell(0, 6, _safe(f"Error: {page['error'][:80]}"), new_x="LMARGIN", new_y="NEXT")
+            pdf.set_text_color(0, 0, 0)
+            pdf.ln(3)
+            continue
+
+        if page.get("meta_description"):
+            pdf.set_font("Helvetica", "I", 9)
+            pdf.multi_cell(0, 5, _safe(_truncate(page["meta_description"], 200)))
+            pdf.set_font("Helvetica", "", 9)
+
+        # Headings
+        cap = _HEADING_CAP[level]
+        for h in page.get("headings", [])[:cap]:
+            indent = "  " * (h["level"] - 1)
+            pdf.set_font("Helvetica", "B", 9)
+            pdf.cell(0, 5, _safe(f"  {indent}> {h['text'][:70]}"), new_x="LMARGIN", new_y="NEXT")
+        pdf.set_font("Helvetica", "", 9)
+
+        # Text
+        text = page.get("text", "")
+        text_cap = _TEXT_CAP[level]
+        if text and text_cap:
+            pdf.ln(2)
+            pdf.multi_cell(0, 5, _safe(_truncate(text, text_cap)))
+
+        # Sub-pages
+        subs = subpages.get(page["url"], [])
+        if subs:
+            pdf.ln(2)
+            pdf.set_font("Helvetica", "B", 10)
+            pdf.cell(0, 6, _safe(f"  Sub-pages ({len(subs)})"), new_x="LMARGIN", new_y="NEXT")
+            for j, sp in enumerate(subs, 1):
+                pdf.set_font("Helvetica", "B", 9)
+                pdf.cell(0, 5, _safe(f"    {j}. {sp.get('title', 'N/A')[:70]}"), new_x="LMARGIN", new_y="NEXT")
+                pdf.set_font("Helvetica", "", 8)
+                pdf.set_text_color(50, 50, 200)
+                pdf.cell(0, 4, _safe(f"    {sp['url'][:90]}"), new_x="LMARGIN", new_y="NEXT")
+                pdf.set_text_color(0, 0, 0)
+                sp_text = sp.get("text", "")
+                if sp_text:
+                    pdf.set_font("Helvetica", "", 8)
+                    pdf.multi_cell(0, 4, _safe(_truncate(sp_text, _SUB_TEXT_CAP)))
+                pdf.ln(2)
+
+        pdf.ln(4)
+
+    return pdf.output()

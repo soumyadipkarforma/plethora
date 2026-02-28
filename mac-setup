@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+# ── macOS Setup ──────────────────────────────────────────────────────────────
+# Run this on a fresh Mac to get everything ready for google-scrape.
+# Usage: bash mac-setup.sh
+# ─────────────────────────────────────────────────────────────────────────────
+
+set -e
+
+echo "🔧 Google Scrape — macOS Setup"
+echo "==============================="
+echo ""
+
+# Check for Homebrew
+echo "[1/5] Checking for Homebrew..."
+if ! command -v brew &>/dev/null; then
+    echo "   Homebrew not found. Installing..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    # Add brew to PATH for Apple Silicon
+    if [ -f /opt/homebrew/bin/brew ]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    fi
+else
+    echo "   ✓ Homebrew found"
+fi
+
+# Install Python + git
+echo "[2/5] Installing Python & Git..."
+brew install python git 2>/dev/null || brew upgrade python git 2>/dev/null || true
+
+# Verify Python
+echo "[3/5] Checking Python version..."
+PYTHON=""
+for cmd in python3 python; do
+    if command -v "$cmd" &>/dev/null; then
+        version=$("$cmd" --version 2>&1 | grep -oP '\d+\.\d+' 2>/dev/null || "$cmd" --version 2>&1 | sed 's/Python //' | cut -d. -f1,2)
+        major=$(echo "$version" | cut -d. -f1)
+        minor=$(echo "$version" | cut -d. -f2)
+        if [ "$major" -ge 3 ] && [ "$minor" -ge 10 ]; then
+            PYTHON="$cmd"
+            echo "   ✓ Found $cmd ($version)"
+            break
+        fi
+    fi
+done
+
+if [ -z "$PYTHON" ]; then
+    echo "   ✗ Python 3.10+ not found. Try: brew install python@3.12"
+    exit 1
+fi
+
+# Install pip dependencies
+echo "[4/5] Installing Python packages..."
+"$PYTHON" -m pip install --upgrade pip 2>/dev/null || true
+"$PYTHON" -m pip install requests beautifulsoup4 rich
+
+# Make scripts executable
+echo "[5/5] Making scripts executable..."
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+chmod +x "$SCRIPT_DIR/scrape-low" "$SCRIPT_DIR/scrape-med" "$SCRIPT_DIR/scrape-high" "$SCRIPT_DIR/scrape.py"
+
+echo ""
+echo "✅ All set! You can now run:"
+echo "   ./scrape-low  \"your query\""
+echo "   ./scrape-med  \"your query\""
+echo "   ./scrape-high \"your query\""
+echo ""
+echo "Or use the full CLI:"
+echo "   $PYTHON scrape.py \"your query\" --level medium"

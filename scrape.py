@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Google Scraper CLI — search, scrape, report.
+Plethora CLI — search, scrape, report.
 
 Usage:
   python scrape.py "your search query" --level low|medium|high
@@ -14,7 +14,7 @@ from scraper import run
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Web Search Scraper — scrape results and generate reports",
+        description="Plethora — scrape the web and generate reports",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Report levels:
@@ -27,6 +27,7 @@ Output formats:
   md     — Markdown report
   html   — Self-contained HTML with dark theme
   json   — Raw structured JSON data
+  pdf    — PDF document with watermark
   all    — All of the above
 
 Examples:
@@ -60,7 +61,7 @@ Examples:
     )
     parser.add_argument(
         "-f", "--format",
-        choices=["txt", "md", "html", "json", "all"],
+        choices=["txt", "md", "html", "json", "pdf", "all"],
         default="txt",
         help="Output format (default: txt)",
     )
