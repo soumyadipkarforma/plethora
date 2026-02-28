@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # ── Quick-run wrapper scripts ──────────────────────────────────────────────
 
-# scrape-low.sh  — fast overview
-# scrape-med.sh  — moderate detail
-# scrape-high.sh — deep scrape with sub-pages
+# scrape-low  — fast overview
+# scrape-med  — moderate detail
+# scrape-high — deep scrape with sub-pages
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
