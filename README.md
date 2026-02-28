@@ -8,6 +8,7 @@ I built this because I got tired of manually Googling stuff and copy-pasting con
 Now I just run a one-liner and get a clean report — low, medium, or high detail — in
 plain text, Markdown, HTML, JSON, or PDF. No browser needed. No fluff.
 
+[![PyPI](https://img.shields.io/pypi/v/plethora?logo=pypi&logoColor=white)](https://pypi.org/project/plethora/)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-3776AB?logo=python&logoColor=white)](#requirements)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](#license)
 [![Sponsor](https://img.shields.io/badge/sponsor-💖_Sponsor_Me-ea4aaa?logo=github-sponsors&logoColor=white)](https://github.com/sponsors/soumyadipkarforma)
@@ -79,7 +80,39 @@ or `n` and go grab it from the `reports/` folder later.
 
 ## 🚀 Setup
 
-### One-Command Setup
+### Install from PyPI (Recommended)
+
+```bash
+pip install plethora
+```
+
+That's it. Works everywhere — Linux, macOS, Windows, Termux, **Google Colab**.
+
+After installing, use the CLI:
+
+```bash
+plethora "your search query" --level medium
+```
+
+Or use it as a Python library:
+
+```python
+from plethora import web_search, scrape_page, run
+
+results = web_search("python tutorials", num_results=5)
+report_paths = run("AI news 2026", level="high", out_format="json")
+```
+
+#### Google Colab
+
+```python
+!pip install plethora
+
+from plethora import run
+paths = run("machine learning trends", level="medium", out_format="md")
+```
+
+### One-Command Setup (from source)
 
 I've included setup scripts for every major platform. Just run the one for your system
 and everything gets installed — Python, pip, dependencies, permissions. Zero hassle.
@@ -276,7 +309,7 @@ plethora/
 ## 🔧 Using as a Python Library
 
 ```python
-from scraper import web_search, scrape_page, scrape_subpages, run
+from plethora import web_search, scrape_page, scrape_subpages, run
 
 # Search only
 results = web_search("your query", num_results=10)

@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "plethora"
+version = "1.0.0"
+description = "Search the web, scrape sites, and generate reports — all from your terminal."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [
+    { name = "Soumyadip Karforma", email = "soumyadipkarforma@gmail.com" },
+]
+keywords = ["web-scraping", "search", "report", "cli", "beautifulsoup"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "requests>=2.28",
+    "beautifulsoup4>=4.11",
+    "fpdf2>=2.7",
+]
+
+[project.optional-dependencies]
+rich = ["rich>=13.0"]
+
+[project.urls]
+Homepage = "https://github.com/soumyadipkarforma/plethora"
+Repository = "https://github.com/soumyadipkarforma/plethora"
+Issues = "https://github.com/soumyadipkarforma/plethora/issues"
+
+[project.scripts]
+plethora = "plethora.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["plethora*"]
