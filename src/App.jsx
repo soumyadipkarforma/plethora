@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import SearchBox from './components/SearchBox'
@@ -10,13 +10,23 @@ import Footer from './components/Footer'
 import AiChat from './components/AiChat'
 import { searchDuckDuckGo, scrapePage, scrapePagesBatch } from './scraper'
 
+function useHashRoute() {
+  const [hash, setHash] = useState(window.location.hash || '#/')
+  useEffect(() => {
+    const onHash = () => setHash(window.location.hash || '#/')
+    window.addEventListener('hashchange', onHash)
+    return () => window.removeEventListener('hashchange', onHash)
+  }, [])
+  return hash
+}
+
 export default function App() {
+  const route = useHashRoute()
   const [level, setLevel] = useState('medium')
   const [results, setResults] = useState(null)
   const [loading, setLoading] = useState(false)
   const [progress, setProgress] = useState({ pct: 0, label: '' })
   const [error, setError] = useState('')
-  const [showAiChat, setShowAiChat] = useState(false)
 
   const handleSearch = useCallback(async (query, numResults, numSubpages) => {
     setLoading(true)
@@ -99,13 +109,17 @@ export default function App() {
     }
   }, [level])
 
+  if (route === '#/chat') {
+    return <AiChat fullPage />
+  }
+
   return (
     <>
       <div className="bg-grid" />
       <div className="bg-glow bg-glow-1" />
       <div className="bg-glow bg-glow-2" />
 
-      <Header onAiToggle={() => setShowAiChat(v => !v)} aiActive={showAiChat} />
+      <Header onAiToggle={() => { window.location.hash = '#/chat' }} aiActive={false} />
       <Hero />
 
       <SearchBox
@@ -123,8 +137,6 @@ export default function App() {
       <WhyPlethora />
       <SupportSection />
       <Footer />
-
-      <AiChat visible={showAiChat} onClose={() => setShowAiChat(false)} />
 
       <div style={{
         position: 'fixed', bottom: 12, right: 16, fontSize: '0.68rem',

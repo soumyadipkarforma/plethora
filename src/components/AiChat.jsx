@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import { searchDuckDuckGo, scrapePagesBatch, cleanText } from '../scraper'
 import styles from './AiChat.module.css'
 
 function markdownToHtml(text) {
@@ -17,11 +18,34 @@ const MODELS = [
   { id: 'gemini-2.5-flash-lite', label: 'Gemini Flash' },
 ]
 
-export default function AiChat({ visible, onClose }) {
+// Scrape the web for a query and return a context string
+async function webSearch(query, onStatus) {
+  onStatus('🔍 Searching the web...')
+  const results = await searchDuckDuckGo(query, 8)
+  if (!results.length) return '[No web results found]'
+
+  onStatus(`📄 Scraping ${results.length} pages...`)
+  const pages = await scrapePagesBatch(results.map(r => r.url), 1200)
+
+  let context = `Web search results for "${query}" (scraped live on ${new Date().toLocaleDateString()}):\n\n`
+  results.forEach((r, i) => {
+    const page = pages[i]
+    context += `[${i + 1}] ${cleanText(r.title)}\nURL: ${r.url}\nSnippet: ${cleanText(r.snippet)}\n`
+    if (page?.text && !page.text.startsWith('[Error') && !page.text.startsWith('[Non-HTML')) {
+      context += `Content: ${cleanText(page.text).slice(0, 800)}\n`
+      if (page.headings?.length) context += `Headings: ${page.headings.slice(0, 5).map(cleanText).join(', ')}\n`
+    }
+    context += '\n'
+  })
+  return context
+}
+
+export default function AiChat({ fullPage }) {
   const [messages, setMessages] = useState([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [model, setModel] = useState('gpt-4o-mini')
+  const [status, setStatus] = useState('')
   const messagesRef = useRef(null)
   const inputRef = useRef(null)
 
@@ -29,13 +53,13 @@ export default function AiChat({ visible, onClose }) {
     if (messagesRef.current) {
       messagesRef.current.scrollTop = messagesRef.current.scrollHeight
     }
-  }, [messages])
+  }, [messages, status])
 
   useEffect(() => {
-    if (visible && inputRef.current) {
+    if (inputRef.current) {
       setTimeout(() => inputRef.current?.focus(), 300)
     }
-  }, [visible])
+  }, [])
 
   const sendMessage = async () => {
     const text = input.trim()
@@ -46,22 +70,32 @@ export default function AiChat({ visible, onClose }) {
     setMessages(newMessages)
     setInput('')
     setLoading(true)
+    setStatus('')
 
     try {
+      // Always scrape the web for fresh data
+      const webContext = await webSearch(text, setStatus)
+      setStatus('🤖 AI is thinking...')
+
       const chatHistory = [
         {
           role: 'system',
-          content: 'You are Plethora AI, a web research assistant built into the Plethora search tool by Soumyadip Karforma. Help users find information, analyze topics, and provide comprehensive answers. Be concise but thorough. Use bullet points and bold text for clarity. When users ask questions, provide well-structured responses with key points.',
+          content: `You are Plethora AI, a web research assistant built into the Plethora search tool by Soumyadip Karforma. You have access to LIVE web data that was just scraped moments ago. Use this data to answer the user's question with up-to-date information. Always cite sources with URLs when possible. Be concise but thorough. Use bullet points, bold text, and clear structure.
+
+LIVE WEB DATA:
+${webContext}
+
+Use the above live data to answer. If the data doesn't fully answer the question, say what you found and note what's missing. Always mention that this is from live web scraping, not your training data.`,
         },
-        ...newMessages,
+        ...newMessages.map(m => ({ role: m.role, content: m.content })),
       ]
 
       const response = await puter.ai.chat(chatHistory, { model, stream: true })
 
       let assistantText = ''
       const assistantIdx = newMessages.length
-
       setMessages([...newMessages, { role: 'assistant', content: '' }])
+      setStatus('')
 
       for await (const part of response) {
         const chunk = part?.text || ''
@@ -75,10 +109,12 @@ export default function AiChat({ visible, onClose }) {
     } catch (e) {
       setMessages(prev => [
         ...prev,
-        { role: 'assistant', content: `**Error:** ${e.message || 'Failed to get AI response. Please try again.'}` },
+        { role: 'assistant', content: `**Error:** ${e.message || 'Failed to get response. Try again.'}` },
       ])
+      setStatus('')
     } finally {
       setLoading(false)
+      setStatus('')
     }
   }
 
@@ -91,83 +127,104 @@ export default function AiChat({ visible, onClose }) {
 
   const clearChat = () => {
     setMessages([])
+    setStatus('')
   }
 
-  return (
-    <>
-      <div
-        className={`${styles.overlay} ${visible ? styles.overlayVisible : ''}`}
-        onClick={onClose}
-      />
-      <div className={`${styles.panel} ${visible ? styles.panelVisible : ''}`}>
-        <div className={styles.header}>
-          <div className={styles.headerLeft}>
-            <span className={styles.title}>✨ Plethora AI</span>
-            <button className={styles.clearBtn} onClick={clearChat}>Clear</button>
-          </div>
-          <div className={styles.headerRight}>
-            <select
-              className={styles.modelSelect}
-              value={model}
-              onChange={(e) => setModel(e.target.value)}
-            >
-              {MODELS.map((m) => (
-                <option key={m.id} value={m.id}>{m.label}</option>
-              ))}
-            </select>
-            <button className={styles.closeBtn} onClick={onClose}>✕</button>
-          </div>
+  const panel = (
+    <div className={`${styles.panel} ${fullPage ? styles.panelFull : styles.panelVisible}`}>
+      <div className={styles.header}>
+        <div className={styles.headerLeft}>
+          <span className={styles.title}>✨ Plethora AI</span>
+          <span className={styles.liveBadge}>LIVE WEB</span>
+          <button className={styles.clearBtn} onClick={clearChat}>Clear</button>
         </div>
-
-        <div className={styles.messages} ref={messagesRef}>
-          {messages.length === 0 && (
-            <div className={styles.welcome}>
-              <div className={styles.welcomeIcon}>🤖</div>
-              <h3>Hey! I'm Plethora AI</h3>
-              <p>Ask me anything — web research, topic analysis, comparisons, summaries. I'm here to help.</p>
-            </div>
-          )}
-          {messages.map((msg, i) => (
-            <div
-              key={i}
-              className={`${styles.message} ${msg.role === 'user' ? styles.user : styles.assistant}`}
-            >
-              {msg.role === 'assistant' ? (
-                <div dangerouslySetInnerHTML={{ __html: markdownToHtml(msg.content || '') }} />
-              ) : (
-                msg.content
-              )}
-            </div>
-          ))}
-          {loading && messages[messages.length - 1]?.role === 'user' && (
-            <div className={`${styles.message} ${styles.assistant}`}>
-              <div className={styles.dots}>
-                <span /><span /><span />
-              </div>
-            </div>
-          )}
-        </div>
-
-        <div className={styles.inputArea}>
-          <textarea
-            ref={inputRef}
-            className={styles.input}
-            placeholder="Ask Plethora AI anything..."
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-            disabled={loading}
-            rows={1}
-          />
-          <button
-            className={styles.sendBtn}
-            onClick={sendMessage}
-            disabled={loading || !input.trim()}
+        <div className={styles.headerRight}>
+          <select
+            className={styles.modelSelect}
+            value={model}
+            onChange={(e) => setModel(e.target.value)}
           >
-            ➤
-          </button>
+            {MODELS.map((m) => (
+              <option key={m.id} value={m.id}>{m.label}</option>
+            ))}
+          </select>
+          {!fullPage && (
+            <a href="#/" className={styles.closeBtn}>✕</a>
+          )}
+          {fullPage && (
+            <a href="#/" className={styles.backBtn}>← Back</a>
+          )}
         </div>
       </div>
-    </>
+
+      <div className={styles.messages} ref={messagesRef}>
+        {messages.length === 0 && (
+          <div className={styles.welcome}>
+            <div className={styles.welcomeIcon}>🤖</div>
+            <h3>Hey! I'm Plethora AI</h3>
+            <p>I search the web <strong>live</strong> for every question you ask — no stale training data. Ask me anything and I'll scrape fresh results to give you up-to-date answers.</p>
+            <div className={styles.welcomeTags}>
+              <span>🔍 Live Search</span>
+              <span>📄 Page Scraping</span>
+              <span>🧠 AI Analysis</span>
+            </div>
+          </div>
+        )}
+        {messages.map((msg, i) => (
+          <div
+            key={i}
+            className={`${styles.message} ${msg.role === 'user' ? styles.user : styles.assistant}`}
+          >
+            {msg.role === 'assistant' ? (
+              <div dangerouslySetInnerHTML={{ __html: markdownToHtml(msg.content || '') }} />
+            ) : (
+              msg.content
+            )}
+          </div>
+        ))}
+        {loading && status && (
+          <div className={`${styles.message} ${styles.statusMsg}`}>
+            {status}
+          </div>
+        )}
+        {loading && !status && messages[messages.length - 1]?.role === 'user' && (
+          <div className={`${styles.message} ${styles.assistant}`}>
+            <div className={styles.dots}>
+              <span /><span /><span />
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className={styles.inputArea}>
+        <textarea
+          ref={inputRef}
+          className={styles.input}
+          placeholder="Ask anything — I'll search the web live..."
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+          disabled={loading}
+          rows={1}
+        />
+        <button
+          className={styles.sendBtn}
+          onClick={sendMessage}
+          disabled={loading || !input.trim()}
+        >
+          ➤
+        </button>
+      </div>
+    </div>
   )
+
+  if (fullPage) {
+    return (
+      <div className={styles.fullPage}>
+        {panel}
+      </div>
+    )
+  }
+
+  return panel
 }
