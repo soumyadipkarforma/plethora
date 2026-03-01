@@ -9,7 +9,7 @@ const LEVELS = [
 
 export default function SearchBox({ level, setLevel, onSearch, loading, progress, error }) {
   const [query, setQuery] = useState('')
-  const [numResults, setNumResults] = useState(5)
+  const [numResults, setNumResults] = useState(10)
   const [numSubpages, setNumSubpages] = useState(2)
 
   const submit = (e) => {
@@ -53,11 +53,11 @@ export default function SearchBox({ level, setLevel, onSearch, loading, progress
 
           <div className={styles.options}>
             <label>
-              Results: <input type="number" min="1" max="20" value={numResults} onChange={(e) => setNumResults(+e.target.value)} />
+              Results: <input type="number" min="1" max="100" value={numResults} onChange={(e) => setNumResults(+e.target.value)} />
             </label>
             {level === 'high' && (
               <label>
-                Sub-pages: <input type="number" min="0" max="10" value={numSubpages} onChange={(e) => setNumSubpages(+e.target.value)} />
+                Sub-pages: <input type="number" min="0" max="5" value={numSubpages} onChange={(e) => setNumSubpages(+e.target.value)} />
               </label>
             )}
           </div>

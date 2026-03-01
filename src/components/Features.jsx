@@ -1,12 +1,12 @@
 import styles from './Features.module.css'
 
 const FEATURES = [
-  { icon: '🎯', title: 'Three Detail Levels', desc: 'Low for quick overviews, Medium for page content, High for deep scraping with sub-pages. You choose the depth.' },
-  { icon: '📄', title: '5 Output Formats', desc: 'Export as TXT, Markdown, HTML (dark theme), JSON, or PDF — with the Plethora watermark on every report.' },
-  { icon: '⚡', title: 'Concurrent Scraping', desc: 'Multi-threaded page fetching with configurable workers. Fast results even with large result sets.' },
-  { icon: '🤖', title: 'robots.txt Respect', desc: 'Checks robots.txt before scraping any site. Per-domain rate limiting keeps things ethical.' },
-  { icon: '💾', title: 'Smart Caching', desc: 'Already-fetched URLs are cached locally with configurable TTL. No repeated downloads.' },
-  { icon: '🐚', title: 'Shell Scripts', desc: 'One-liner shell wrappers: ./scrape-low, ./scrape-med, ./scrape-high. No flags needed.' },
+  { icon: '🎯', title: 'Three Detail Levels', desc: 'Low for quick overviews, Medium for page content, High for deep scraping with sub-pages.' },
+  { icon: '📄', title: '5 Export Formats', desc: 'Download as TXT, Markdown, HTML, JSON, or PDF — every report watermarked with the Plethora brand.' },
+  { icon: '⚡', title: 'Blazing Fast', desc: 'Concurrent batch scraping fetches all pages simultaneously. 100 results scraped in seconds.' },
+  { icon: '🔒', title: 'Private by Design', desc: 'No tracking, no cookies, no accounts. Your searches never leave your browser.' },
+  { icon: '📱', title: 'Works Everywhere', desc: 'Runs in any modern browser. No installation, no setup, no dependencies.' },
+  { icon: '🆓', title: 'Free & Open Source', desc: 'MIT licensed. Use it, fork it, improve it. Community-driven and transparent.' },
 ]
 
 export default function Features() {

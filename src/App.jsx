@@ -4,10 +4,10 @@ import Hero from './components/Hero'
 import SearchBox from './components/SearchBox'
 import Results from './components/Results'
 import Features from './components/Features'
-import CliSection from './components/CliSection'
+import WhyPlethora from './components/WhyPlethora'
 import SupportSection from './components/SupportSection'
 import Footer from './components/Footer'
-import { searchDuckDuckGo, scrapePage } from './scraper'
+import { searchDuckDuckGo, scrapePage, scrapePagesBatch } from './scraper'
 
 export default function App() {
   const [level, setLevel] = useState('medium')
@@ -42,29 +42,48 @@ export default function App() {
       }
 
       if (level !== 'low') {
-        for (let i = 0; i < searchResults.length; i++) {
-          const pct = 15 + (70 * (i / searchResults.length))
-          setProgress({
-            pct,
-            label: `Scraping ${i + 1}/${searchResults.length}: ${searchResults[i].title.slice(0, 40)}...`,
-          })
+        const maxLen = level === 'high' ? 2000 : 500
+        setProgress({
+          pct: 20,
+          label: `Scraping ${searchResults.length} pages concurrently...`,
+        })
 
-          const page = await scrapePage(searchResults[i].url, level === 'high' ? 2000 : 500)
+        const pages = await scrapePagesBatch(
+          searchResults.map((r) => r.url),
+          maxLen,
+        )
+        pages.forEach((page, i) => {
           page.url = searchResults[i].url
           page.searchTitle = searchResults[i].title
-          data.pages.push(page)
+        })
+        data.pages = pages
 
-          if (level === 'high' && numSubpages > 0 && page.links?.length > 0) {
-            const subLinks = page.links.slice(0, numSubpages)
-            const subs = []
+        if (level === 'high' && numSubpages > 0) {
+          setProgress({ pct: 60, label: 'Collecting sub-page URLs...' })
+          const subTasks = []
+          for (let i = 0; i < pages.length; i++) {
+            const subLinks = (pages[i].links || []).slice(0, numSubpages)
             for (const link of subLinks) {
-              setProgress({ pct: pct + 2, label: `Sub-page: ${link.text.slice(0, 30)}...` })
-              const sub = await scrapePage(link.url, 800)
-              sub.url = link.url
-              sub.linkText = link.text
-              subs.push(sub)
+              subTasks.push({ parentUrl: searchResults[i].url, link })
             }
-            data.subpages[searchResults[i].url] = subs
+          }
+
+          if (subTasks.length > 0) {
+            setProgress({
+              pct: 65,
+              label: `Scraping ${subTasks.length} sub-pages concurrently...`,
+            })
+            const subResults = await scrapePagesBatch(
+              subTasks.map((t) => t.link.url),
+              800,
+            )
+            subResults.forEach((sub, i) => {
+              sub.url = subTasks[i].link.url
+              sub.linkText = subTasks[i].link.text
+              const key = subTasks[i].parentUrl
+              if (!data.subpages[key]) data.subpages[key] = []
+              data.subpages[key].push(sub)
+            })
           }
         }
       }
@@ -99,7 +118,7 @@ export default function App() {
       {results && <Results data={results} />}
 
       <Features />
-      <CliSection />
+      <WhyPlethora />
       <SupportSection />
       <Footer />
 

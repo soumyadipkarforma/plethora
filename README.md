@@ -33,13 +33,29 @@ No backend, no API keys, no sign-up. It runs entirely in your browser.
 
 ## ✨ What It Does
 
-- **Search** — queries DuckDuckGo and pulls real results
+- **Search** — queries DuckDuckGo and pulls up to 100 real results
 - **Three detail levels** — Low (results only), Medium (page content), High (deep scrape + sub-pages)
-- **Live progress** — watch it scrape in real-time with a progress bar
+- **Why Plethora?** — dedicated section showing why Plethora beats plain Google searches
+- **Live progress** — watch concurrent batch scraping in real-time with a progress bar
 - **5 export formats** — download as TXT, Markdown, JSON, HTML, or PDF
 - **PDF watermark** — every PDF includes "Plethora — made by Soumyadip Karforma"
 - **Dark theme** — beautiful UI with animated backgrounds and smooth transitions
 - **Fully client-side** — no server needed, everything runs in the browser
+
+---
+
+## 🆚 Why Plethora Over Google?
+
+Google gives you links. Plethora gives you knowledge.
+
+| | Google | Plethora |
+|---|--------|----------|
+| Results | 10 per page | Up to 100 at once |
+| Content | Just links & snippets | Full page content, headings, sub-pages |
+| Export | None | TXT, MD, JSON, HTML, PDF |
+| Privacy | Tracks everything | Zero tracking, no cookies |
+| Ads | Sponsored results everywhere | Pure, clean results |
+| Cost | Free (you pay with data) | Free (and open source) |
 
 ---
 
@@ -55,8 +71,8 @@ No backend, no API keys, no sign-up. It runs entirely in your browser.
 │  🟡 MED  │  Visits each result page — pulls headings, meta,    │
 │          │  and a content preview                               │
 ├──────────┼──────────────────────────────────────────────────────┤
-│  🔴 HIGH │  Deep scrape — full page content + follows links    │
-│          │  to sub-pages with content previews                  │
+│  🔴 HIGH │  Deep scrape — concurrent full page content +        │
+│          │  follows links to sub-pages. Up to 100 results.     │
 └──────────┴──────────────────────────────────────────────────────┘
 ```
 
@@ -81,6 +97,7 @@ No backend, no API keys, no sign-up. It runs entirely in your browser.
 - **jsPDF** — client-side PDF generation
 - **DuckDuckGo HTML** — search via CORS proxy (no API key needed)
 - **CSS Modules** — scoped styling with custom dark theme
+- **Concurrent Fetching** — batch Promise.all scraping for ultra-fast results
 - **GitHub Pages** — deployed from `docs/`
 
 ---
@@ -127,7 +144,7 @@ website/
 │       ├── SearchBox.jsx    # Search input, level selector, progress bar
 │       ├── Results.jsx      # Result cards + TXT/MD/JSON/HTML/PDF export
 │       ├── Features.jsx     # Feature showcase grid
-│       ├── CliSection.jsx   # CLI command examples
+│       ├── WhyPlethora.jsx  # Why Plethora > Google comparison
 │       ├── SupportSection.jsx # Donation links
 │       └── Footer.jsx       # Social links, sponsor button, credits
 ├── docs/                    # Production build (served by GitHub Pages)

@@ -11,7 +11,7 @@ export default function Hero() {
         </h1>
         <p className={styles.subtitle}>
           Plethora searches the web, scrapes pages at three detail levels,
-          and generates reports in TXT, Markdown, HTML, JSON, and PDF — all from your terminal.
+          and generates beautiful reports in TXT, Markdown, HTML, JSON, and PDF — all from your browser.
         </p>
       </div>
     </section>
