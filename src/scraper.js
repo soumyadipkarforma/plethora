@@ -1,5 +1,52 @@
-const CORS_PROXY = 'https://api.allorigins.win/raw?url='
-const PAGE_TIMEOUT = 8000
+// Multiple CORS proxies — try each in order until one works
+const PROXIES = [
+  (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+  (u) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
+  (u) => `https://corsproxy.io/?${encodeURIComponent(u)}`,
+]
+const PAGE_TIMEOUT = 15000
+const SEARCH_TIMEOUT = 12000
+
+// Fetch through CORS proxies with fallback + retry
+async function proxyFetch(url, timeout = PAGE_TIMEOUT) {
+  let lastErr
+  for (const mkProxy of PROXIES) {
+    const proxyUrl = mkProxy(url)
+    try {
+      const controller = new AbortController()
+      const timer = setTimeout(() => controller.abort(), timeout)
+      const res = await fetch(proxyUrl, { signal: controller.signal })
+      clearTimeout(timer)
+      if (!res.ok) { lastErr = new Error(`HTTP ${res.status}`); continue }
+      return res
+    } catch (e) {
+      lastErr = e
+    }
+  }
+  throw lastErr || new Error('All proxies failed')
+}
+
+// Clean extracted text — remove junk chars, control codes, repeated symbols, leftover markup
+export function cleanText(str) {
+  if (!str) return ''
+  return str
+    .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, '')  // control chars
+    .replace(/\u00A0/g, ' ')                               // non-breaking space → space
+    .replace(/[\u200B-\u200F\u2028-\u202F\uFEFF]/g, '')   // zero-width & invisible chars
+    .replace(/\[edit\]|\[citation needed\]|\[[\d,\s]+\]/gi, '') // Wikipedia bracket refs
+    .replace(/\{\{[^}]*\}\}/g, '')                         // leftover template markup
+    .replace(/\|/g, ' ')                                    // table cell separators
+    .replace(/[►▼▲◄●○■□▪▫•‣⁃–—]{2,}/g, '')               // repeated symbols
+    .replace(/\.{4,}/g, '...')                              // excessive dots
+    .replace(/_{3,}/g, '')                                  // underscores
+    .replace(/\n\s*\n\s*\n/g, '\n\n')                      // triple+ newlines
+    .replace(/ {2,}/g, ' ')                                 // double spaces
+    .trim()
+}
+
+function cleanHeading(str) {
+  return cleanText(str).replace(/^\d+(\.\d+)*\s*/, '') // strip "1.2.3 " numbering prefix
+}
 
 function parseDDGPage(html) {
   const parser = new DOMParser()
@@ -32,7 +79,7 @@ export async function searchDuckDuckGo(query, numResults = 10) {
   const fetches = offsets.map(async (offset) => {
     const url = offset === 0 ? baseUrl : `${baseUrl}&s=${offset}&dc=${offset + 1}`
     try {
-      const res = await fetch(CORS_PROXY + encodeURIComponent(url))
+      const res = await proxyFetch(url, SEARCH_TIMEOUT)
       return parseDDGPage(await res.text())
     } catch {
       return []
@@ -56,13 +103,10 @@ export async function searchDuckDuckGo(query, numResults = 10) {
 
 export async function scrapePage(url, maxLen = 500) {
   try {
-    const controller = new AbortController()
-    const timer = setTimeout(() => controller.abort(), PAGE_TIMEOUT)
-    const res = await fetch(CORS_PROXY + encodeURIComponent(url), { signal: controller.signal })
-    clearTimeout(timer)
+    const res = await proxyFetch(url)
 
     const contentType = res.headers.get('content-type') || ''
-    if (!contentType.includes('text/html') && !contentType.includes('text/plain') && !contentType.includes('application/xhtml')) {
+    if (!contentType.includes('text/html') && !contentType.includes('text/plain') && !contentType.includes('application/xhtml') && contentType !== '') {
       return { title: '', meta: '', headings: [], text: `[Non-HTML content: ${contentType}]`, links: [] }
     }
 
@@ -83,16 +127,16 @@ export async function scrapePage(url, maxLen = 500) {
       '.ad,.ads,.advert,.advertisement,.social-share,.cookie-banner,.popup'
     doc.querySelectorAll(junk).forEach(el => el.remove())
 
-    const title = doc.querySelector('title')?.textContent?.trim() || ''
-    const meta = doc.querySelector('meta[name="description"]')?.getAttribute('content') || ''
+    const title = cleanText(doc.querySelector('title')?.textContent || '')
+    const meta = cleanText(doc.querySelector('meta[name="description"]')?.getAttribute('content') || '')
     const headings = [...doc.querySelectorAll('h1,h2,h3')].slice(0, 10)
-      .map(h => h.textContent.replace(/\s+/g, ' ').trim())
+      .map(h => cleanHeading(h.textContent))
       .filter(h => h.length > 1 && h.length < 200)
 
     // Extract text from content containers first, fall back to body
     const contentEl = doc.querySelector('article, main, [role="main"], .mw-parser-output, .post-content, .entry-content, .content') || doc.body
     const rawText = (contentEl?.textContent || '').replace(/[\t\r]+/g, ' ').replace(/\n{3,}/g, '\n\n').replace(/ {2,}/g, ' ').trim()
-    const text = rawText.slice(0, maxLen) || '[No readable content]'
+    const text = cleanText(rawText.slice(0, maxLen)) || '[No readable content]'
 
     // Resolve relative URLs against the page's origin
     let baseUrl
@@ -100,7 +144,7 @@ export async function scrapePage(url, maxLen = 500) {
 
     const links = [...doc.querySelectorAll('a[href]')].reduce((acc, a) => {
       if (acc.length >= 20) return acc
-      const linkText = a.textContent.trim().slice(0, 80)
+      const linkText = cleanText(a.textContent).slice(0, 80)
       if (!linkText || linkText.length < 3) return acc
       let href = a.getAttribute('href') || ''
       // Skip anchors, javascript:, mailto:, and edit links
@@ -122,6 +166,15 @@ export async function scrapePage(url, maxLen = 500) {
   }
 }
 
+// Batch scrape with concurrency limit to avoid overwhelming proxies
+const BATCH_CONCURRENCY = 6
+
 export async function scrapePagesBatch(urls, maxLen = 500) {
-  return Promise.all(urls.map((url) => scrapePage(url, maxLen)))
+  const results = new Array(urls.length)
+  for (let i = 0; i < urls.length; i += BATCH_CONCURRENCY) {
+    const batch = urls.slice(i, i + BATCH_CONCURRENCY)
+    const batchResults = await Promise.all(batch.map((url) => scrapePage(url, maxLen)))
+    batchResults.forEach((r, j) => { results[i + j] = r })
+  }
+  return results
 }

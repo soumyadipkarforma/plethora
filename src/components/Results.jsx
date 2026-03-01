@@ -1,16 +1,17 @@
 import { jsPDF } from 'jspdf'
+import { cleanText } from '../scraper'
 import styles from './Results.module.css'
 
 export default function Results({ data }) {
   const downloadTxt = () => {
     let out = `Plethora Report\nQuery: ${data.query}\nLevel: ${data.level}\nDate: ${data.date}\n${'='.repeat(60)}\n\n`
     data.results.forEach((r, i) => {
-      out += `${i + 1}. ${r.title}\n   ${r.url}\n   ${r.snippet}\n\n`
+      out += `${i + 1}. ${cleanText(r.title)}\n   ${r.url}\n   ${cleanText(r.snippet)}\n\n`
     })
     if (data.pages.length) {
       out += '\n--- PAGE CONTENT ---\n\n'
       data.pages.forEach((p) => {
-        out += `## ${p.searchTitle}\n   URL: ${p.url}\n   ${p.text}\n\n`
+        out += `## ${cleanText(p.searchTitle)}\n   URL: ${p.url}\n   ${cleanText(p.text)}\n\n`
       })
     }
     download(out, `plethora_${data.query.replace(/\s+/g, '_')}.txt`, 'text/plain')
@@ -23,7 +24,7 @@ export default function Results({ data }) {
   const downloadMd = () => {
     let md = `# Plethora Report\n\n**Query:** ${data.query}  \n**Level:** ${data.level}  \n**Date:** ${data.date}\n\n---\n\n`
     data.results.forEach((r, i) => {
-      md += `### ${i + 1}. ${r.title}\n- **URL:** ${r.url}\n- ${r.snippet}\n\n`
+      md += `### ${i + 1}. ${cleanText(r.title)}\n- **URL:** ${r.url}\n- ${cleanText(r.snippet)}\n\n`
     })
     download(md, `plethora_${data.query.replace(/\s+/g, '_')}.md`, 'text/markdown')
   }
@@ -200,14 +201,14 @@ export default function Results({ data }) {
                 <div className={styles.url}>{r.url}</div>
               </div>
             </div>
-            <p className={styles.snippet}>{r.snippet}</p>
+            <p className={styles.snippet}>{cleanText(r.snippet)}</p>
 
             {data.pages[i] && (
               <div className={styles.details}>
                 {data.pages[i].meta && (
                   <div className={styles.detailSection}>
                     <div className={styles.detailLabel}>Meta Description</div>
-                    <div className={styles.detailContent}>{data.pages[i].meta}</div>
+                    <div className={styles.detailContent}>{cleanText(data.pages[i].meta)}</div>
                   </div>
                 )}
                 {data.pages[i].headings?.length > 0 && (
@@ -215,7 +216,7 @@ export default function Results({ data }) {
                     <div className={styles.detailLabel}>Headings</div>
                     <div className={styles.detailContent}>
                       {data.pages[i].headings.map((h, j) => (
-                        <span key={j} className={styles.tag}>{h}</span>
+                        <span key={j} className={styles.tag}>{cleanText(h)}</span>
                       ))}
                     </div>
                   </div>
@@ -223,7 +224,7 @@ export default function Results({ data }) {
                 {data.pages[i].text && (
                   <div className={styles.detailSection}>
                     <div className={styles.detailLabel}>Content Preview</div>
-                    <div className={styles.detailContent}>{data.pages[i].text}</div>
+                    <div className={styles.detailContent}>{cleanText(data.pages[i].text)}</div>
                   </div>
                 )}
 
@@ -232,9 +233,9 @@ export default function Results({ data }) {
                     <div className={styles.detailLabel}>Sub-pages</div>
                     {data.subpages[r.url].map((sub, k) => (
                       <div key={k} className={styles.subpageItem}>
-                        <div className={styles.subpageTitle}>{sub.linkText || sub.title}</div>
+                        <div className={styles.subpageTitle}>{cleanText(sub.linkText || sub.title)}</div>
                         <div className={styles.subpageUrl}>{sub.url}</div>
-                        {sub.text && <div className={styles.subpageContent}>{sub.text}</div>}
+                        {sub.text && <div className={styles.subpageContent}>{cleanText(sub.text)}</div>}
                       </div>
                     ))}
                   </div>
