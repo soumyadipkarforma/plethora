@@ -77,3 +77,27 @@
   .links { gap: 12px; }
   .ghBtn span { display: none; }
 }
+
+.aiBtn {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: white;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  font-family: inherit;
+}
+
+.aiBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
+}
+
+.aiBtnActive {
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
+  background: linear-gradient(135deg, var(--accent2), var(--accent3));
+}

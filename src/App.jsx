@@ -7,6 +7,7 @@ import Features from './components/Features'
 import WhyPlethora from './components/WhyPlethora'
 import SupportSection from './components/SupportSection'
 import Footer from './components/Footer'
+import AiChat from './components/AiChat'
 import { searchDuckDuckGo, scrapePage, scrapePagesBatch } from './scraper'
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
   const [loading, setLoading] = useState(false)
   const [progress, setProgress] = useState({ pct: 0, label: '' })
   const [error, setError] = useState('')
+  const [showAiChat, setShowAiChat] = useState(false)
 
   const handleSearch = useCallback(async (query, numResults, numSubpages) => {
     setLoading(true)
@@ -103,7 +105,7 @@ export default function App() {
       <div className="bg-glow bg-glow-1" />
       <div className="bg-glow bg-glow-2" />
 
-      <Header />
+      <Header onAiToggle={() => setShowAiChat(v => !v)} aiActive={showAiChat} />
       <Hero />
 
       <SearchBox
@@ -121,6 +123,8 @@ export default function App() {
       <WhyPlethora />
       <SupportSection />
       <Footer />
+
+      <AiChat visible={showAiChat} onClose={() => setShowAiChat(false)} />
 
       <div style={{
         position: 'fixed', bottom: 12, right: 16, fontSize: '0.68rem',
