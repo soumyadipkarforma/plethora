@@ -10,7 +10,6 @@ export default function Header() {
         </a>
         <nav className={styles.links}>
           <a href="#features">Features</a>
-          <a href="#cli">CLI</a>
           <a
             href="https://github.com/soumyadipkarforma/plethora"
             target="_blank"
