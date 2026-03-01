@@ -1,29 +1,19 @@
-// Multiple CORS proxies — try each in order until one works
-const PROXIES = [
-  (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
-  (u) => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(u)}`,
-  (u) => `https://corsproxy.io/?${encodeURIComponent(u)}`,
-]
 const PAGE_TIMEOUT = 15000
 const SEARCH_TIMEOUT = 12000
 
-// Fetch through CORS proxies with fallback + retry
+// Fetch via puter.net.fetch — no CORS restrictions, uses user's own network
 async function proxyFetch(url, timeout = PAGE_TIMEOUT) {
-  let lastErr
-  for (const mkProxy of PROXIES) {
-    const proxyUrl = mkProxy(url)
-    try {
-      const controller = new AbortController()
-      const timer = setTimeout(() => controller.abort(), timeout)
-      const res = await fetch(proxyUrl, { signal: controller.signal })
-      clearTimeout(timer)
-      if (!res.ok) { lastErr = new Error(`HTTP ${res.status}`); continue }
-      return res
-    } catch (e) {
-      lastErr = e
-    }
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), timeout)
+  try {
+    const res = await puter.net.fetch(url, { signal: controller.signal })
+    clearTimeout(timer)
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    return res
+  } catch (e) {
+    clearTimeout(timer)
+    throw e
   }
-  throw lastErr || new Error('All proxies failed')
 }
 
 // Clean extracted text — remove junk chars, control codes, repeated symbols, leftover markup
