@@ -315,4 +315,15 @@ If you find this useful, consider supporting me — it keeps me building stuff l
 
 [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/soumyadip_karforma) [![X](https://img.shields.io/badge/X-black.svg?logo=X&logoColor=white)](https://x.com/soumyadip_k) [![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?logo=YouTube&logoColor=white)](https://youtube.com/@soumyadip_karforma) [![Email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:soumyadipkarforma@gmail.com)
 
+---
+
+## 🌿 Other Branches
+
+| Branch | What's There |
+|--------|-------------|
+| [`website`](https://github.com/soumyadipkarforma/plethora/tree/website) | 🌐 React web app — use Plethora from your browser. [Live demo →](https://soumyadipkarforma.github.io/plethora/) |
+| [`pypi-package`](https://github.com/soumyadipkarforma/plethora/tree/pypi-package) | 📦 Pip-installable Python library — `pip install plethora` for use in your own scripts |
+
+> **This branch (`main`)** has the terminal scripts and CLI tool — clone it and start scraping.
+
 </div>
