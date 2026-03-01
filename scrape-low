@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# Quick low-detail scrape
-DIR="$(cd "$(dirname "$0")" && pwd)"
-source "$DIR/common"
-python3 "$DIR/scrape.py" "$QUERY" --level low --results "$RESULTS"
