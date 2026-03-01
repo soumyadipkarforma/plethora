@@ -20,24 +20,40 @@ const MODELS = [
 
 // Scrape the web for a query and return a context string
 async function webSearch(query, onStatus) {
-  onStatus('🔍 Searching the web...')
-  const results = await searchDuckDuckGo(query, 8)
-  if (!results.length) return '[No web results found]'
+  try {
+    onStatus('🔍 Searching the web...')
+    const results = await searchDuckDuckGo(query, 10)
+    if (!results.length) return { context: '[No web results found for this query]', resultCount: 0 }
 
-  onStatus(`📄 Scraping ${results.length} pages...`)
-  const pages = await scrapePagesBatch(results.map(r => r.url), 1200)
+    onStatus(`📄 Scraping ${results.length} pages...`)
+    const pages = await scrapePagesBatch(results.map(r => r.url), 1500)
 
-  let context = `Web search results for "${query}" (scraped live on ${new Date().toLocaleDateString()}):\n\n`
-  results.forEach((r, i) => {
-    const page = pages[i]
-    context += `[${i + 1}] ${cleanText(r.title)}\nURL: ${r.url}\nSnippet: ${cleanText(r.snippet)}\n`
-    if (page?.text && !page.text.startsWith('[Error') && !page.text.startsWith('[Non-HTML')) {
-      context += `Content: ${cleanText(page.text).slice(0, 800)}\n`
-      if (page.headings?.length) context += `Headings: ${page.headings.slice(0, 5).map(cleanText).join(', ')}\n`
-    }
-    context += '\n'
-  })
-  return context
+    let context = `LIVE WEB SEARCH RESULTS for "${query}" — scraped on ${new Date().toISOString().slice(0, 16)}:\n\n`
+    let goodPages = 0
+    results.forEach((r, i) => {
+      const page = pages[i]
+      context += `[${i + 1}] ${cleanText(r.title)}\n`
+      context += `URL: ${r.url}\n`
+      if (r.snippet) context += `Snippet: ${cleanText(r.snippet)}\n`
+      if (page?.text) {
+        const txt = cleanText(page.text)
+        if (txt.length > 50 && !txt.startsWith('[Error') && !txt.startsWith('[Non-HTML')) {
+          context += `Page Content: ${txt.slice(0, 1000)}\n`
+          goodPages++
+        }
+        if (page.headings?.length) {
+          context += `Page Headings: ${page.headings.slice(0, 6).map(cleanText).join(' | ')}\n`
+        }
+        if (page.meta) {
+          context += `Meta: ${cleanText(page.meta)}\n`
+        }
+      }
+      context += '\n---\n\n'
+    })
+    return { context, resultCount: results.length, scrapedPages: goodPages }
+  } catch (e) {
+    return { context: `[Web search error: ${e.message}]`, resultCount: 0, scrapedPages: 0 }
+  }
 }
 
 export default function AiChat({ fullPage }) {
@@ -73,19 +89,29 @@ export default function AiChat({ fullPage }) {
     setStatus('')
 
     try {
-      // Always scrape the web for fresh data
-      const webContext = await webSearch(text, setStatus)
-      setStatus('🤖 AI is thinking...')
+      // Scrape the web for fresh data on every query
+      const { context: webContext, resultCount, scrapedPages } = await webSearch(text, setStatus)
+
+      if (resultCount > 0) {
+        setStatus(`🤖 AI analyzing ${resultCount} results (${scrapedPages} pages scraped)...`)
+      } else {
+        setStatus('🤖 AI is thinking (no web results found)...')
+      }
 
       const chatHistory = [
         {
           role: 'system',
-          content: `You are Plethora AI, a web research assistant built into the Plethora search tool by Soumyadip Karforma. You have access to LIVE web data that was just scraped moments ago. Use this data to answer the user's question with up-to-date information. Always cite sources with URLs when possible. Be concise but thorough. Use bullet points, bold text, and clear structure.
+          content: `You are Plethora AI, a web research assistant by Soumyadip Karforma. You have access to LIVE web data scraped just now. Your job is to synthesize this data into a clear, helpful answer.
 
-LIVE WEB DATA:
-${webContext}
+IMPORTANT RULES:
+- Use the live web data below as your PRIMARY source. It was scraped seconds ago.
+- Always cite sources with [Source Title](URL) format.
+- If the data contains relevant information, present it clearly with bullet points and bold headers.
+- If the scraped data doesn't cover the topic well, say so honestly and share what you DID find.
+- Never say "I cannot find information" if the web data below contains relevant content — read it carefully.
+- Today's date is ${new Date().toISOString().slice(0, 10)}.
 
-Use the above live data to answer. If the data doesn't fully answer the question, say what you found and note what's missing. Always mention that this is from live web scraping, not your training data.`,
+${webContext}`,
         },
         ...newMessages.map(m => ({ role: m.role, content: m.content })),
       ]
