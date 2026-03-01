@@ -324,6 +324,29 @@ paths = run("AI news 2026", level="high", num_results=5, out_format="all")
 
 ---
 
+## 📦 Publishing to PyPI
+
+### Automatic (GitHub Actions)
+
+A workflow is included that auto-publishes to PyPI when you create a GitHub release.
+
+1. Get an API token from [pypi.org/manage/account](https://pypi.org/manage/account/)
+2. Add it as a repo secret named `PYPI_API_TOKEN` in **Settings → Secrets → Actions**
+3. Create a new release on GitHub (e.g., tag `v1.0.0`)
+4. The workflow builds and uploads automatically
+
+### Manual (Termux / any terminal)
+
+```bash
+pip install build twine
+python -m build
+twine upload dist/*
+```
+
+You'll be prompted for your PyPI username (`__token__`) and API token.
+
+---
+
 ## ⚠️ Disclaimer
 
 This tool is for **personal research and educational purposes only**.
