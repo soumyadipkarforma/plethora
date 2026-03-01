@@ -43,7 +43,7 @@ export default function Footer() {
         </div>
 
         <p className={styles.copy}>
-          Built by Soumyadip Karforma · MIT License · 2026
+          Built with ❤️ by <span style={{ color: 'var(--accent)', fontWeight: 700 }}>Soumyadip Karforma</span> · MIT License · 2026
         </p>
       </div>
     </footer>

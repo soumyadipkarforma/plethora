@@ -5,6 +5,7 @@ import SearchBox from './components/SearchBox'
 import Results from './components/Results'
 import Features from './components/Features'
 import CliSection from './components/CliSection'
+import SupportSection from './components/SupportSection'
 import Footer from './components/Footer'
 import { searchDuckDuckGo, scrapePage } from './scraper'
 
@@ -99,6 +100,7 @@ export default function App() {
 
       <Features />
       <CliSection />
+      <SupportSection />
       <Footer />
 
       <div style={{

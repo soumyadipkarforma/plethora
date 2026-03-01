@@ -1,0 +1,115 @@
+.section {
+  padding: 80px 0;
+}
+
+.cardWrapper {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
+}
+
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 48px 36px;
+  text-align: center;
+}
+
+.heading {
+  font-size: 1.8rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+.message {
+  font-size: 1rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 24px;
+  border-radius: var(--radius-lg);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s;
+  box-shadow: var(--shadow);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+
+.btnGithub {
+  background: linear-gradient(135deg, #db61a2, #a855f7);
+}
+
+.btnGithub:hover {
+  box-shadow: 0 8px 24px rgba(168, 85, 247, 0.35);
+}
+
+.btnCoffee {
+  background: linear-gradient(135deg, #f59e0b, #eab308);
+  color: #1a1a1a;
+}
+
+.btnCoffee:hover {
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.35);
+}
+
+.btnPatreon {
+  background: linear-gradient(135deg, #ff6b6b, #e64545);
+}
+
+.btnPatreon:hover {
+  box-shadow: 0 8px 24px rgba(255, 107, 107, 0.35);
+}
+
+.thanks {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  opacity: 0.8;
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: 32px 20px;
+  }
+
+  .heading {
+    font-size: 1.4rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+}
