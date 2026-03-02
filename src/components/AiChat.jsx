@@ -12,6 +12,94 @@ function markdownToHtml(text) {
     .replace(/\n/g, '<br>')
 }
 
+async function generateQueries(userMessage) {
+  try {
+    const resp = await puter.ai.chat(
+      `You are a search query generator. Given a user question, generate 3-5 diverse search queries that would help answer it comprehensively. Return ONLY a JSON array of strings, nothing else.
+
+User question: "${userMessage}"
+
+Example output: ["query 1", "query 2", "query 3"]`,
+      { model: 'gpt-4o-mini' }
+    )
+    const text = typeof resp === 'string' ? resp : resp?.message?.content || ''
+    const match = text.match(/\[[\s\S]*\]/)
+    if (match) {
+      const queries = JSON.parse(match[0])
+      if (Array.isArray(queries) && queries.length > 0) {
+        return queries.slice(0, 5)
+      }
+    }
+  } catch (e) {
+    console.warn('Query generation failed, using original:', e)
+  }
+  return [userMessage]
+}
+
+async function parallelWebSearch(userMessage, onStatus) {
+  try {
+    onStatus('🧠 Generating search queries...')
+    const queries = await generateQueries(userMessage)
+
+    onStatus(`🌐 Searching ${queries.length} queries in parallel...`)
+    const searchPromises = queries.map(async (query) => {
+      try {
+        const results = await searchDuckDuckGo(query, 8)
+        const urls = results.map(r => r.url)
+        const pages = await scrapePagesBatch(urls, 1200)
+        return { query, results, pages }
+      } catch (e) {
+        console.warn(`Search failed for "${query}":`, e)
+        return { query, results: [], pages: [] }
+      }
+    })
+
+    const allSearches = await Promise.all(searchPromises)
+
+    // Merge and deduplicate results
+    const seenUrls = new Set()
+    let mergedContext = `LIVE WEB SEARCH RESULTS — scraped on ${new Date().toISOString().slice(0, 16)}:\n\n`
+    let totalResults = 0
+    let totalScraped = 0
+
+    for (const search of allSearches) {
+      for (let i = 0; i < search.results.length; i++) {
+        const r = search.results[i]
+        if (seenUrls.has(r.url)) continue
+        seenUrls.add(r.url)
+        totalResults++
+
+        let entry = `[${totalResults}] ${cleanText(r.title)}\nURL: ${r.url}\n`
+        if (r.snippet) entry += `Snippet: ${cleanText(r.snippet)}\n`
+        const page = search.pages[i]
+        if (page && !page.error) {
+          const txt = page.text ? cleanText(page.text) : ''
+          if (txt.length > 50 && !txt.startsWith('[Error') && !txt.startsWith('[Non-HTML')) {
+            entry += `Content: ${txt.slice(0, 1000)}\n`
+            totalScraped++
+          }
+          if (page.headings?.length) {
+            entry += `Headings: ${page.headings.slice(0, 6).map(h => typeof h === 'string' ? cleanText(h) : cleanText(h.text || '')).join(' | ')}\n`
+          }
+          if (page.meta) {
+            entry += `Meta: ${cleanText(page.meta)}\n`
+          }
+        }
+        mergedContext += entry + '\n---\n\n'
+      }
+    }
+
+    return {
+      context: mergedContext || '[No results found]',
+      resultCount: totalResults,
+      scrapedPages: totalScraped,
+      queriesUsed: queries,
+    }
+  } catch (e) {
+    return { context: `[Web search error: ${e.message}]`, resultCount: 0, scrapedPages: 0, queriesUsed: [userMessage] }
+  }
+}
+
 const MODELS = [
   { id: 'gpt-4o-mini', label: 'GPT-4o Mini' },
   { id: 'claude-sonnet', label: 'Claude Sonnet' },
@@ -89,11 +177,12 @@ export default function AiChat({ fullPage }) {
     setStatus('')
 
     try {
-      // Scrape the web for fresh data on every query
-      const { context: webContext, resultCount, scrapedPages } = await webSearch(text, setStatus)
+      // Generate parallel queries and search the web
+      const webData = await parallelWebSearch(text, setStatus)
+      const { context: webContext, resultCount, scrapedPages, queriesUsed } = webData
 
       if (resultCount > 0) {
-        setStatus(`🤖 AI analyzing ${resultCount} results (${scrapedPages} pages scraped)...`)
+        setStatus(`🤖 AI analyzing ${resultCount} results from ${queriesUsed.length} queries (${scrapedPages} pages scraped)...`)
       } else {
         setStatus('🤖 AI is thinking (no web results found)...')
       }
@@ -110,6 +199,8 @@ IMPORTANT RULES:
 - If the scraped data doesn't cover the topic well, say so honestly and share what you DID find.
 - Never say "I cannot find information" if the web data below contains relevant content — read it carefully.
 - Today's date is ${new Date().toISOString().slice(0, 10)}.
+
+Search queries used: ${queriesUsed?.join(' | ') || 'direct search'}
 
 ${webContext}`,
         },
