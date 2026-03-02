@@ -2,6 +2,7 @@
 Plethora — web scraper engine by Soumyadip Karforma.
 Scrapes search results and site content at configurable depth.
 Generates LOW / MEDIUM / HIGH detail reports.
+Supports up to 100 results with DuckDuckGo pagination.
 """
 
 import requests
@@ -23,9 +24,10 @@ HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
         "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/120.0.0.0 Safari/537.36"
+        "Chrome/131.0.0.0 Safari/537.36"
     ),
     "Accept-Language": "en-US,en;q=0.9",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
 }
 
 TIMEOUT = 15
@@ -118,23 +120,36 @@ def _rate_limit(url: str) -> None:
         _domain_last_hit[domain] = time.time()
 
 
-# ── Google Search ────────────────────────────────────────────────────────────
+# ── Text Cleaning ────────────────────────────────────────────────────────────
 
-def web_search(query: str, num_results: int = 10) -> list[dict]:
-    """Return list of {title, url, snippet} using DuckDuckGo HTML search."""
-    url = f"https://html.duckduckgo.com/html/?q={quote_plus(query)}"
-    resp = SESSION.get(url, timeout=TIMEOUT)
-    resp.raise_for_status()
-    soup = BeautifulSoup(resp.text, "html.parser")
+def clean_text(text: str) -> str:
+    """Clean extracted text — remove junk chars, control codes, Wikipedia markup, repeated symbols."""
+    if not text:
+        return ""
+    text = re.sub(r"[\x00-\x08\x0B\x0C\x0E-\x1F\x7F]", "", text)
+    text = text.replace("\u00A0", " ")
+    text = re.sub(r"[\u200B-\u200F\u2028-\u202F\uFEFF]", "", text)
+    text = re.sub(r"\[edit\]|\[citation needed\]|\[[\d,\s]+\]", "", text, flags=re.IGNORECASE)
+    text = re.sub(r"\{\{[^}]*\}\}", "", text)
+    text = text.replace("|", " ")
+    text = re.sub(r"[►▼▲◄●○■□▪▫•‣⁃–—]{2,}", "", text)
+    text = re.sub(r"\.{4,}", "...", text)
+    text = re.sub(r"[ \t]+", " ", text)
+    text = re.sub(r"\n{3,}", "\n\n", text)
+    return text.strip()
 
+
+# ── DuckDuckGo Search ────────────────────────────────────────────────────────
+
+def _parse_ddg_page(html: str, seen_urls: set) -> list[dict]:
+    """Parse one DuckDuckGo HTML results page and return new results."""
+    soup = BeautifulSoup(html, "html.parser")
     results = []
-    seen_urls = set()
     for r in soup.select(".result"):
         title_tag = r.select_one(".result__title a, .result__a")
         snippet_tag = r.select_one(".result__snippet")
         if not title_tag:
             continue
-        # Extract real URL from DDG redirect
         raw_href = title_tag.get("href", "")
         if "uddg=" in raw_href:
             actual_url = parse_qs(urlparse(raw_href).query).get("uddg", [""])[0]
@@ -150,9 +165,45 @@ def web_search(query: str, num_results: int = 10) -> list[dict]:
                 "url": actual_url,
                 "snippet": snippet_tag.get_text(strip=True) if snippet_tag else "",
             })
-        if len(results) >= num_results:
-            break
     return results
+
+
+def web_search(query: str, num_results: int = 10) -> list[dict]:
+    """Return list of {title, url, snippet} using DuckDuckGo HTML search with pagination."""
+    base_url = f"https://html.duckduckgo.com/html/?q={quote_plus(query)}"
+    num_results = min(num_results, 100)
+    max_pages = min(5, -(-num_results // 20))  # ceil division
+
+    # Fetch first page
+    resp = SESSION.get(base_url, timeout=TIMEOUT)
+    resp.raise_for_status()
+    seen_urls: set[str] = set()
+    results = _parse_ddg_page(resp.text, seen_urls)
+
+    if len(results) >= num_results or max_pages <= 1:
+        return results[:num_results]
+
+    # Fetch remaining pages concurrently
+    def _fetch_page(page_num: int) -> str:
+        s = page_num * 20
+        url = f"{base_url}&s={s}&dc={s + 1}"
+        r = SESSION.get(url, timeout=TIMEOUT)
+        r.raise_for_status()
+        return r.text
+
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        futures = {pool.submit(_fetch_page, p): p for p in range(1, max_pages)}
+        for future in as_completed(futures):
+            try:
+                html = future.result()
+                new_results = _parse_ddg_page(html, seen_urls)
+                results.extend(new_results)
+            except Exception:
+                pass
+            if len(results) >= num_results:
+                break
+
+    return results[:num_results]
 
 
 # ── Page Scraper ─────────────────────────────────────────────────────────────
@@ -183,6 +234,12 @@ def scrape_page(url: str, use_cache: bool = True, cache_ttl: int = 3600) -> dict
     # Remove noise
     for tag in soup(["script", "style", "nav", "footer", "header", "aside", "noscript"]):
         tag.decompose()
+    for sel in [".sidebar", ".ad", ".advertisement", ".promo", ".cookie-banner",
+                ".social-share", ".share-buttons", ".comments", ".related-posts",
+                "[role='navigation']", "[role='banner']", "[role='complementary']",
+                ".infobox", ".navbox", ".metadata", ".ambox", ".mbox-small"]:
+        for tag in soup.select(sel):
+            tag.decompose()
 
     title = soup.title.get_text(strip=True) if soup.title else ""
     meta_desc = ""
@@ -190,31 +247,37 @@ def scrape_page(url: str, use_cache: bool = True, cache_ttl: int = 3600) -> dict
     if meta_tag:
         meta_desc = meta_tag.get("content", "")
 
+    # Target content containers
+    content = soup.select_one("article") or soup.select_one("main") or \
+              soup.select_one(".mw-parser-output") or soup.body or soup
+
     # Extract headings h1-h6
     headings = []
     for level in range(1, 7):
-        for h in soup.find_all(f"h{level}"):
-            text = h.get_text(strip=True)
+        for h in content.find_all(f"h{level}"):
+            text = clean_text(h.get_text(strip=True))
             if text:
                 headings.append({"level": level, "text": text})
 
     # Main text
-    paragraphs = [p.get_text(strip=True) for p in soup.find_all("p") if p.get_text(strip=True)]
+    paragraphs = [clean_text(p.get_text(strip=True)) for p in content.find_all("p")]
+    paragraphs = [p for p in paragraphs if len(p) > 20]
     full_text = re.sub(r"\s{3,}", "\n\n", "\n".join(paragraphs))
 
     # Lists
     lists = []
-    for ul in soup.find_all(["ul", "ol"]):
-        items = [li.get_text(strip=True) for li in ul.find_all("li", recursive=False) if li.get_text(strip=True)]
+    for ul in content.find_all(["ul", "ol"]):
+        items = [clean_text(li.get_text(strip=True)) for li in ul.find_all("li", recursive=False)]
+        items = [i for i in items if len(i) > 5]
         if items:
             lists.append({"type": ul.name, "items": items[:20]})
 
     # Tables
     tables = []
-    for table in soup.find_all("table"):
+    for table in content.find_all("table"):
         rows = []
         for tr in table.find_all("tr")[:30]:
-            cells = [td.get_text(strip=True) for td in tr.find_all(["td", "th"])]
+            cells = [clean_text(td.get_text(strip=True)) for td in tr.find_all(["td", "th"])]
             if cells:
                 rows.append(cells)
         if rows:
@@ -222,18 +285,22 @@ def scrape_page(url: str, use_cache: bool = True, cache_ttl: int = 3600) -> dict
 
     # Images (metadata only)
     images = []
-    for img in soup.find_all("img", src=True):
+    for img in content.find_all("img", src=True):
         src = urljoin(url, img["src"])
         alt = img.get("alt", "").strip()
         if src.startswith("http") and alt:
             images.append({"src": src, "alt": alt[:200]})
 
-    # Links on the page
+    # Links on the page (deduplicated, capped at 50)
     links = []
-    for a in soup.find_all("a", href=True):
+    seen_links = set()
+    for a in content.find_all("a", href=True):
         href = urljoin(url, a["href"])
-        if href.startswith("http"):
+        if href.startswith("http") and href not in seen_links:
+            seen_links.add(href)
             links.append({"text": a.get_text(strip=True)[:100], "url": href})
+        if len(links) >= 50:
+            break
 
     result = {
         "url": url,
@@ -263,9 +330,19 @@ def scrape_subpages(page_data: dict, max_subpages: int = 3,
     seen = {page_data["url"]}
     subpages = []
 
+    junk_pattern = re.compile(
+        r"(login|signup|register|auth|search|tag|category"
+        r"|\.pdf|\.png|\.jpg|\.gif|\.svg|mailto:|javascript:)",
+        re.IGNORECASE,
+    )
+
     candidates = []
     for link in page_data.get("links", []):
         link_url = link["url"]
+        if link_url.startswith("#"):
+            continue
+        if junk_pattern.search(link_url):
+            continue
         if urlparse(link_url).netloc == base_domain and link_url not in seen:
             seen.add(link_url)
             candidates.append(link_url)
