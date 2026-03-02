@@ -19,4 +19,4 @@ usage() {
 [ -z "$1" ] && usage
 
 QUERY="$1"
-RESULTS="${2:-5}"
+RESULTS="${2:-10}"

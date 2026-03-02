@@ -31,10 +31,10 @@ Output formats:
   all    — All of the above
 
 Examples:
-  python scrape.py "best python libraries 2026" --level low
-  python scrape.py "machine learning tutorials" --level medium --results 5
-  python scrape.py "climate change data" --level high --results 8 --subpages 3
-  python scrape.py "AI research" --level high --format all --workers 6
+  plethora "best python libraries 2026" --level low --results 20
+  plethora "machine learning tutorials" --level medium --results 50
+  plethora "climate change data" --level high --results 10 --subpages 3
+  plethora "AI research" --level high --format all --workers 8 --results 100
         """,
     )
     parser.add_argument("query", help="Search query string")
@@ -46,8 +46,8 @@ Examples:
     )
     parser.add_argument(
         "-n", "--results",
-        type=int, default=5,
-        help="Number of search results to process (default: 5)",
+        type=int, default=10,
+        help="Number of search results to process (default: 10, max: 100)",
     )
     parser.add_argument(
         "-s", "--subpages",
@@ -67,8 +67,8 @@ Examples:
     )
     parser.add_argument(
         "-w", "--workers",
-        type=int, default=4,
-        help="Concurrent scraping workers (default: 4)",
+        type=int, default=8,
+        help="Concurrent scraping workers (default: 8)",
     )
     parser.add_argument(
         "-q", "--quiet",
@@ -87,6 +87,7 @@ Examples:
     )
 
     args = parser.parse_args()
+    args.results = min(max(args.results, 1), 100)  # Clamp 1–100
 
     try:
         paths = run(
