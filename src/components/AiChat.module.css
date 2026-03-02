@@ -188,6 +188,7 @@
   border: 1px solid var(--border);
   color: var(--text);
   border-bottom-left-radius: 4px;
+  max-width: 100%;
 }
 
 .assistant pre {
@@ -324,7 +325,7 @@
 
 .panelFull {
   position: relative;
-  width: min(720px, 96vw);
+  width: min(1100px, 96vw);
   height: 96vh;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
